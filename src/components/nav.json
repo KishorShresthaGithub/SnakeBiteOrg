@@ -1,0 +1,39 @@
+[
+    {
+        "to": "/",
+        "title": "home",
+        "default": "Home"
+    },
+    {
+        "to": "/about",
+        "title": "about",
+        "default": "About",
+        "drop": true
+    },
+    {
+        "to": "/snakes_and_Snakebites",
+        "title": "snakes_and_Snakebites",
+        "default": "Snakes & Snakebites"
+    },
+    {
+        "to": "/messages",
+        "title": "messages",
+        "default": "Messages"
+    },
+    {
+        "to": "/antivenom",
+        "title": "antivenom",
+        "default": "Antivenom Centers",
+        "drop":true
+    },
+    {
+        "to": "/Snakes_art",
+        "title": "Snakes_art",
+        "default": "Snakes in Art & Culture"
+    },
+    {
+        "to": "/contact",
+        "title": "contact",
+        "default": "Contact"
+    }
+]

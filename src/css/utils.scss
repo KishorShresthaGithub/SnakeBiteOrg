@@ -1,0 +1,136 @@
+$primaryColor: #ffbb00;
+$primaryDark: #e18e00;
+$grey: #707070;
+$lightGrey: #eeeeee;
+
+.slick-prev {
+  left: 3% !important;
+  z-index: 1;
+  background-color: black !important;
+  padding: 0.25px !important;
+  color: $primaryColor !important;
+  border-radius: 100%;
+  
+}
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+  background-color: black !important;
+  padding: 0.25px !important;
+  color: $primaryColor !important;
+  border-radius: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $lightGrey; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primaryDark; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primaryDark; 
+}
+
+// backgounds
+.bg_primary {
+  background-color: $primaryColor;
+}
+.bg_primaryDark {
+  background-color: $primaryDark;
+}
+.bg_lightGrey {
+  background-color: $lightGrey;
+}
+.bg_white{
+  background-color: white;
+}
+.text-primary{
+  color: $primaryColor;
+}
+
+.btn-primary {
+  background-color: $primaryColor;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: small;
+  text-transform: uppercase;
+  padding: .7rem 1.5rem;
+  box-shadow: 1px 1px 8px -2px rgba($color: #000000, $alpha: 0.2);
+  transition: all 0.3s;
+  &:hover {
+    background-color: $primaryDark;
+    box-shadow: 2px 2px 4px 2px rgba($color: #000000, $alpha: 0.09);
+    transition: all 0.3s;
+  }
+}
+
+.btn-outline-primary {
+  border: 2px solid $primaryColor;
+  border-radius: 22px;
+  color: $primaryColor;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 1px 20px;
+  font-weight: bold;
+  transition: all 0.3s;
+  font-size: small;
+  &:hover {
+    background-color: $primaryColor;
+    color: white;
+    transition: all 0.3s;
+  }
+}
+
+.line {
+  border-left: 6px solid $grey;
+  margin: 0 10px 0 10px;
+  padding: 2px 0;
+  height: 100%;
+}
+
+.card {
+  box-shadow: 2px 2px 8px -4px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 8px -4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2px 2px 8px -4px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgb(246, 246, 246);
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgb(246, 246, 246);
+    transition: all 0.3s;
+  }
+}
+.card_dark {
+  background-color: $lightGrey;
+  box-shadow: 2px 2px 8px -4px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 8px -4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2px 2px 8px -4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+  }
+}
+
+
+// some emergency css
+.hSimg{
+  &:hover{
+    transform: scale(1.4);
+  }
+}
