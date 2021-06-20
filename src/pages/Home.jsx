@@ -8,6 +8,7 @@ import Home_venomous from '../components/Home_venomous.jsx'
 import Antivenom_card from '../components/Antivenom_card.jsx'
 import Sponsers from '../components/Sponsers.jsx'
 import ContactForm from '../components/ContactForm.jsx'
+import Footer from '../components/Footer.jsx'
 
 function Home() {
     const newsData=[
@@ -83,7 +84,7 @@ function Home() {
             <div className="container mx-auto mt-5 px-4 md:container mx-auto mt-5">
 
                 {/* news container starts  */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-12">
+                <div className="grid mt-1 mb-4 px-2 grid-cols-1 md:grid-cols-4 gap-4  md:mt-20">
                     <div className="md:col-span-2">
                     <h1 className="flex items-center font-bold text-xl">Recent News & Update <span className="font-black mx-2">|</span> <button className="btn-outline-primary">View All</button></h1>
                         <hr className="mt-4" />
@@ -98,7 +99,7 @@ function Home() {
 
                     </div>
                     
-                    <div className="order-first md:col-span-2 md:order-last">
+                    <div className="order-first md:order-last md:col-span-2">
                         <Upcoming_Event />
                     </div>
 
@@ -108,8 +109,8 @@ function Home() {
             {/* about us container starts  */}
             <div className="bg_lightGrey py-10">
                 <div className="container mx-auto p-y-5">
-                    <p className=" p-4 md:py-10 text-primary font-medium">Who we are ? </p>
-                    <div className="bg_white p-8 rounded">
+                    <p className="p-4 md:py-10 font-medium">Who we are ? </p>
+                    <div className="bg_white p-8 md:p-12 rounded">
                         <h4 className="font-medium text-lg font-bold">SNAKEBITE NEPAL</h4>
                         <p className="mt-2 text-primary"><i>About us</i></p>
                         <p className="mt-4 leading-8">
@@ -123,7 +124,7 @@ function Home() {
 
             {/* most venomous snakes starts  */}
             <div className="container mx-auto mt-5">
-                <h1 className="flex items-center font-bold text-xl md:mt-10">Most Venomous Snakes in Nepal <span className="font-black mx-2">|</span> <button className="btn-outline-primary">View All</button></h1>
+                <h1 className="flex flex-col md:flex-row items-center font-bold text-xl md:mt-10">Most Venomous Snakes in Nepal <span className="font-black mx-2 hidden md:block">|</span> <button className="btn-outline-primary mt-2 md:mt-0">View All</button></h1>
 
                 {/* .venouous snakes card starts  */}
                 <div  className="grid md:grid-cols-4 gap-4 mt-8 px-4">
@@ -136,7 +137,7 @@ function Home() {
                 
                 {/* antivenom center starts  */}
                 <div className="px-8 pt-10 pb-20 anitvenom mt-10 md:mt-20 bg_lightGrey">
-                    <h1 className="flex items-center font-bold text-xl md:mt-10">Antivenom Centers <span className="font-black mx-2">|</span> <button className="btn-outline-primary">Find One Near You</button></h1>
+                    <h1 className="flex items-center flex-col md:flex-row font-bold text-xl md:mt-10">Antivenom Centers <span className="font-black mx-2 hidden md:block">|</span> <button className="btn-outline-primary mt-2 md:mt-0">Find One Near You</button></h1>
                     {/* <p className="mt-5">He went to Mario Negri Institute of Pharmacological research, Bergamo, Italy for Fellow of International Society of Nephrology (Italy); Fellow ISPD (Dialysis) (London, UK); Fellow JSN (Mie University, </p> */}
                     <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mt-8">
                         {AntivenomData.map((av)=>(
@@ -161,7 +162,11 @@ function Home() {
                 <ContactForm />
             </div>
             {/* contact us ends  */}
+            
 
+            {/* FOOTER STARTS  */}
+            <Footer />
+            {/* footer ends  */}
             
         </div>
     )

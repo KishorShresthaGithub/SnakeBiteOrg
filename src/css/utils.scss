@@ -21,7 +21,8 @@ $lightGrey: #eeeeee;
   border-radius: 100%;
 }
 
-/* width */
+.scroll{
+  /* width */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -39,6 +40,7 @@ $lightGrey: #eeeeee;
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $primaryDark; 
+}
 }
 
 // backgounds

@@ -10,10 +10,16 @@
         "default": "About",
         "drop": true
     },
+    
     {
         "to": "/snakes_and_Snakebites",
         "title": "snakes_and_Snakebites",
         "default": "Snakes & Snakebites"
+    },
+    {
+        "to":"/news",
+        "title":"news",
+        "default":"News"
     },
     {
         "to": "/messages",

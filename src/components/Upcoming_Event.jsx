@@ -6,7 +6,7 @@ import {BiTime} from 'react-icons/bi'
 
 function Upcoming_Event() {
     return (
-        <div className="card bg_primary p-4 md:p-8 h-4/5 overflow-y-scroll scrollbar-thumb-blue-700">
+        <div className="card bg-blue-600 text-white p-4 md:p-8 h-4/5 overflow-y-scroll scroll">
             <div className="title flex justify-between items-center">
                 <h1 className="font-bold text-xl ">UPCOMING EVENT</h1>
                 <span className="font-bold text-xl "><MdEventNote /></span>

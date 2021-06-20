@@ -28,12 +28,12 @@ function Home_Slider() {
           }
       ]
     return (
-        <div style={{zIndex:-100}}>
+        <div>
             <Slider {...settings} style={{zIndex:0}}>
                
                 {sliderData.map((data)=>(
                 <div key={sliderData.indexOf(data)}>
-                    <img src={data.img} alt="" className="z-0 h-96 w-full object-cover" />
+                    <img src={data.img} alt="" className="z-0 w-full object-cover" style={{height:'80vh'}} />
                 </div>
                 ))}
                            
