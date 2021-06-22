@@ -1,12 +1,14 @@
 import React from 'react'
 import {BiTimeFive} from 'react-icons/bi'
 import {BiNews} from 'react-icons/bi'
+import {Link} from 'react-router-dom'
 
 function News_Card({Ndate,Ncategory,Ntitle,Nimg}) {
     return (
+        <Link to="/news/1">
         <div className="card">
             {Nimg.length!=0?
-            <img src={Nimg} alt="Ntitle" />
+            <img src={Nimg} className="w-full h-32 object-cover" alt="Ntitle" />
             :''}
             <div className="card-body p-3 mt-2">
                 <div className="p2 flex justify-between items-center">
@@ -17,6 +19,7 @@ function News_Card({Ndate,Ncategory,Ntitle,Nimg}) {
 
             </div>
         </div>
+        </Link>
     )
 }
 

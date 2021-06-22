@@ -35,10 +35,10 @@ function Footer() {
 
                 {/* footer nav starts  */}
                 <div className="flex md:pl-7 items-center mt-10">
-                    <Link to="">
+                    <Link to="/">
                         <h1 className="font-bold mx-1 md:mx-4 text-lg md:xl">Home</h1>
                     </Link>
-                    <Link to="">
+                    <Link to="/about">
                         <h1 className="font-bold mx-1 md:mx-4 text-lg md:xl">About</h1>
                     </Link>
                     <Link to="">

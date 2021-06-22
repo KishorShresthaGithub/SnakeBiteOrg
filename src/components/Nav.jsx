@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import navs from './nav.json'
 import{FaBars} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,12 @@ import {BiChevronDown} from 'react-icons/bi'
 import {AiOutlineCloseSquare} from 'react-icons/ai'
 function Nav() {
     const [mobileNav,setMobileNav]=useState(false);
+    const [abc,setAbc]=useState();
+    useEffect(() => {
+        navs.map((res)=>(
+            setAbc(res.content)
+        ))
+    }, [])
     return (
         <div>
             {/* top dark nav starts  */}
@@ -34,14 +40,22 @@ function Nav() {
                     <div className="hidden md:block flex-1 mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
                         <ul className='flex item-center cursor-pointer active:text-white'>
                         {navs.map((nav)=>(
-                            <div key={navs.indexOf(nav)} >                        
-                                <Link to={nav.to} className="flex items-center">
-                                <li className="px-4" >{nav.default} </li> 
-                                 {nav.drop? 
-                                    <div>
-                                        <BiChevronDown  className="font-semibold" />
-                                    </div> :''}
+                            <div key={navs.indexOf(nav)} className={nav.drop?'dropdown':''} >                               
+                                    <Link to={nav.to} className="flex items-center">
+                                        <li className={nav.drop ? "px-4":'px-4'}>
+                                            {nav.default} 
+                                        </li> 
+
+                                        {nav.drop? 
+                                            <div>
+                                                <BiChevronDown  className="font-semibold" />
+                                            </div> :''}
                                     </Link>
+
+                                    <div className="dropdown-content">
+                                        <h1>Dropdown</h1>
+                                        {console.log("content",nav.content)}
+                                    </div>                                
                             </div>
                     
                     ))}
