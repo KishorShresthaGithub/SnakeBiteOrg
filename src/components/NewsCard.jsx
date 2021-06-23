@@ -3,7 +3,7 @@ import {BiTimeFive} from 'react-icons/bi'
 import {BiNews} from 'react-icons/bi'
 import {Link} from 'react-router-dom'
 
-function News_Card({Ndate,Ncategory,Ntitle,Nimg}) {
+function NewsCard({Ndate,Ncategory,Ntitle,Nimg}) {
     return (
         <Link to="/news/1">
         <div className="card">
@@ -23,4 +23,4 @@ function News_Card({Ndate,Ncategory,Ntitle,Nimg}) {
     )
 }
 
-export default News_Card
+export default NewsCard

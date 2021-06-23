@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {BiLeftArrowCircle} from 'react-icons/bi'
 import {BiRightArrowCircle} from 'react-icons/bi'
 
-function Home_Slider() {
+function HomeSlider() {
     var settings = {
         dots: true,
         arrow:true,
@@ -42,4 +42,4 @@ function Home_Slider() {
     )
 }
 
-export default Home_Slider
+export default HomeSlider

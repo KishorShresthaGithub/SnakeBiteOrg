@@ -4,7 +4,7 @@ import {MdEvent} from 'react-icons/md'
 import {HiLocationMarker} from 'react-icons/hi'
 import {BiTime} from 'react-icons/bi'
 
-function Upcoming_Event() {
+function UpcomingEvent() {
     return (
         <div className="card bg-blue-600 text-white p-4 md:p-8 h-4/5 overflow-y-scroll scroll">
             <div className="title flex justify-between items-center">
@@ -49,4 +49,4 @@ function Upcoming_Event() {
     )
 }
 
-export default Upcoming_Event
+export default UpcomingEvent

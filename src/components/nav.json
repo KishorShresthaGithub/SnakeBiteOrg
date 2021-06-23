@@ -33,11 +33,7 @@
         "title":"news",
         "default":"News"
     },
-    {
-        "to": "/messages",
-        "title": "messages",
-        "default": "Messages"
-    },
+    
     {
         "to": "/antivenom",
         "title": "antivenom",

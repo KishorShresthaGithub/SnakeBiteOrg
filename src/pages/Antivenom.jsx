@@ -1,7 +1,7 @@
 import React from 'react'
 import TitleBar from '../components/TitleBar'
 import Page from '../template/Page'
-import Antivenom_card from '../components/Antivenom_card'
+import AntivenomCard from '../components/AntivenomCard'
 
 function Antivenom() {
     
@@ -68,7 +68,7 @@ function Antivenom() {
                     {/* <p className="mt-5">He went to Mario Negri Institute of Pharmacological research, Bergamo, Italy for Fellow of International Society of Nephrology (Italy); Fellow ISPD (Dialysis) (London, UK); Fellow JSN (Mie University, </p> */}
                     <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-5 gap-8 mt-8">
                         {AntivenomData.map((av)=>(
-                            <Antivenom_card key={AntivenomData.indexOf(av)} name={av.name} no={av.no} />
+                            <AntivenomCard key={AntivenomData.indexOf(av)} name={av.name} no={av.no} />
                         ))}
                     </div>
 

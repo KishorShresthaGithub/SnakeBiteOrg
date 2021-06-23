@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from 'react-modal';
 import {GrClose} from 'react-icons/gr'
 const customStyles = {
@@ -13,7 +13,7 @@ const customStyles = {
   };
 
 function ImageGallery({img,title}) {
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     return (
     <>
@@ -26,11 +26,11 @@ function ImageGallery({img,title}) {
 
         <Modal
         isOpen={modalIsOpen}
-        contentLabel="Example Modal"
+        contentLabel="Image Gallery"
         style={customStyles}
         >
             <button onClick={()=>{setIsOpen(false)}}><GrClose className="text-xl font-bold" /></button>
-            <img src={img} alt="" />
+            <img src={img} alt="" className="md:max-w-screen-md" />
         </Modal>
     </>
     )

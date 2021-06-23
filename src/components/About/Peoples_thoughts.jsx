@@ -18,9 +18,9 @@ function Peoples_thoughts({name,content}) {
     return (
         <>
         <div className="flex mb-4 card p-4 cursor-pointer" onClick={()=>{setIsOpen(true)}}>
-            <img src="https://lh3.googleusercontent.com/proxy/38NQP7rFj6J8LXl7PaNo_CwLBTZulREa8iGBJMzha4nTfIqcf6LpSS34R_lj3Wc0x1A2E6K91p9rTiwWpIh8u3bPteYAyQ"
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
              alt=""
-             className="w-1/4 h-1/4 md:w-24 rounded-full shadow-lg border-2 border-black" />
+             className="w-1/4 h-1/4 md:w-20 md:h-20 object-cover rounded-full shadow-lg border-2 border-black" />
             
             <div className="ml-4">
                 <h1 className="font-bold text-xl">{name}</h1>
@@ -41,7 +41,7 @@ function Peoples_thoughts({name,content}) {
                 <p className="mt-4 leading-6">{content}</p>
             </div>
             <div>
-                <img src="https://lh3.googleusercontent.com/proxy/38NQP7rFj6J8LXl7PaNo_CwLBTZulREa8iGBJMzha4nTfIqcf6LpSS34R_lj3Wc0x1A2E6K91p9rTiwWpIh8u3bPteYAyQ"
+                <img src=" https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
                 className="w-80 md:ml-20 border-2 border-black" alt="" />
             </div>
         </div>

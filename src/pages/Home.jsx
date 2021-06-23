@@ -1,11 +1,11 @@
 import React from 'react'
 import Nav from '../components/Nav.jsx'
-import Home_Slider from '../components/Home_Slider.jsx'
-import News_Card from '../components/News_Card.jsx'
-import Upcoming_Event from '../components/Upcoming_Event.jsx'
+import HomeSlider from '../components/HomeSlider.jsx'
+import NewsCard from '../components/NewsCard.jsx'
+import UpcomingEvent from '../components/UpcomingEvent.jsx'
 import {Link} from 'react-router-dom'
-import Home_venomous from '../components/Home_venomous.jsx'
-import Antivenom_card from '../components/Antivenom_card.jsx'
+import HomeVenomous from '../components/HomeVenomous.jsx'
+import AntivenomCard from '../components/AntivenomCard.jsx'
 import Sponsers from '../components/Sponsers.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import Footer from '../components/Footer.jsx'
@@ -80,7 +80,7 @@ function Home() {
     return (
         <div>
             <Nav/>            
-            <Home_Slider/>
+            <HomeSlider/>
             <div className="container mx-auto mt-5 px-4 md:container mx-auto mt-5">
 
                 {/* news container starts  */}
@@ -91,7 +91,7 @@ function Home() {
                         <div className="grid md:grid-cols-2 gap-4 mt-5">
                             {newsData.map((n)=>(
                             <Link to="">
-                                <News_Card Ndate={n.date} Ncategory={n.category} Ntitle={n.title} Nimg="" />
+                                <NewsCard Ndate={n.date} Ncategory={n.category} Ntitle={n.title} Nimg="" />
                             </Link>
                             ))}                            
                             
@@ -100,7 +100,7 @@ function Home() {
                     </div>
                     
                     <div className="order-first md:order-last md:col-span-2">
-                        <Upcoming_Event />
+                        <UpcomingEvent />
                     </div>
 
                 </div>
@@ -129,7 +129,7 @@ function Home() {
                 {/* .venouous snakes card starts  */}
                 <div  className="grid md:grid-cols-4 gap-4 mt-8 px-4">
                     {snakesData.map((s)=>(
-                            <Home_venomous key={snakesData.indexOf(s)}  name={s.name} img={s.img} />
+                            <HomeVenomous key={snakesData.indexOf(s)}  name={s.name} img={s.img} />
                     ))}
                 </div>
 
@@ -141,7 +141,7 @@ function Home() {
                     {/* <p className="mt-5">He went to Mario Negri Institute of Pharmacological research, Bergamo, Italy for Fellow of International Society of Nephrology (Italy); Fellow ISPD (Dialysis) (London, UK); Fellow JSN (Mie University, </p> */}
                     <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mt-8">
                         {AntivenomData.map((av)=>(
-                            <Antivenom_card key={AntivenomData.indexOf(av)} name={av.name} no={av.no} />
+                            <AntivenomCard key={AntivenomData.indexOf(av)} name={av.name} no={av.no} />
                         ))}
                     </div>
                 </div>

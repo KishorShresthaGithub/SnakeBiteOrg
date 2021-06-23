@@ -65,12 +65,11 @@ function About() {
                     {/* heading section endss  */}
 
                     <div className="grid md:grid-cols-4 mt-10 md:mt-20 gap-6">
-                            <ImageGallery img="https://lh3.googleusercontent.com/proxy/38NQP7rFj6J8LXl7PaNo_CwLBTZulREa8iGBJMzha4nTfIqcf6LpSS34R_lj3Wc0x1A2E6K91p9rTiwWpIh8u3bPteYAyQ" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
-                            <ImageGallery img="https://lh3.googleusercontent.com/proxy/38NQP7rFj6J8LXl7PaNo_CwLBTZulREa8iGBJMzha4nTfIqcf6LpSS34R_lj3Wc0x1A2E6K91p9rTiwWpIh8u3bPteYAyQ" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
-                            <ImageGallery img="https://lh3.googleusercontent.com/proxy/38NQP7rFj6J8LXl7PaNo_CwLBTZulREa8iGBJMzha4nTfIqcf6LpSS34R_lj3Wc0x1A2E6K91p9rTiwWpIh8u3bPteYAyQ" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
-                            <ImageGallery img="https://lh3.googleusercontent.com/proxy/38NQP7rFj6J8LXl7PaNo_CwLBTZulREa8iGBJMzha4nTfIqcf6LpSS34R_lj3Wc0x1A2E6K91p9rTiwWpIh8u3bPteYAyQ" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
+                            <ImageGallery img="https://savethesnakes.org/wp-content/uploads/2018/06/District-workshop-860704384-1534792011705.jpg" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
+                            <ImageGallery img="https://savethesnakes.org/wp-content/uploads/2018/06/District-workshop-860704384-1534792011705.jpg" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
+                            <ImageGallery img="https://savethesnakes.org/wp-content/uploads/2018/06/District-workshop-860704384-1534792011705.jpg" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
+                            <ImageGallery img="https://savethesnakes.org/wp-content/uploads/2018/06/District-workshop-860704384-1534792011705.jpg" title="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology" />
                     </div>
-
                 </div>
             </div>
             {/* historical image gallery ends  */}

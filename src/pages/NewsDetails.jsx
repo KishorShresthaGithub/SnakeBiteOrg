@@ -9,7 +9,7 @@ import {BiTime} from 'react-icons/bi'
 import {BiNews} from 'react-icons/bi'
 
 
-function News_Details() {
+function NewsDetails() {
     return (
         <Page>
         <TitleBar name="Snakebite Details" />
@@ -57,4 +57,4 @@ function News_Details() {
     )
 }
 
-export default News_Details
+export default NewsDetails

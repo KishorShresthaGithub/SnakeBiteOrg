@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Home_venomous({img,name}) {
+function HomeVenomous({img,name}) {
     return (
         <div className="text-center">
         <div className="card">
@@ -12,4 +12,4 @@ function Home_venomous({img,name}) {
     )
 }
 
-export default Home_venomous
+export default HomeVenomous
