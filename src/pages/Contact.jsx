@@ -23,9 +23,11 @@ function Contact() {
                 <div className="bg-gray-900 absolute w-full bg-opacity-80 h-96" style={{top:'5.2rem',zIndex:'-1'}}>
                     <div className="container mx-auto px-4 py-8 text-white">
                         <div className="h1 font-bold text-2xl mt-10">CONTACT US</div>
+
                         <a href="google.com">
                             Click here to navigate in Google Map
                         </a>
+
                     </div>
                 </div>                
             </div>

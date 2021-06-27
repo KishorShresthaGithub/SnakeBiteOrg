@@ -15,6 +15,8 @@ import Antivenom from './pages/Antivenom';
 import AntivenomDetails from './pages/AntivenomDetails';
 import ArtAndCulture from './pages/ArtAndCulture';
 import Contact from './pages/Contact';
+import Login from './pages/Dashboard/Login';
+import DHome from './pages/Dashboard/DHome';
 function App() {
   return (
     <Router>
@@ -29,6 +31,11 @@ function App() {
         <Route path="/antivenom/:id" component={AntivenomDetails}></Route>
         <Route path="/Snakes_art" component={ArtAndCulture}></Route>
         <Route path="/contact" component={Contact}></Route>
+        
+
+        {/* dashboard route  */}
+        <Route path="/admin" exact component={Login}></Route>
+        <Route path="/dash/home" exact component={DHome}></Route>
       </Switch>
 
     </Router>

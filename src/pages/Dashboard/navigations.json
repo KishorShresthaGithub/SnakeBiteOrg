@@ -1,11 +1,11 @@
 [
     {
-        "to": "/",
+        "to": "/Dhome",
         "title": "home",
         "default": "Home"
     },
     {
-        "to": "/about",
+        "to": "/Dabout",
         "title": "about",
         "default": "About",
         "drop": true,
@@ -19,29 +19,23 @@
                 "to":"about2",
                 "title":"about2",
                 "default":"About2"
-            },
-            {
-                "to":"about3",
-                "title":"about3",
-                "default":"About3"
             }
-            
             ]
     },
     
     {
-        "to": "/snakes_and_Snakebites",
+        "to": "/Dsnakes_and_Snakebites",
         "title": "snakes_and_Snakebites",
         "default": "Snakes & Snakebites"
     },
     {
-        "to":"/news",
+        "to":"/Dnews",
         "title":"news",
         "default":"News"
     },
     
     {
-        "to": "/antivenom",
+        "to": "/Dantivenom",
         "title": "antivenom",
         "default": "Antivenom Centers",
         "drop":true,
@@ -59,12 +53,12 @@
             ]
     },
     {
-        "to": "/Snakes_art",
+        "to": "/DSnakes_art",
         "title": "Snakes_art",
         "default": "Snakes in Art & Culture"
     },
     {
-        "to": "/contact",
+        "to": "/Dcontact",
         "title": "contact",
         "default": "Contact"
     }

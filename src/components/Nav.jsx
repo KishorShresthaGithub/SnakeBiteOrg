@@ -62,28 +62,26 @@ function Nav() {
                         <h4 className="font-bold text-lg mx-4 md:mx-2 md:text-xs lg:text-base lg:mx-4">SNAKEBITE NEPAL</h4>
                     </Link>
                     {/* web nav starts  */}
-                    <div className="hidden md:block flex-1 mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
-                        <ul className='flex item-center cursor-pointer active:text-white'>
-                        {navs.map((nav)=>(
-                            <div key={navs.indexOf(nav)} className={nav.drop?'dropdown':''} >                               
-                                    <Link to={nav.to} className="flex items-center font-medium">
-                                        <li className={nav.drop ? "px-4":'px-4'}>
+                    <div className="hidden md:block  flex-1 mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
+                        <ul className='flex item-center dropdown cursor-pointer active:text-white'>
+                        {navs.map((nav,index)=>(
+                        
+                            <div key={index} >                               
+                                    <Link to={nav.to} className="flex items-center font-medium text-lg">
+                                        <li className='px-4 h-full'>
                                             {nav.default} 
-                                        </li> 
-
-                                        {nav.drop? 
-                                            <div>
-                                                <BiChevronDown  className="font-semibold" />
-                                            </div> :''}
+                                        </li>                                       
                                     </Link>
-
-                                    <div className="dropdown-content">
-                                        <h1>Dropdown</h1>
-                                        {console.log("content",nav.content)}
-                                    </div>                                
+                                    {nav.drop  ? nav.content.map((a,index)=>{
+                                        return(<div key={index} className="dropdown-content">
+                                        <Link to={a.to}>
+                                            <li>{a.default}</li>
+                                        </Link>
+                                    </div>)
+                                    }):''}
                             </div>
-                    
-                    ))}
+                                               
+                        ))}
                         </ul>
                     </div>
                     {/* web nav ends  */}
