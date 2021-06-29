@@ -12,6 +12,7 @@ import {BsToggleOn,BsToggleOff} from 'react-icons/bs'
 function Nav() {
     const [mobileNav,setMobileNav]=useState(false);
     const [abc,setAbc]=useState();
+    const [subMenu,setSubMenu]=useState('');
     useEffect(() => {
         navs.map((res)=>(
             setAbc(res.content)
@@ -63,22 +64,30 @@ function Nav() {
                     </Link>
                     {/* web nav starts  */}
                     <div className="hidden md:block  flex-1 mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
-                        <ul className='flex item-center dropdown cursor-pointer active:text-white'>
+                        <ul className='flex item-center cursor-pointer active:text-white'>
                         {navs.map((nav,index)=>(
                         
-                            <div key={index} >                               
+                            <div key={index} className="dropdown" >                               
                                     <Link to={nav.to} className="flex items-center font-medium text-lg">
                                         <li className='px-4 h-full'>
                                             {nav.default} 
-                                        </li>                                       
+                                        </li>  
+                                        {nav.drop?<BiChevronDown /> :''}                                     
                                     </Link>
-                                    {nav.drop  ? nav.content.map((a,index)=>{
-                                        return(<div key={index} className="dropdown-content">
-                                        <Link to={a.to}>
-                                            <li>{a.default}</li>
-                                        </Link>
-                                    </div>)
-                                    }):''}
+
+                                    <div className="dropdown-content">
+                                        {nav.drop  ? nav.content.map((a,index)=>{
+                                                return(
+                                                    <div key={index} className="bg_primary ml-2 px-3 w-full font-semibold hover:bg-yellow-500">                                       
+                                                        <li className="py-2">
+                                                        <Link to={a.to}>{a.default}</Link>
+                                                        </li>
+                                                    </div>                               
+
+                                            )
+                                            }):''}
+                                    </div>                                        
+                                    
                             </div>
                                                
                         ))}
@@ -90,15 +99,46 @@ function Nav() {
             {/* mobile nav starts  */}
             <div className={mobileNav ? " z-10 bg-gray-100 h-screen w-9/12 pb-8 container mx-auto absolute transform translate-x-0 transition duration-500 ease-in-out" : 'z-10 absolute h-screen transform -translate-x-full transition duration-500 ease-in-out'}>
                 <ul>
-                    {navs.map((nav)=>(
+                    {navs.map((nav,index)=>(
                         <>
-                            <div key={navs.indexOf(nav)} >
-                                <Link to={nav.to} className="flex justify-between hover:bg-gray-200 cursor-pointer py-3 px-8 transform"><li className="" >{nav.default} </li> 
-                                {nav.drop? 
-                                    <div>
-                                        <BiChevronDown  className="font-medium" />
+                            <div key={index} >
+                                 
+                                <li className="flex justify-between items-center hover:bg-gray-200 cursor-pointer px-8 transform" >
+                                    <Link to={nav.to} className="py-3">{nav.default}</Link> 
+                                    {nav.drop? 
+                                    <div  className="font-medium p-3 bg-gray-200" 
+                                    onClick={(e)=>{setSubMenu(nav.title)}} >
+                                        <BiChevronDown/>                                        
                                     </div> :''}
-                                </Link>
+                                </li> 
+                                
+                            
+                                    <div className={subMenu==='about'?'block':'hidden'}>
+                                        {nav.title=='about'? nav.content.map((a,index)=>{
+                                                return(
+                                                    <div key={index} className="bg-gray-200 px-8">
+                                                        <hr className='border-1 border-gray-300' />                                       
+                                                        <li className="py-2">
+                                                        <Link to={a.to}>{a.default}</Link>
+                                                        </li>
+                                                    </div>                               
+
+                                            )
+                                            }):''}
+                                    </div> 
+                                    <div className={subMenu==='antivenom'?'block':'hidden'}>
+                                        {nav.title=='antivenom'? nav.content.map((a,index)=>{
+                                                return(
+                                                    <div key={index} className="bg-gray-200 px-8">
+                                                        <hr className='border-1 border-gray-300' />                                                                              
+                                                        <li className="py-2">
+                                                        <Link to={a.to}>{a.default}</Link>
+                                                        </li>
+                                                    </div>                               
+
+                                            )
+                                            }):''}
+                                    </div>      
                             </div>
                             <hr className="mx-8" />
                         </>

@@ -1,64 +1,91 @@
 [
     {
-        "to": "/Dhome",
+        "to": "/dash/home",
         "title": "home",
         "default": "Home"
     },
     {
-        "to": "/Dabout",
+        "to":"/dash/slider",
+        "title":"slider",
+        "default":"Slider"
+    },
+    {
+        "to": "/dash/about",
         "title": "about",
         "default": "About",
         "drop": true,
         "content":[
             {
-                "to":"about1",
-                "title":"about1",
-                "default":"About1"
+                "to":"Messages",
+                "title":"Messgaes",
+                "default":"Messages"
             },
             {
-                "to":"about2",
-                "title":"about2",
-                "default":"About2"
-            }
+                "to":"BPKIHS",
+                "title":"BPKIHS",
+                "default":"BPKIHS"
+            },
+            {
+                "to":"EDCD",
+                "title":"EDCD",
+                "default":"EDCD"
+            },
+            {
+                "to":"Implementing_Partners",
+                "title":"Implementing Partners",
+                "default":"Implementing Partners"
+            },
+            {
+                "to":"Our_Friends",
+                "title":"Our Friends",
+                "default":"Our Friends"
+            }            
             ]
     },
     
     {
-        "to": "/Dsnakes_and_Snakebites",
+        "to": "/dash/snakes_and_Snakebites",
         "title": "snakes_and_Snakebites",
         "default": "Snakes & Snakebites"
     },
     {
-        "to":"/Dnews",
+        "to":"/dash/news",
         "title":"news",
         "default":"News"
     },
     
     {
-        "to": "/Dantivenom",
+        "to": "/dash/antivenom",
         "title": "antivenom",
         "default": "Antivenom Centers",
         "drop":true,
         "content":[
+            
             {
-                "to":"antivenom1",
-                "title":"antivenom1",
-                "default":"antivenom1"
+                "to":"ECDC_Centers",
+                "title":"ECDC Centers",
+                "default":"ECDC Centers"
             },
             {
-                "to":"antivenom2",
-                "title":"antivenom2",
-                "default":"antivenom2"
+                "to":"Nepal_Red_Cross_Centers",
+                "title":"Nepal Red Cross Centers",
+                "default":"Nepal Red Cross Centers"
+            },
+            {
+                
+                "to":"Nepal_Army_Centers",
+                "title":"Nepal Army Centers",
+                "default":"Nepal Army Centers"
             }
             ]
     },
     {
-        "to": "/DSnakes_art",
+        "to": "/dash/Snakes_art",
         "title": "Snakes_art",
         "default": "Snakes in Art & Culture"
     },
     {
-        "to": "/Dcontact",
+        "to": "/dash/contact",
         "title": "contact",
         "default": "Contact"
     }

@@ -17,6 +17,10 @@ import ArtAndCulture from './pages/ArtAndCulture';
 import Contact from './pages/Contact';
 import Login from './pages/Dashboard/Login';
 import DHome from './pages/Dashboard/DHome';
+import DSlider from './pages/Dashboard/DSlider';
+import DNews from './pages/Dashboard/DNews';
+import DSnakeArt from './pages/Dashboard/DSnakeArt';
+import DSnakebite from './pages/Dashboard/DSnakebite';
 function App() {
   return (
     <Router>
@@ -36,6 +40,11 @@ function App() {
         {/* dashboard route  */}
         <Route path="/admin" exact component={Login}></Route>
         <Route path="/dash/home" exact component={DHome}></Route>
+        <Route path="/dash/slider" exact component={DSlider} />
+        <Route path="/dash/news" exact component={DNews} />
+        <Route path="/dash/Snakes_art" component={DSnakeArt}></Route>
+        <Route path="/dash/snakes_and_Snakebites" component={DSnakebite}></Route>
+
       </Switch>
 
     </Router>

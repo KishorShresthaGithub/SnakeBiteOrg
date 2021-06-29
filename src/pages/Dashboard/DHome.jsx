@@ -12,6 +12,8 @@ function DHome() {
                         Welcome to Snakebite Nepal
                     </h1>
                     <p className="font-bold text-md mt-2 flex items-center"><FaRegCalendarAlt className="mr-2" /> {new Date().toDateString()}</p>
+
+                    {/* add and view slider  */}
                     <div className="grid md:grid-cols-5 gap-4 mt-10">
                         
                             <div className="col-span-3">

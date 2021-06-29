@@ -11,21 +11,30 @@
         "drop": true,
         "content":[
             {
-                "to":"about1",
-                "title":"about1",
-                "default":"About1"
+                "to":"Messages",
+                "title":"Messgaes",
+                "default":"Messages"
             },
             {
-                "to":"about2",
-                "title":"about2",
-                "default":"About2"
+                "to":"BPKIHS",
+                "title":"BPKIHS",
+                "default":"BPKIHS"
             },
             {
-                "to":"about3",
-                "title":"about3",
-                "default":"About3"
-            }
-            
+                "to":"EDCD",
+                "title":"EDCD",
+                "default":"EDCD"
+            },
+            {
+                "to":"Implementing_Partners",
+                "title":"Implementing Partners",
+                "default":"Implementing Partners"
+            },
+            {
+                "to":"Our_Friends",
+                "title":"Our Friends",
+                "default":"Our Friends"
+            }            
             ]
     },
     
@@ -46,15 +55,22 @@
         "default": "Antivenom Centers",
         "drop":true,
         "content":[
+            
             {
-                "to":"antivenom1",
-                "title":"antivenom1",
-                "default":"antivenom1"
+                "to":"ECDC_Centers",
+                "title":"ECDC Centers",
+                "default":"ECDC Centers"
             },
             {
-                "to":"antivenom2",
-                "title":"antivenom2",
-                "default":"antivenom2"
+                "to":"Nepal_Red_Cross_Centers",
+                "title":"Nepal Red Cross Centers",
+                "default":"Nepal Red Cross Centers"
+            },
+            {
+                
+                "to":"Nepal_Army_Centers",
+                "title":"Nepal Army Centers",
+                "default":"Nepal Army Centers"
             }
             ]
     },
