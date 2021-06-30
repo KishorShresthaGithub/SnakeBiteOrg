@@ -21,6 +21,7 @@ import DSlider from './pages/Dashboard/DSlider';
 import DNews from './pages/Dashboard/DNews';
 import DSnakeArt from './pages/Dashboard/DSnakeArt';
 import DSnakebite from './pages/Dashboard/DSnakebite';
+import DAntivenom from './pages/Dashboard/DAntivenom';
 function App() {
   return (
     <Router>
@@ -44,6 +45,7 @@ function App() {
         <Route path="/dash/news" exact component={DNews} />
         <Route path="/dash/Snakes_art" component={DSnakeArt}></Route>
         <Route path="/dash/snakes_and_Snakebites" component={DSnakebite}></Route>
+        <Route path="/dash/antivenom" component={DAntivenom}></Route>
 
       </Switch>
 
