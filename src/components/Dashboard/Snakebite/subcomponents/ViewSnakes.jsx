@@ -16,7 +16,7 @@ function ViewSnakes() {
                 <tr className="">
                     <td  className="border border-gray-200 p-2">1</td>
                     <td  className="border border-gray-200 p-2">
-                        <img src="" alt="image" srcset="" />
+                        <img src="" alt="" srcset="" />
                     </td>
                     <td  className="border border-gray-200 p-2">News Cateogry</td>                    
                     <td className=" border border-gray-200 p-2 flex items-center">

@@ -1,12 +1,11 @@
 import React from 'react'
+import { FacebookProvider, Share } from 'react-facebook'
+import { BiTime } from 'react-icons/bi'
+import { FaFacebookF } from 'react-icons/fa'
 import Books from '../components/snakebites/Books'
-import Snakebite from '../components/snakebites/Snakebite'
 import Youtube from '../components/snakebites/Youtube'
 import TitleBar from '../components/TitleBar'
 import Page from '../template/Page'
-import { FacebookProvider, Share } from 'react-facebook';
-import {FaFacebookF} from 'react-icons/fa'
-import {BiTime} from 'react-icons/bi'
 
 
 function Snakebite_Details() {

@@ -18,7 +18,7 @@ function ViewBook() {
                 <tr className="">
                     <td  className="border border-gray-200 p-2">1</td>
                     <td  className="border border-gray-200 p-2">
-                        <img src="" alt="image" srcset="" />
+                        <img src="" alt="" srcset="" />
                     </td>
                     <td  className="border border-gray-200 p-2">Book Name</td>                  
                     <td  className="border border-gray-200 p-2">Book Authors</td> 

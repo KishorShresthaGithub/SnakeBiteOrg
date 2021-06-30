@@ -1,23 +1,20 @@
-import React from 'react'
-import Dashboard from '../../template/Dashboard'
-import DashCard from '../../template/DashCard'
-import AddSlider from '../../components/Dashboard/Slider/AddSlider'
-import ViewSlider from '../../components/Dashboard/Slider/ViewSlider'
-import AddAntivenom from '../../components/Dashboard/Antivenom/AddAntivenom'
-import ViewAntivenom from '../../components/Dashboard/Antivenom/ViewAntivenom'
-
+import React from "react";
+import AddAntivenom from "../../components/Dashboard/Antivenom/AddAntivenom";
+import ViewAntivenom from "../../components/Dashboard/Antivenom/ViewAntivenom";
+import Dashboard from "../../template/Dashboard";
+import DashCard from "../../template/DashCard";
 
 function DAntivenom() {
-    return (
-        <Dashboard>
-            <DashCard 
-                btnAdd="Add Antivenom" 
-                btnView="View Antivenom" 
-                AddComponent={<AddAntivenom />} 
-                ViewComponents={<ViewAntivenom />}>
-            </DashCard>
-        </Dashboard>
-    )
+  return (
+    <Dashboard>
+      <DashCard
+        btnAdd="Add Antivenom"
+        btnView="View Antivenom"
+        AddComponent={<AddAntivenom />}
+        ViewComponents={<ViewAntivenom />}
+      ></DashCard>
+    </Dashboard>
+  );
 }
 
-export default DAntivenom
+export default DAntivenom;

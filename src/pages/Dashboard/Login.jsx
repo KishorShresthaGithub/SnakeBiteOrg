@@ -1,6 +1,5 @@
 import React from 'react'
 import LoginForm from '../../components/Dashboard/LoginForm'
-import bgImg from '../../images/Image 11.png'
 
 function Login() {
     return (
@@ -12,7 +11,7 @@ function Login() {
                         <LoginForm />
                     </div>
                     <div className="bg_primary text-white h-96">
-                        <img src="https://images.pexels.com/photos/34426/snake-rainbow-boa-reptile-scale.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bg image" className="h-full w-full object-cover" />
+                        <img src="https://images.pexels.com/photos/34426/snake-rainbow-boa-reptile-scale.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bg " className="h-full w-full object-cover" />
                     </div>
                 </div>
             </div>
