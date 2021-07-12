@@ -5,7 +5,6 @@ import Footer from "../components/Footer.jsx";
 import HomeSlider from "../components/HomeSlider.jsx";
 import HomeVenomous from "../components/HomeVenomous.jsx";
 import Nav from "../components/Nav.jsx";
-import NewsCard from "../components/NewsCard.jsx";
 import Sponsers from "../components/Sponsers.jsx";
 import UpcomingEvent from "../components/UpcomingEvent.jsx";
 
@@ -84,32 +83,28 @@ function Home() {
       <HomeSlider />
       <div className="container mx-auto mt-5 px-4 md:container mx-auto mt-5">
         {/* news container starts  */}
-        <div className="grid mt-1 mb-4 px-2 grid-cols-1 md:grid-cols-4 gap-4  md:mt-20">
-          <div className="md:col-span-2">
-            <h1 className="flex items-center font-bold text-xl">
-              Recent News & Update <span className="font-black mx-2">|</span>{" "}
-              <button className="btn-outline-primary">View All</button>
-            </h1>
-            <hr className="mt-4" />
-            <div className="grid md:grid-cols-2 gap-4 mt-5">
-              {newsData.map((n, index) => (
-                <NewsCard
-                  key={index}
-                  Ndate={n.date}
-                  Ncategory={n.category}
-                  Ntitle={n.title}
-                  Nimg=""
-                />
-              ))}
-            </div>
+        <div className="flex justify-between items-center my-10 md:my-24 space-x-4">
+          <div className="">
+            <UpcomingEvent />
           </div>
 
-          <div className="order-first md:order-last md:col-span-2">
-            <UpcomingEvent />
+          <div className="">
+            <iframe
+              title="snakebite"
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSnakebiteInNepal%20&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+              className="w-96 h-96"
+            ></iframe>
           </div>
         </div>
         {/* news container ends  */}
       </div>
+
+      <div className="order-first md:order-last md:col-span-2">
+        <UpcomingEvent />
+      </div>
+
+      {/* news container ends  */}
+
       {/* about us container starts  */}
       <div className="bg_lightGrey py-10">
         <div className="container mx-auto p-y-5">
