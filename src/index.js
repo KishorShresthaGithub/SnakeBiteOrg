@@ -4,13 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Wrapper from "./lang/Wrapper";
+import { ToastProvider } from "react-toast-notifications";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Wrapper>
+  <Wrapper>
+    <ToastProvider
+      autoDismissTimeout={5000}
+      autoDismiss={true}
+      placement={"bottom-center"}
+    >
       <App />
-    </Wrapper>
-  </React.StrictMode>,
+    </ToastProvider>
+  </Wrapper>,
   document.getElementById("root")
 );
 

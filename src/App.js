@@ -40,8 +40,8 @@ function App() {
         <Route path="/contact" component={Contact}></Route>
 
         {/* dashboard route  */}
-        <Route path="/admin" exact component={Login}></Route>
-        <Route path="/dash/home" exact component={DHome}></Route>
+        <Route path="/login" exact component={Login}></Route>
+        <Route path="/d_home" exact component={DHome}></Route>
         <Route path="/dash/slider" exact component={DSlider} />
         <Route path="/dash/news" exact component={DNews} />
         <Route path="/dash/Snakes_art" component={DSnakeArt}></Route>
