@@ -99,9 +99,9 @@ function Home() {
         {/* news container ends  */}
       </div>
 
-      <div className="order-first md:order-last md:col-span-2">
+      {/* <div className="order-first md:order-last md:col-span-2">
         <UpcomingEvent />
-      </div>
+      </div> */}
 
       {/* news container ends  */}
 
