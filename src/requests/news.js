@@ -10,12 +10,9 @@ export const getNews = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getNew = async ({ news_id, signal, accesstoken }) => {
+export const getNew = async ({ news_id, signal }) => {
   return await axios
     .get(`${server_url}/api/news/${news_id}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

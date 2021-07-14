@@ -15,9 +15,6 @@ export const getAVCs = async ({ signal }) => {
 export const getAVC = async ({ avc_slug, signal, accesstoken }) => {
   return await axios
     .get(`${server_url}/api/avcenters/${avc_slug}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

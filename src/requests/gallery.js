@@ -10,15 +10,9 @@ export const getGallery = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getSingleGallery = async (
-  { gallery_id, signal, accesstoken },
-  addToast
-) => {
+export const getSingleGallery = async ({ gallery_id, signal }) => {
   return await axios
     .get(`${server_url}/api/gallery/${gallery_id}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

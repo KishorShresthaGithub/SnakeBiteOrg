@@ -10,12 +10,9 @@ export const getSnakes = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getSnake = async ({ snake_slug, signal, accesstoken }) => {
+export const getSnake = async ({ snake_slug, signal }) => {
   return await axios
     .get(`${server_url}/api/snakes/${snake_slug}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

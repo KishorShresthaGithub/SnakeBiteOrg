@@ -10,12 +10,9 @@ export const getSliders = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getSlider = async ({ slider_slug, signal, accesstoken }) => {
+export const getSlider = async ({ slider_slug, signal }) => {
   return await axios
     .get(`${server_url}/api/sliders/${slider_slug}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

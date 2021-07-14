@@ -10,12 +10,9 @@ export const getEvents = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getEvent = async ({ event_slug, signal, accesstoken }) => {
+export const getEvent = async ({ event_slug, signal }) => {
   return await axios
     .get(`${server_url}/api/events/${event_slug}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

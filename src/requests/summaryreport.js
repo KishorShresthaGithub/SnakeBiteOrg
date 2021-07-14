@@ -18,16 +18,9 @@ export const getSummaryReport = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getSummaryReportID = async ({
-  summaryreport_id,
-  signal,
-  accesstoken,
-}) => {
+export const getSummaryReportID = async ({ summaryreport_id, signal }) => {
   return await axios
     .get(`${server_url}/api/summaryreport/${summaryreport_id}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);

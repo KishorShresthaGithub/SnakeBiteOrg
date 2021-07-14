@@ -10,12 +10,9 @@ export const getNavLinks = async ({ signal }) => {
     .catch(console.log);
 };
 
-export const getNavLink = async ({ nav_id, signal, accesstoken }) => {
+export const getNavLink = async ({ nav_id, signal }) => {
   return await axios
     .get(`${server_url}/api/links/${nav_id}`, {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
       cancelToken: signal.token,
     })
     .catch(console.log);
