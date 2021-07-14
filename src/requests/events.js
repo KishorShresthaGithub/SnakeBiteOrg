@@ -2,17 +2,17 @@ import axios from "axios";
 
 import { server_url, validation } from "./config";
 
-export const getNavLinks = async ({ signal }) => {
+export const getEvents = async ({ signal }) => {
   return await axios
-    .get(`${server_url}/api/links`, {
+    .get(`${server_url}/api/events`, {
       cancelToken: signal.token,
     })
     .catch(console.log);
 };
 
-export const getNavLink = async ({ nav_id, signal, accesstoken }) => {
+export const getEvent = async ({ event_slug, signal, accesstoken }) => {
   return await axios
-    .get(`${server_url}/api/links/${nav_id}`, {
+    .get(`${server_url}/api/events/${event_slug}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
@@ -21,10 +21,12 @@ export const getNavLink = async ({ nav_id, signal, accesstoken }) => {
     .catch(console.log);
 };
 
-export const saveNav = async ({ data, signal, accesstoken }, addToast) => {
+//upload image
+export const saveEvent = async ({ data, signal, accesstoken }, addToast) => {
   return await axios
-    .post(`${server_url}/api/links`, data, {
+    .post(`${server_url}/api/events`, data, {
       headers: {
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
       cancelToken: signal.token,
@@ -32,13 +34,15 @@ export const saveNav = async ({ data, signal, accesstoken }, addToast) => {
     .catch((err) => validation(err, addToast));
 };
 
-export const updateNav = async (
-  { data, nav_id, signal, accesstoken },
+//upload image
+export const updateEvent = async (
+  { data, event_id, signal, accesstoken },
   addToast
 ) => {
   return await axios
-    .put(`${server_url}/api/links/${nav_id}`, data, {
+    .put(`${server_url}/api/events/${event_id}`, data, {
       headers: {
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
       cancelToken: signal.token,
@@ -46,9 +50,12 @@ export const updateNav = async (
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteNav = async ({ nav_id, signal, accesstoken }, addToast) => {
+export const deleteEvent = async (
+  { event_id, signal, accesstoken },
+  addToast
+) => {
   return await axios
-    .delete(`${server_url}/api/links/${nav_id}`, {
+    .delete(`${server_url}/api/events/${event_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },

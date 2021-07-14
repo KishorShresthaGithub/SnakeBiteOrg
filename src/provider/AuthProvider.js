@@ -9,6 +9,7 @@ export function useToken() {
   const getToken = () => {
     const tokenString = localStorage.getItem("access_token");
     const userToken = JSON.parse(tokenString);
+
     return userToken?.access_token;
   };
   const [access_token, setToken] = useState(getToken());
@@ -39,7 +40,7 @@ export function Protected({ children }) {
 
   const tokenValidation = useCallback(
     (signal) => {
-      validateToken({ access_token, signal }).catch((err) => {
+      validateToken({ accessToken: access_token, signal }).catch((err) => {
         console.log(err);
       });
     },
