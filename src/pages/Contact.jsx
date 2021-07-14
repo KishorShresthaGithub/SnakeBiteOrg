@@ -9,11 +9,10 @@ import {
 import { FiMail } from "react-icons/fi";
 import { HiLocationMarker } from "react-icons/hi";
 import ContactForm from "../components/ContactForm";
-import Page from "../template/Page";
 
 function Contact() {
   return (
-    <Page>
+    <>
       <div className="" style={{ zIndex: "-10" }}>
         <div className="w-full h-96 relative" style={{ zIndex: "-1" }}>
           <iframe
@@ -84,7 +83,7 @@ function Contact() {
           </div>
         </div>
       </div>
-    </Page>
+    </>
   );
 }
 

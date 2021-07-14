@@ -13,7 +13,7 @@ function Page(props) {
   );
 }
 
-export const PageTemplateRoute = ({ component: Component, ...rest }) => {
+export const PageRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}

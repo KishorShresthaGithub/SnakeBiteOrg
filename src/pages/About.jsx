@@ -1,15 +1,14 @@
 import React from "react";
-import Page from "../template/Page";
-import TitleBar from "../components/TitleBar";
 import AboutSnakebite from "../components/About/About_snakebite";
-import StoriesCard from "../components/About/Stories_card";
-import PeoplesThoughts from "../components/About/Peoples_thoughts";
-import Sponsers from "../components/Sponsers";
 import ImageGallery from "../components/About/ImageGallery";
+import PeoplesThoughts from "../components/About/Peoples_thoughts";
+import StoriesCard from "../components/About/Stories_card";
+import Sponsers from "../components/Sponsers";
+import TitleBar from "../components/TitleBar";
 
 function About() {
   return (
-    <Page>
+    <>
       <TitleBar name="About Us" />
       <AboutSnakebite />
 
@@ -141,7 +140,7 @@ function About() {
         <Sponsers />
       </div>
       {/* Sponsers & Promoters ends  */}
-    </Page>
+    </>
   );
 }
 

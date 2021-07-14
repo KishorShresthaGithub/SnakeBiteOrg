@@ -1,10 +1,8 @@
-import React, { useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import LoginForm from "../../components/Dashboard/LoginForm";
-import { useToken } from "../../provider/AuthProvider";
 
 function Login() {
-/*   const history = useHistory();
+  /*   const history = useHistory();
   const { access_token } = useToken();
 
   useLayoutEffect(() => {

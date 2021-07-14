@@ -17,27 +17,32 @@ import News from "./pages/News";
 import NewsDetails from "./pages/NewsDetails";
 import SnakebiteDetails from "./pages/SnakebiteDetails";
 import SnakesAndSnakebites from "./pages/SnakesAndSnakebites";
+import { PageRoute } from "./template/Page";
+
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={Home}></Route>
-        <Route path="/about" component={About}></Route>
-        <Route
+        <PageRoute path="/" exact component={Home} />
+        <PageRoute path="/about" component={About} />
+        <PageRoute
           path="/snakes_and_Snakebites"
           exact
           component={SnakesAndSnakebites}
-        ></Route>
-        <Route
+        ></PageRoute>
+        <PageRoute
           path="/snakes_and_Snakebites/:id"
           component={SnakebiteDetails}
-        ></Route>
-        <Route path="/news" exact component={News}></Route>
-        <Route path="/news/:id" component={NewsDetails}></Route>
-        <Route path="/antivenom" exact component={Antivenom}></Route>
-        <Route path="/antivenom/:id" component={AntivenomDetails}></Route>
-        <Route path="/Snakes_art" component={ArtAndCulture}></Route>
-        <Route path="/contact" component={Contact}></Route>
+        ></PageRoute>
+        <PageRoute path="/news" exact component={News}></PageRoute>
+        <PageRoute path="/news/:id" component={NewsDetails}></PageRoute>
+        <PageRoute path="/antivenom" exact component={Antivenom}></PageRoute>
+        <PageRoute
+          path="/antivenom/:id"
+          component={AntivenomDetails}
+        ></PageRoute>
+        <PageRoute path="/Snakes_art" component={ArtAndCulture}></PageRoute>
+        <PageRoute path="/contact" component={Contact}></PageRoute>
 
         {/* dashboard route  */}
         <Route path="/login" exact component={Login}></Route>

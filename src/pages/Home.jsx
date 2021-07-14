@@ -1,10 +1,8 @@
 import React from "react";
 import AntivenomCard from "../components/AntivenomCard.jsx";
 import ContactForm from "../components/ContactForm.jsx";
-import Footer from "../components/Footer.jsx";
 import HomeSlider from "../components/HomeSlider.jsx";
 import HomeVenomous from "../components/HomeVenomous.jsx";
-import Nav from "../components/Nav.jsx";
 import Sponsers from "../components/Sponsers.jsx";
 import UpcomingEvent from "../components/UpcomingEvent.jsx";
 
@@ -77,9 +75,9 @@ function Home() {
       no: "18",
     },
   ];
+
   return (
     <div>
-      <Nav />
       <HomeSlider />
       <div className="container mx-auto mt-5 px-4 md:container mx-auto mt-5">
         {/* news container starts  */}
@@ -193,10 +191,6 @@ function Home() {
         <ContactForm />
       </div>
       {/* contact us ends  */}
-
-      {/* FOOTER STARTS  */}
-      <Footer />
-      {/* footer ends  */}
     </div>
   );
 }
