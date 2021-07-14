@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import SideNav from "../pages/Dashboard/SideNav";
 import { Protected } from "../provider/AuthProvider";
 
@@ -12,5 +13,18 @@ function Dashboard(props) {
     </Protected>
   );
 }
+
+export const DashRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(matchProps) => (
+        <Dashboard>
+          <Component {...rest} {...matchProps} />
+        </Dashboard>
+      )}
+    />
+  );
+};
 
 export default Dashboard;

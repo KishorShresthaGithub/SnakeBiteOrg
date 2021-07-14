@@ -1,11 +1,10 @@
 import React from "react";
-import Dashboard from "../../template/Dashboard";
-import { Link } from "react-router-dom";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function DHome() {
   return (
-    <Dashboard>
+    <>
       <div className="bg-gray-100 py-10 md:h-screen">
         <div className="container mx-auto px-4">
           <h1 className="mt-8 text-3xl">Welcome to Snakebite Nepal</h1>
@@ -69,7 +68,7 @@ function DHome() {
           </div>
         </div>
       </div>
-    </Dashboard>
+    </>
   );
 }
 
