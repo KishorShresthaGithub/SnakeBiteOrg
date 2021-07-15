@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormView } from "react-icons/gr";
+import { NavContext } from "../provider/NavProvider";
+import axios from "axios";
 
 function DashCard(props) {
-  const [activeBtn, setActiveBtn] = useState("Add");
+  const [activeBtn, setActiveBtn] = useState("View");
+
+  const { getNav } = useContext(NavContext);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+    getNav({ signal }).catch(console.log);
+
+    return () => {
+      signal.cancel();
+    };
+  }, [getNav]);
+
   let TabLayout;
   if (activeBtn === "Add") {
     TabLayout = (

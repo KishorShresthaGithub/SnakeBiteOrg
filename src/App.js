@@ -1,5 +1,4 @@
-import DOMPurify from "dompurify";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import "./css/utils.scss";
 import About from "./pages/About";
@@ -9,6 +8,7 @@ import ArtAndCulture from "./pages/ArtAndCulture";
 import Contact from "./pages/Contact";
 import DAntivenom from "./pages/Dashboard/DAntivenom";
 import DHome from "./pages/Dashboard/DHome";
+import DLinks from "./pages/Dashboard/DLinks";
 import DNews from "./pages/Dashboard/DNews";
 import DSlider from "./pages/Dashboard/DSlider";
 import DSnakeArt from "./pages/Dashboard/DSnakeArt";
@@ -85,6 +85,7 @@ function App() {
           component={DSnakebite}
         ></DashRoute>
         <DashRoute path="/d_antivenom" component={DAntivenom}></DashRoute>
+        <DashRoute path="/d_links" component={DLinks}></DashRoute>
 
         <Route path="*" component={NotFound} />
       </Switch>

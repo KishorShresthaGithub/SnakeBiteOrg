@@ -10,6 +10,14 @@ export const getNavLinks = async ({ signal }) => {
     .catch(console.log);
 };
 
+export const getNavLinksAll = async ({ signal }) => {
+  return await axios
+    .get(`${server_url}/api/links/all`, {
+      cancelToken: signal.token,
+    })
+    .catch(console.log);
+};
+
 export const getNavLink = async ({ nav_id, signal }) => {
   return await axios
     .get(`${server_url}/api/links/${nav_id}`, {
@@ -18,27 +26,22 @@ export const getNavLink = async ({ nav_id, signal }) => {
     .catch(console.log);
 };
 
-export const saveNav = async ({ data, signal, accesstoken }, addToast) => {
+export const saveNav = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/links`, data, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
-export const updateNav = async (
-  { data, nav_id, signal, accesstoken },
-  addToast
-) => {
+export const updateNav = async ({ data, nav_id, accesstoken }, addToast) => {
   return await axios
     .put(`${server_url}/api/links/${nav_id}`, data, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
