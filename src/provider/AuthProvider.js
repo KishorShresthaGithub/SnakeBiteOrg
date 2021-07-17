@@ -1,9 +1,6 @@
 /* import axios from "axios";
 import { host } from "../../../settings"; */
-import axios from "axios";
-import React, { Fragment, useCallback, useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { validateToken } from "../requests/auth";
+import { useState } from "react";
 
 export function useToken() {
   const getToken = () => {
@@ -28,32 +25,4 @@ export function useToken() {
     deleteToken: deleteToken,
     access_token,
   };
-}
-
-export function Protected({ children }) {
-  const { access_token } = useToken();
-  const history = useHistory();
-
-  if (!access_token) {
-    history.push("/login");
-  }
-
-  const tokenValidation = useCallback(
-    (signal) => {
-      validateToken({ accessToken: access_token, signal }).catch((err) => {
-        console.log(err);
-      });
-    },
-    [access_token]
-  );
-
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-    tokenValidation(signal);
-    return () => {
-      signal.cancel();
-    };
-  }, [tokenValidation]);
-
-  return <Fragment>{children}</Fragment>;
 }

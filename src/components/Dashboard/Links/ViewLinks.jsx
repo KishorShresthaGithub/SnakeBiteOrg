@@ -1,13 +1,13 @@
+import { cancelToken } from "@provider/AxiosCancel";
+import { getNavLinksAll } from "@requests/nav";
 import axios from "axios";
 import DOMPurify from "dompurify";
-import MaterialTable from "material-table";
 import React, { useCallback, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import { cancelToken } from "@provider/AxiosCancel";
-import { getNavLinksAll } from "@requests/nav";
+import DataTable from "../../DataTable";
 
 function ViewLinks() {
   const [open, setOpen] = useState(false);
@@ -114,7 +114,7 @@ function ViewLinks() {
 
   return (
     <>
-      <MaterialTable columns={columns} data={links} />
+      <DataTable columns={columns} data={links} />
 
       <Modal open={open} onClose={onCloseModal} center>
         <h2>Page</h2>

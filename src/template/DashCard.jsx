@@ -3,9 +3,14 @@ import { IoMdAdd } from "react-icons/io";
 import { GrFormView } from "react-icons/gr";
 import { NavContext } from "@provider/NavProvider";
 import axios from "axios";
+import AddLayout from "./DashTabs/AddLayout";
+import ViewLayout from "./DashTabs/ViewLayout";
+import UpdateLayout from "./DashTabs/UpdateLayout";
+
+const DashCardContext = React.createContext();
 
 function DashCard(props) {
-  const [activeBtn, setActiveBtn] = useState("View");
+  const [layout, setLayout] = useState("View");
 
   const { getNav } = useContext(NavContext);
 
@@ -18,28 +23,35 @@ function DashCard(props) {
     };
   }, [getNav]);
 
-  let TabLayout;
-  if (activeBtn === "Add") {
-    TabLayout = (
-      <div>
-        <hr />
-        <h1 className="font-semibold text-xl p-4">{props.btnAdd}</h1>
-        <div className="p-4">{props.AddComponent}</div>
-      </div>
-    );
-  }
-  if (activeBtn === "View") {
-    TabLayout = (
-      <div>
-        <hr />
-        <h1 className="font-semibold text-xl p-4">{props.btnView}</h1>
-
-        <div className="p-4 w-80 md:w-full overflow-x-scroll">
-          {props.ViewComponents}
-        </div>
-      </div>
-    );
-  }
+  const renderTab = () => {
+    switch (layout) {
+      case "Add":
+        return (
+          <AddLayout btnAdd={props.btnAdd} addComponent={props.AddComponent} />
+        );
+      case "View":
+        return (
+          <ViewLayout
+            btnView={props.btnView}
+            viewComponent={props.ViewComponents}
+          />
+        );
+      case "Update":
+        return (
+          <UpdateLayout
+            btnUpdate={props.btnUpdate}
+            updateComponent={props.UpdateComponent}
+          />
+        );
+      default:
+        return (
+          <ViewLayout
+            btnView={props.btnView}
+            viewComponent={props.ViewComponents}
+          />
+        );
+    }
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen md:px-6 md:py-8">
@@ -48,12 +60,12 @@ function DashCard(props) {
         <div className="flex items-center">
           <div
             className={
-              activeBtn === "Add"
+              layout === "Add"
                 ? "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200"
                 : "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8"
             }
             onClick={() => {
-              setActiveBtn("Add");
+              setLayout("Add");
             }}
           >
             <IoMdAdd />
@@ -61,21 +73,35 @@ function DashCard(props) {
           </div>
           <div
             className={
-              activeBtn === "View"
+              layout === "View"
                 ? "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200"
                 : "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8"
             }
             onClick={() => {
-              setActiveBtn("View");
+              setLayout("View");
             }}
           >
             <GrFormView className="text-2xl" />
             {props.btnView}
           </div>
+          <div
+            className={
+              layout === "Update"
+                ? "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200"
+                : "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8"
+            }
+            onClick={() => {
+              setLayout("Update");
+            }}
+          >
+            {" "}
+            <GrFormView className="text-2xl" />
+            {props.btnUpdate}
+          </div>
         </div>
         {/* top section ends  */}
         {props.children}
-        {TabLayout}
+        {renderTab(props)}
       </div>
     </div>
   );

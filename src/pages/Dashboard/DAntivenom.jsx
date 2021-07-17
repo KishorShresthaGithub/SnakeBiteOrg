@@ -11,6 +11,7 @@ function DAntivenom() {
         btnView="View Antivenom"
         AddComponent={<AddAntivenom />}
         ViewComponents={<ViewAntivenom />}
+  
       ></DashCard>
     </>
   );
