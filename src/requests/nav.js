@@ -46,13 +46,12 @@ export const updateNav = async ({ data, nav_id, accesstoken }, addToast) => {
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteNav = async ({ nav_id, signal, accesstoken }, addToast) => {
+export const deleteNav = async ({ nav_id, accesstoken }, addToast) => {
   return await axios
     .delete(`${server_url}/api/links/${nav_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };

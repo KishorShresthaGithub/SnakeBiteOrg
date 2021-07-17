@@ -1,5 +1,7 @@
 import { cancelToken } from "@provider/AxiosCancel";
-import { getNavLinksAll } from "@requests/nav";
+import { NavContext } from "@provider/NavProvider";
+import { deleteNav, getNavLinksAll } from "@requests/nav";
+import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useCallback, useContext, useEffect, useState } from "react";
@@ -7,15 +9,68 @@ import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import { DashCardContext } from "@template/DashCard";
 import DataTable from "../../DataTable";
+
+import useToken from "@provider/AuthProvider";
+import { useToasts } from "react-toast-notifications";
 
 function ViewLinks() {
   const dashTab = useContext(DashCardContext);
+  const { getNav } = useContext(NavContext);
+  const { addToast } = useToasts();
+
+  const { access_token } = useToken();
 
   const [page, setPage] = useState(false);
-
   const [links, setLinks] = useState([]);
+
+  const getNavs = useCallback(async (signal) => {
+    try {
+      const res = await getNavLinksAll({ signal });
+      if (res) {
+        const linksDB = res.data.data;
+
+        linksDB?.forEach((link, index) => {
+          if (link.parent_link !== null) {
+            let parent = linksDB.find((res) => res.id === link.parent_link);
+
+            link.parent = parent;
+          }
+        });
+
+        setLinks(linksDB);
+      }
+    } catch (err) {
+      return cancelToken(err);
+    }
+  }, []);
+
+  const handleDelete = (id) => {
+    if (!window.confirm("Do you want to delet this resource?")) return;
+
+    deleteNav({
+      nav_id: id,
+      accesstoken: access_token,
+    })
+      .then((res) => {
+        addToast(res.data.message, { appearance: "success" });
+        const signal = axios.CancelToken.source();
+
+        getNavs(signal).catch(console.log);
+      })
+      .catch(console.log);
+  };
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    Promise.all([getNavs(signal), getNav(signal)]).catch(console.log);
+
+    return () => {
+      signal.cancel();
+    };
+  }, [dashTab, getNav, getNavs]);
+
   const [updateLink, setUpdateLink] = useState({
     id: 0,
     title: "",
@@ -67,43 +122,15 @@ function ViewLinks() {
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"
             />
-            <MdDeleteSweep className="bg-red-500 h-10 w-10 p-2 text-white" />
+            <MdDeleteSweep
+              onClick={() => handleDelete(row.id)}
+              className="bg-red-500 h-10 w-10 p-2 text-white"
+            />
           </div>
         );
       },
     },
   ];
-
-  const getNavs = useCallback(async (signal) => {
-    try {
-      const res = await getNavLinksAll({ signal });
-      if (res) {
-        const linksDB = res.data.data;
-
-        linksDB?.forEach((link, index) => {
-          if (link.parent_link !== null) {
-            let parent = linksDB.find((res) => res.id === link.parent_link);
-
-            link.parent = parent;
-          }
-        });
-
-        setLinks(linksDB);
-      }
-    } catch (err) {
-      return cancelToken(err);
-    }
-  }, []);
-
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
-    getNavs(signal).catch(console.log);
-
-    return () => {
-      signal.cancel();
-    };
-  }, [dashTab, getNavs]);
 
   return (
     <>

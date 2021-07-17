@@ -6,8 +6,9 @@ export const convertFormData = (formData) => {
   let object = {};
 
   for (var pair of formData.entries()) {
-    object[pair[0]] = pair[1];
+    if (pair[1]) object[pair[0]] = pair[1];
   }
+
   return object;
 };
 
