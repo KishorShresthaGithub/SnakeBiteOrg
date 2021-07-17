@@ -1,8 +1,8 @@
 import React from "react";
-import Books from "../components/snakebites/Books";
-import Snakebite from "../components/snakebites/Snakebite";
-import Youtube from "../components/snakebites/Youtube";
-import TitleBar from "../components/TitleBar";
+import Books from "../components/Front/snakebites/Books";
+import Snakebite from "../components/Front/snakebites/Snakebite";
+import Youtube from "../components/Front/snakebites/Youtube";
+import TitleBar from "../components/Front/TitleBar";
 
 function Snakes_and_snakebites() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import NewsCard from "../components/NewsCard";
-import TitleBar from "../components/TitleBar";
+import NewsCard from "../components/Front/NewsCard";
+import TitleBar from "../components/Front/TitleBar";
 
 function News() {
   return (

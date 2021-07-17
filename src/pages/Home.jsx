@@ -1,10 +1,10 @@
 import React from "react";
-import AntivenomCard from "../components/AntivenomCard.jsx";
-import ContactForm from "../components/ContactForm.jsx";
-import HomeSlider from "../components/HomeSlider.jsx";
-import HomeVenomous from "../components/HomeVenomous.jsx";
-import Sponsers from "../components/Sponsers.jsx";
-import UpcomingEvent from "../components/UpcomingEvent.jsx";
+import AntivenomCard from "../components/Front/AntivenomCard.jsx";
+import ContactForm from "../components/Front/ContactForm.jsx";
+import HomeSlider from "../components/Front/HomeSlider.jsx";
+import HomeVenomous from "../components/Front/HomeVenomous.jsx";
+import Sponsers from "../components/Front/Sponsers.jsx";
+import UpcomingEvent from "../components/Front/UpcomingEvent.jsx";
 
 function Home() {
   const newsData = [

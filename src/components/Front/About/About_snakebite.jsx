@@ -1,5 +1,5 @@
 import React from 'react'
-import sideImg from '../../images/Image 11.png'
+import sideImg from '@images/Image 11.png'
 
 function About_snakebite() {
     return (

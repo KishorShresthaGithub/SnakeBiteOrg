@@ -1,26 +1,26 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NotFound from "./components/NotFound";
-import "./css/utils.scss";
-import About from "./pages/About";
-import Antivenom from "./pages/Antivenom";
-import AntivenomDetails from "./pages/AntivenomDetails";
-import ArtAndCulture from "./pages/ArtAndCulture";
-import Contact from "./pages/Contact";
-import DAntivenom from "./pages/Dashboard/DAntivenom";
-import DHome from "./pages/Dashboard/DHome";
-import DLinks from "./pages/Dashboard/DLinks";
-import DNews from "./pages/Dashboard/DNews";
-import DSlider from "./pages/Dashboard/DSlider";
-import DSnakeArt from "./pages/Dashboard/DSnakeArt";
-import DSnakebite from "./pages/Dashboard/DSnakebite";
-import Login from "./pages/Dashboard/Login";
-import Home from "./pages/Home";
-import News from "./pages/News";
-import NewsDetails from "./pages/NewsDetails";
-import SnakebiteDetails from "./pages/SnakebiteDetails";
-import SnakesAndSnakebites from "./pages/SnakesAndSnakebites";
-import { DashRoute } from "./template/Dashboard";
-import { PageRoute } from "./template/Page";
+import NotFound from "./components/Front/NotFound";
+import "@css/utils.scss";
+import About from "@pages/About";
+import Antivenom from "@pages/Antivenom";
+import AntivenomDetails from "@pages/AntivenomDetails";
+import ArtAndCulture from "@pages/ArtAndCulture";
+import Contact from "@pages/Contact";
+import DAntivenom from "@pages/Dashboard/DAntivenom";
+import DHome from "@pages/Dashboard/DHome";
+import DLinks from "@pages/Dashboard/DLinks";
+import DNews from "@pages/Dashboard/DNews";
+import DSlider from "@pages/Dashboard/DSlider";
+import DSnakeArt from "@pages/Dashboard/DSnakeArt";
+import DSnakebite from "@pages/Dashboard/DSnakebite";
+import Login from "@pages/Dashboard/Login";
+import Home from "@pages/Home";
+import News from "@pages/News";
+import NewsDetails from "@pages/NewsDetails";
+import SnakebiteDetails from "@pages/SnakebiteDetails";
+import SnakesAndSnakebites from "@pages/SnakesAndSnakebites";
+import { DashRoute } from "@template/Dashboard";
+import { PageRoute } from "@template/Page";
 
 // const Render = ({ html }) => {
 //   return (

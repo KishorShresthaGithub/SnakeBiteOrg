@@ -1,7 +1,7 @@
 import React from 'react'
-import AddSnakeArt from '../../components/Dashboard/SnakeArt.jsx/AddSnakeArt'
-import ViewSnakeArt from '../../components/Dashboard/SnakeArt.jsx/ViewSnakeArt'
-import DashCard from '../../template/DashCard'
+import AddSnakeArt from '@components/Dashboard/SnakeArt.jsx/AddSnakeArt'
+import ViewSnakeArt from '@components/Dashboard/SnakeArt.jsx/ViewSnakeArt'
+import DashCard from '@template/DashCard'
 
 
 function DSnakeArt() {

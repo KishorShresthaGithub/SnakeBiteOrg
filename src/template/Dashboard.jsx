@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import SideNav from "../pages/Dashboard/SideNav";
-import { Protected } from "../provider/AuthProvider";
+import SideNav from "@pages/Dashboard/SideNav";
+import { Protected } from "@provider/AuthProvider";
 
 function Dashboard(props) {
   return (

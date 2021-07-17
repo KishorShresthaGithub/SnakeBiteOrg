@@ -1,6 +1,6 @@
 import React from "react";
-import AntivenomCentersCard from "../components/Antivenom/AntivenomCentersCard";
-import TitleBar from "../components/TitleBar";
+import AntivenomCentersCard from "../components/Front/Antivenom/AntivenomCentersCard";
+import TitleBar from "../components/Front/TitleBar";
 
 function AntivenomDetails() {
   return (

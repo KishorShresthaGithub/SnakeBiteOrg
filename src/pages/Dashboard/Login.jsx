@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../../components/Dashboard/LoginForm";
+import LoginForm from "@components/Dashboard/LoginForm";
 
 function Login() {
   /*   const history = useHistory();

@@ -6,8 +6,8 @@ import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import { cancelToken } from "../../../provider/AxiosCancel";
-import { getNavLinksAll } from "../../../requests/nav";
+import { cancelToken } from "@provider/AxiosCancel";
+import { getNavLinksAll } from "@requests/nav";
 
 function ViewLinks() {
   const [open, setOpen] = useState(false);

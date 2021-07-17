@@ -1,5 +1,6 @@
 import React from "react";
-import "../../../../../node_modules/react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
+
 function AddImpLink() {
   return (
     <form action="">

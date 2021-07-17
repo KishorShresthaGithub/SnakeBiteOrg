@@ -2,9 +2,9 @@ import React from "react";
 import { FacebookProvider, Share } from "react-facebook";
 import { BiNews, BiTime } from "react-icons/bi";
 import { FaFacebookF } from "react-icons/fa";
-import Books from "../components/snakebites/Books";
-import Youtube from "../components/snakebites/Youtube";
-import TitleBar from "../components/TitleBar";
+import Books from "../components/Front/snakebites/Books";
+import Youtube from "../components/Front/snakebites/Youtube";
+import TitleBar from "../components/Front/TitleBar";
 
 function NewsDetails() {
   return (

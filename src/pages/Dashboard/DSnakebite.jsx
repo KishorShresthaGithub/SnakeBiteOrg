@@ -1,7 +1,7 @@
 import React from "react";
-import AddSnakebite from "../../components/Dashboard/Snakebite/AddSnakebite";
-import ViewSnakebite from "../../components/Dashboard/Snakebite/ViewSnakebite";
-import DashCard from "../../template/DashCard";
+import AddSnakebite from "@components/Dashboard/Snakebite/AddSnakebite";
+import ViewSnakebite from "@components/Dashboard/Snakebite/ViewSnakebite";
+import DashCard from "@template/DashCard";
 
 function DSnakebite() {
   return (

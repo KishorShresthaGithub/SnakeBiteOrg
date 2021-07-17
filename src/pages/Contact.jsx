@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { HiLocationMarker } from "react-icons/hi";
-import ContactForm from "../components/ContactForm";
+import ContactForm from "../components/Front/ContactForm";
 
 function Contact() {
   return (

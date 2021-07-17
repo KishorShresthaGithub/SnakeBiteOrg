@@ -1,10 +1,10 @@
 import React from "react";
-import AboutSnakebite from "../components/About/About_snakebite";
-import ImageGallery from "../components/About/ImageGallery";
-import PeoplesThoughts from "../components/About/Peoples_thoughts";
-import StoriesCard from "../components/About/Stories_card";
-import Sponsers from "../components/Sponsers";
-import TitleBar from "../components/TitleBar";
+import AboutSnakebite from "../components/Front/About/About_snakebite";
+import ImageGallery from "../components/Front/About/ImageGallery";
+import PeoplesThoughts from "../components/Front/About/Peoples_thoughts";
+import StoriesCard from "../components/Front/About/Stories_card";
+import Sponsers from "../components/Front/Sponsers";
+import TitleBar from "../components/Front/TitleBar";
 
 function About() {
   return (

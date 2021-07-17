@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import TitleBar from "../components/TitleBar";
+import TitleBar from "../components/Front/TitleBar";
 
 function ArtAndCulture() {
   let data = [

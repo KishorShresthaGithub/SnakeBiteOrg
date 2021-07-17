@@ -1,6 +1,6 @@
 import React from "react";
-import Nav from "../components/Nav.jsx";
-import Footer from "../components/Footer";
+import Nav from "../components/Front/Nav.jsx";
+import Footer from "../components/Front/Footer";
 import { Route } from "react-router-dom";
 
 function Page(props) {

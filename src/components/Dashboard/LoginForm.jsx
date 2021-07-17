@@ -1,12 +1,12 @@
 import React, { useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
-import { useToken } from "../../provider/AuthProvider";
-import { login } from "../../requests/auth";
-import { convertFormData } from "../../requests/config";
+import { useToken } from "@provider/AuthProvider";
+import { login } from "@requests/auth";
+import { convertFormData } from "@requests/config";
 
 function LoginForm() {
-  const { access_token,setToken } = useToken();
+  const { access_token, setToken } = useToken();
   const history = useHistory();
 
   const [passwordShow, setPasswordShow] = useState(false);

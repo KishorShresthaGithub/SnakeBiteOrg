@@ -3,10 +3,10 @@ import React, { useContext, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
-import { useToken } from "../../../provider/AuthProvider";
-import { NavContext } from "../../../provider/NavProvider";
-import { convertFormData } from "../../../requests/config";
-import { saveNav } from "../../../requests/nav";
+import { useToken } from "@provider/AuthProvider";
+import { NavContext } from "@provider/NavProvider";
+import { convertFormData } from "@requests/config";
+import { saveNav } from "@requests/nav";
 
 Quill.register("modules/imageResize", ImageResize);
 

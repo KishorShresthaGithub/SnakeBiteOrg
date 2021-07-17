@@ -7,11 +7,11 @@ import {
   FaFacebookF,
   FaInstagram,
   FaTwitter,
-  FaYoutube
+  FaYoutube,
 } from "react-icons/fa";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
-import { IntlContext } from "../lang/Wrapper";
+import { IntlContext } from "@lang/Wrapper";
 import navs from "./nav.json";
 
 function Nav({ intl }) {
@@ -128,7 +128,6 @@ function Nav({ intl }) {
           {/* web nav starts  */}
           <div className="hidden md:block  flex-1 mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
             <ul className="flex item-center cursor-pointer active:text-white">
-              
               {navs.map((nav, index) => (
                 <div key={index} className="dropdown">
                   <Link

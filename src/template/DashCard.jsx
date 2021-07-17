@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormView } from "react-icons/gr";
-import { NavContext } from "../provider/NavProvider";
+import { NavContext } from "@provider/NavProvider";
 import axios from "axios";
 
 function DashCard(props) {

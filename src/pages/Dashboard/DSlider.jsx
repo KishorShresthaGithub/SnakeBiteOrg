@@ -1,7 +1,7 @@
 import React from 'react'
-import AddSlider from '../../components/Dashboard/Slider/AddSlider'
-import ViewSlider from '../../components/Dashboard/Slider/ViewSlider'
-import DashCard from '../../template/DashCard'
+import AddSlider from '@components/Dashboard/Slider/AddSlider'
+import ViewSlider from '@components/Dashboard/Slider/ViewSlider'
+import DashCard from '@template/DashCard'
 
 
 function DSlider() {
