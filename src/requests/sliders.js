@@ -19,21 +19,20 @@ export const getSlider = async ({ slider_slug, signal }) => {
 };
 
 //upload image
-export const saveSlider = async ({ data, signal, accesstoken }, addToast) => {
+export const saveSlider = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/sliders`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //upload image
 export const updateSlider = async (
-  { data, slider_id, signal, accesstoken },
+  { data, slider_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -42,7 +41,6 @@ export const updateSlider = async (
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
@@ -65,16 +63,12 @@ export const updatePosition = async (
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteSlider = async (
-  { slider_id, signal, accesstoken },
-  addToast
-) => {
+export const deleteSlider = async ({ slider_id, accesstoken }, addToast) => {
   return await axios
     .delete(`${server_url}/api/sliders/${slider_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
-      },
-      cancelToken: signal.token,
+      }
     })
     .catch((err) => validation(err, addToast));
 };

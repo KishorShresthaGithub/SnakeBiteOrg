@@ -1,18 +1,16 @@
+import useToken from "@provider/AuthProvider";
 import { cancelToken } from "@provider/AxiosCancel";
 import { NavContext } from "@provider/NavProvider";
 import { deleteNav, getNavLinksAll } from "@requests/nav";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
-import DOMPurify from "dompurify";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
-import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
+import { useToasts } from "react-toast-notifications";
 import DataTable from "../../DataTable";
 
-import useToken from "@provider/AuthProvider";
-import { useToasts } from "react-toast-notifications";
 
 function ViewLinks() {
   const dashTab = useContext(DashCardContext);
@@ -20,8 +18,6 @@ function ViewLinks() {
   const { addToast } = useToasts();
 
   const { access_token } = useToken();
-
-  const [page, setPage] = useState(false);
   const [links, setLinks] = useState([]);
 
   const getNavs = useCallback(async (signal) => {
@@ -71,27 +67,6 @@ function ViewLinks() {
     };
   }, [dashTab, getNav, getNavs]);
 
-  const [updateLink, setUpdateLink] = useState({
-    id: 0,
-    title: "",
-    link: "",
-    page: "",
-    parent: {},
-    parent_link: 0,
-  });
-
-  const onOpenPageModel = (model) => {
-    setUpdateLink({
-      id: model.id,
-      title: model.title,
-      link: model.link,
-      page: model.page,
-      parent_link: model.parent_link,
-    });
-    setPage(true);
-  };
-  const onClosePageModel = () => setPage(false);
-
   const columns = [
     { title: "Link ID", field: "id" },
     { title: "Link Title", field: "title" },
@@ -107,7 +82,7 @@ function ViewLinks() {
     {
       title: "Page",
       render(row) {
-        return <div onClick={() => onOpenPageModel(row)}>Page</div>;
+        return <div /* onClick={() => onOpenPageModel(row)} */>Page</div>;
       },
     },
     {
@@ -135,15 +110,6 @@ function ViewLinks() {
   return (
     <>
       <DataTable columns={columns} data={links} />
-
-      <Modal open={page} onClose={onClosePageModel} center>
-        <h2>Page</h2>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(updateLink.page),
-          }}
-        ></div>
-      </Modal>
     </>
   );
 }

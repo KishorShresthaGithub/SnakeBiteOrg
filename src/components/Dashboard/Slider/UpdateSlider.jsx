@@ -1,12 +1,16 @@
 import useToken from "@provider/AuthProvider";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useToasts } from "react-toast-notifications";
-import { saveSlider } from "../../../requests/sliders";
+import { updateSlider } from "@requests/sliders";
+import { DashCardContext } from "@template/DashCard";
 
-function AddSlider() {
+function UpdateSlider() {
+  const { updateData, setUpdateData } = useContext(DashCardContext);
+
   const { access_token } = useToken();
   const { addToast } = useToasts();
-  const [preview, setPreview] = useState("");
+  const [slider, setSlider] = useState(updateData);
+  const [preview, setPreview] = useState(slider.image);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -15,18 +19,21 @@ function AddSlider() {
 
     const form = new FormData(htmlform);
 
-    const res = await saveSlider(
-      { data: form, accesstoken: access_token },
+    const res = await updateSlider(
+      { data: form, slider_id: updateData.id, accesstoken: access_token },
       addToast
     ).catch(console.log);
 
     if (res) {
       addToast(
-        "Slider Image successfully added",
+        "Slider Image successfully updated",
         { appearance: "success" },
         () => {
           htmlform.reset();
-          setPreview("");
+          const newdata = res.data.data;
+
+          setSlider(newdata);
+          setPreview(newdata.image);
         }
       );
     }
@@ -61,6 +68,7 @@ function AddSlider() {
       <input
         type="text"
         name="caption"
+        defaultValue={slider.caption}
         id="caption"
         className="h-10 py-2 w-80 mt-2 rounded border-2 border-gray-100 shadow-md mb-4"
       />
@@ -70,6 +78,7 @@ function AddSlider() {
         type="number"
         min="1"
         name="position"
+        defaultValue={slider.position}
         id="position"
         className="h-10 py-2  w-80 mt-2 rounded border-2 border-gray-100 shadow-md mb-4"
       />
@@ -91,4 +100,4 @@ function AddSlider() {
   );
 }
 
-export default AddSlider;
+export default UpdateSlider;
