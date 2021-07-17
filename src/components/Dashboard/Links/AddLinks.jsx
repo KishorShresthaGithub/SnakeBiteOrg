@@ -3,62 +3,25 @@ import React, { useContext, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
-import { useToken } from "@provider/AuthProvider";
+import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { convertFormData } from "@requests/config";
 import { saveNav } from "@requests/nav";
+import { formats, modules } from "../../../extra/quill";
 
 Quill.register("modules/imageResize", ImageResize);
 
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "link",
-  "image",
-  "video",
-  "code-block",
-];
-
 function AddLinks() {
-  let quillObj;
   const { links } = useContext(NavContext);
 
-  const [body, setBody] = useState("");
+  const [page, setPage] = useState("");
   const [parentLink, setSelect] = useState("");
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
 
   const handleBody = (e) => {
-    setBody(e);
-  };
-
-  const modules = {
-    toolbar: [
-      [
-        { header: "1" },
-        { header: "2" },
-        { header: [3, 4, 5, 6] },
-        { font: [] },
-      ],
-      [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
-      ["clean"],
-    ],
-
-    imageResize: {
-      parchment: Quill.import("parchment"),
-    },
+    setPage(e);
   };
 
   const submitForm = async (e) => {
@@ -67,7 +30,7 @@ function AddLinks() {
     const htmlform = e.target;
 
     const form = new FormData(htmlform);
-    form.append("page", body);
+    form.append("page", page);
     if (parentLink && parentLink !== "")
       form.append("parent_link", parseInt(parentLink));
 
@@ -81,7 +44,7 @@ function AddLinks() {
     if (res) {
       addToast("Link successfully added", { appearance: "success" }, () => {
         htmlform.reset();
-        setBody("");
+        setPage("");
         setSelect("");
       });
     }
@@ -143,14 +106,11 @@ function AddLinks() {
         <label htmlFor="img">Page </label>
 
         <ReactQuill
-          ref={(el) => {
-            quillObj = el;
-          }}
           placeholder="Write your News Article here"
           onChange={handleBody}
           formats={formats}
           modules={modules}
-          value={body}
+          value={page}
         />
       </div>
 

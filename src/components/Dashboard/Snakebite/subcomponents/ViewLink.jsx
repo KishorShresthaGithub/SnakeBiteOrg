@@ -1,8 +1,24 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
+import { NavContext } from "../../../../provider/NavProvider";
 
 function ViewLink() {
+  const nav = useContext(NavContext);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    nav.getNav().then(res=>{
+      console.log("nav")
+    })
+
+    return () => {
+      signal.cancel();
+    };
+  }, [nav]);
+
   return (
     <table className=" border-collapse border border-green-800 table-auto text-left w-full">
       <thead className="">

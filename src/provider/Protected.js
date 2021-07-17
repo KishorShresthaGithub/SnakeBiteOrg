@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { validateToken } from "../requests/auth";
-import { useToken } from "./AuthProvider";
+import useToken from "./AuthProvider";
 
-function Protected({ children }) {
-  const { access_token } = useToken();
+const Protected = ({ children }) => {
+  const { access_token, deleteToken } = useToken();
+
   const history = useHistory();
 
   if (!access_token) {
@@ -13,23 +14,31 @@ function Protected({ children }) {
   }
 
   const tokenValidation = useCallback(
-    (signal) => {
-      validateToken({ accessToken: access_token, signal }).catch((err) => {
+    async (signal) => {
+      try {
+        return validateToken({ accessToken: access_token, signal }).catch(
+          (err) => {
+            deleteToken();
+          }
+        );
+      } catch (err) {
         console.log(err);
-      });
+      }
     },
-    [access_token]
+    [access_token, deleteToken]
   );
 
   useEffect(() => {
     const signal = axios.CancelToken.source();
+
     tokenValidation(signal);
+
     return () => {
       signal.cancel();
     };
   }, [tokenValidation]);
 
-  return <>{children}</>;
-}
+  return <div>{children}</div>;
+};
 
 export default Protected;

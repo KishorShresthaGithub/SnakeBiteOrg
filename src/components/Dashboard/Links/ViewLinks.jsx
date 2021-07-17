@@ -2,15 +2,17 @@ import { cancelToken } from "@provider/AxiosCancel";
 import { getNavLinksAll } from "@requests/nav";
 import axios from "axios";
 import DOMPurify from "dompurify";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
+import { DashCardContext } from "@template/DashCard";
 import DataTable from "../../DataTable";
 
 function ViewLinks() {
-  const [open, setOpen] = useState(false);
+  const dashTab = useContext(DashCardContext);
+
   const [page, setPage] = useState(false);
 
   const [links, setLinks] = useState([]);
@@ -23,18 +25,6 @@ function ViewLinks() {
     parent_link: 0,
   });
 
-  const onOpenModal = (model) => {
-    setUpdateLink({
-      id: model.id,
-      title: model.title,
-      link: model.link,
-      page: model.page,
-      parent_link: model.parent_link,
-    });
-    setOpen(true);
-  };
-  const onCloseModal = () => setOpen(false);
-
   const onOpenPageModel = (model) => {
     setUpdateLink({
       id: model.id,
@@ -45,10 +35,10 @@ function ViewLinks() {
     });
     setPage(true);
   };
-
   const onClosePageModel = () => setPage(false);
 
   const columns = [
+    { title: "Link ID", field: "id" },
     { title: "Link Title", field: "title" },
     { title: "Link", field: "link" },
     {
@@ -71,7 +61,10 @@ function ViewLinks() {
         return (
           <div>
             <RiEditBoxLine
-              onClick={() => onOpenModal(row)}
+              onClick={() => {
+                dashTab.setLayout("Update");
+                dashTab.setUpdateData(row);
+              }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"
             />
             <MdDeleteSweep className="bg-red-500 h-10 w-10 p-2 text-white" />
@@ -110,20 +103,11 @@ function ViewLinks() {
     return () => {
       signal.cancel();
     };
-  }, [getNavs]);
+  }, [dashTab, getNavs]);
 
   return (
     <>
       <DataTable columns={columns} data={links} />
-
-      <Modal open={open} onClose={onCloseModal} center>
-        <h2>Page</h2>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(updateLink.page),
-          }}
-        ></div>
-      </Modal>
 
       <Modal open={page} onClose={onClosePageModel} center>
         <h2>Page</h2>

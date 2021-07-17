@@ -1,9 +1,9 @@
+import useToken from "@provider/AuthProvider";
+import { login } from "@requests/auth";
+import { convertFormData } from "@requests/config";
 import React, { useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
-import { useToken } from "@provider/AuthProvider";
-import { login } from "@requests/auth";
-import { convertFormData } from "@requests/config";
 
 function LoginForm() {
   const { access_token, setToken } = useToken();
@@ -23,7 +23,7 @@ function LoginForm() {
       .then((res) => {
         if (res) {
           const dt = res.data.data;
-          setToken(dt);
+          setToken(dt.access_token);
           addToast("Login Successful", { appearance: "success" });
         }
       })

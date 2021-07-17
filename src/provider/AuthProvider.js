@@ -1,19 +1,16 @@
-/* import axios from "axios";
-import { host } from "../../../settings"; */
 import { useState } from "react";
 
-export function useToken() {
+export default function useToken() {
   const getToken = () => {
     const tokenString = localStorage.getItem("access_token");
     const userToken = JSON.parse(tokenString);
-
-    return userToken?.access_token;
+    return userToken;
   };
   const [access_token, setToken] = useState(getToken());
 
   const saveToken = (userToken) => {
     localStorage.setItem("access_token", JSON.stringify(userToken));
-    setToken(userToken.access_token);
+    setToken(userToken.token);
   };
   const deleteToken = () => {
     localStorage.removeItem("access_token");

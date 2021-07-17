@@ -5,11 +5,11 @@ import { Route } from "react-router-dom";
 
 function Page(props) {
   return (
-    <div>
+    <>
       <Nav />
       {props.children}
       <Footer />
-    </div>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useToken } from "../provider/AuthProvider";
 import { server_url, validation } from "./config";
 
 export const login = async (data, addToast) => {
@@ -68,7 +67,6 @@ export const validateToken = async ({ accessToken, signal }) => {
     .catch((err) => {
       if (!axios.isCancel(err)) {
         console.error(err);
-        useToken().deleteToken();
         return;
       }
     });
