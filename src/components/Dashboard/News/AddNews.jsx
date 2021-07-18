@@ -1,22 +1,18 @@
 import useToken from "@provider/AuthProvider";
+import { saveNews } from "@requests/news";
+import { formats, modules } from "@src/extra/quill";
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
-import { formats, modules } from "@src/extra/quill";
-import { saveNews } from "@requests/news";
 
 function AddNews() {
   const { access_token } = useToken();
   const { addToast } = useToasts();
   const [preview, setPreview] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
   const [description, setDescription] = useState("");
 
   const onChangeText = (text) => {
-
     text = text !== "<p><br></p>" ? text : "";
     setDescription(text);
   };

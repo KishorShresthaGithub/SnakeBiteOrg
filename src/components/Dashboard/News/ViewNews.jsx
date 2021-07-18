@@ -3,7 +3,6 @@ import { deleteNews, getNews } from "@requests/news";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
-import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";

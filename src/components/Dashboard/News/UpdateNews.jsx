@@ -1,12 +1,11 @@
 import useToken from "@provider/AuthProvider";
-import { updateEvent } from "@requests/events";
+import { updateNews } from "@requests/news";
 import { formats, modules } from "@src/extra/quill";
 import { DashCardContext } from "@template/DashCard";
-import moment from "moment";
 import { useContext, useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
 
 function UpdateNews() {
@@ -14,20 +13,12 @@ function UpdateNews() {
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
-  const [event, setEvent] = useState(updateData);
-  const [preview, setPreview] = useState(event.image);
+  const [news, setNew] = useState(updateData);
 
-  const [startDate, setStartDate] = useState(
-    new Date(moment(event.start_date).format("YYYY-MM-DD"))
-  );
-  const [endDate, setEndDate] = useState(
-    new Date(moment(event.end_date).format("YYYY-MM-DD"))
-  );
-
-  const [description, setDescription] = useState(event.description);
+  const [preview, setPreview] = useState(news.image);
+  const [description, setDescription] = useState(news.description);
 
   const onChangeText = (text) => {
-   
     text = text !== "<p><br></p>" ? text : "";
     setDescription(text);
   };
@@ -38,33 +29,29 @@ function UpdateNews() {
     const htmlform = e.target;
     const form = new FormData(htmlform);
 
-    form.append("start_date", startDate);
-    form.append("end_date", endDate);
+    form.append("description", description);
 
-    let text = description !== "<p><br></p>" ? description : "";
-
-    if (text) form.append("description", text);
-
-    const res = await updateEvent(
-      { data: form, event_id: updateData.id, accesstoken: access_token },
+    const res = await updateNews(
+      { data: form, news_id: updateData.id, accesstoken: access_token },
       addToast
     ).catch(console.log);
 
     if (res) {
       addToast(
-        "Event Image successfully updated",
+        "New Image successfully updated",
         { appearance: "success" },
         () => {
           htmlform.reset();
           const newdata = res.data.data;
 
-          setEvent(newdata);
-          console.log(newdata);
+          setNew(newdata);
+
           setPreview(newdata.image);
         }
       );
     }
   };
+
   const previewImage = (e) => {
     const files = e.target.files;
 
@@ -93,21 +80,11 @@ function UpdateNews() {
     <form onSubmit={(e) => submitForm(e)} className="flex flex-col">
       <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Event Title</label>
+          <label>News Title</label>
           <input
             type="text"
             name="title"
-            defaultValue={event.title}
-            className=" p-2 border-2 border-gray-100 rounded"
-          />
-        </div>
-
-        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Event Location</label>
-          <input
-            type="text"
-            name="location"
-            defaultValue={event.location}
+            defaultValue={news.title}
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>
@@ -115,37 +92,7 @@ function UpdateNews() {
 
       <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Start Date</label>
-          <DatePicker
-            className=" p-2 border-2 border-gray-100 rounded"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          />
-        </div>
-
-        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>End Date</label>
-          <DatePicker
-            className=" p-2 border-2 border-gray-100 rounded"
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-          />
-        </div>
-      </div>
-
-      <div className=" md:w-full md:flex my-2">
-        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Event Time</label>
-          <input
-            type="text"
-            name="time"
-            defaultValue={event.time}
-            className=" p-2 border-2 border-gray-100 rounded"
-          />
-        </div>
-
-        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Event Image</label>
+          <label>New Image</label>
           <input
             type="file"
             onChange={previewImage}
@@ -157,14 +104,14 @@ function UpdateNews() {
       </div>
 
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
-        <label htmlFor="img">Description </label>
+        <label htmlFor="img">Page </label>
 
         <ReactQuill
           placeholder="Write your News Article here"
-          defaultValue={event.description}
           onChange={onChangeText}
           formats={formats}
           modules={modules}
+          defaultValue={news.description}
         />
       </div>
 
