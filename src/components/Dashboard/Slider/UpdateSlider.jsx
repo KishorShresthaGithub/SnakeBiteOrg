@@ -5,7 +5,7 @@ import { updateSlider } from "@requests/sliders";
 import { DashCardContext } from "@template/DashCard";
 
 function UpdateSlider() {
-  const { updateData, setUpdateData } = useContext(DashCardContext);
+  const { updateData } = useContext(DashCardContext);
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
@@ -16,7 +16,6 @@ function UpdateSlider() {
     e.preventDefault();
 
     const htmlform = e.target;
-
     const form = new FormData(htmlform);
 
     const res = await updateSlider(

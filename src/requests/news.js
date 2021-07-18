@@ -19,41 +19,35 @@ export const getNew = async ({ news_id, signal }) => {
 };
 
 //upload image
-export const saveNew = async ({ data, signal, accesstoken }, addToast) => {
+export const saveNews = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/news`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //upload image
-export const updateNew = async (
-  { data, news_id, signal, accesstoken },
-  addToast
-) => {
+export const updateNews = async ({ data, news_id, accesstoken }, addToast) => {
   return await axios
     .put(`${server_url}/api/news/${news_id}`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteNew = async ({ news_id, signal, accesstoken }, addToast) => {
+export const deleteNews = async ({ news_id, accesstoken }, addToast) => {
   return await axios
     .delete(`${server_url}/api/news/${news_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };

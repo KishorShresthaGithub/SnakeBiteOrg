@@ -15,9 +15,9 @@
         "default": "Links and Pages"
     },
     {
-        "to": "/d_about",
-        "title": "about",
-        "default": "About"
+        "to": "/d_events",
+        "title": "Events",
+        "default": "Events"
     },
     {
         "to": "/d_snakes_and_Snakebites",

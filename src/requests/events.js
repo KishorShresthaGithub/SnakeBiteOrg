@@ -4,7 +4,7 @@ import { server_url, validation } from "./config";
 
 export const getEvents = async ({ signal }) => {
   return await axios
-    .get(`${server_url}/api/events`, {
+    .get(`${server_url}/api/events?limit=5`, {
       cancelToken: signal.token,
     })
     .catch(console.log);
@@ -19,21 +19,20 @@ export const getEvent = async ({ event_slug, signal }) => {
 };
 
 //upload image
-export const saveEvent = async ({ data, signal, accesstoken }, addToast) => {
+export const saveEvent = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/events`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //upload image
 export const updateEvent = async (
-  { data, event_id, signal, accesstoken },
+  { data, event_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -42,21 +41,16 @@ export const updateEvent = async (
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteEvent = async (
-  { event_id, signal, accesstoken },
-  addToast
-) => {
+export const deleteEvent = async ({ event_id, accesstoken }, addToast) => {
   return await axios
     .delete(`${server_url}/api/events/${event_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };

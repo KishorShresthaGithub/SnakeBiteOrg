@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
 import { formats, modules } from "@src/extra/quill";
-import { saveNews } from "@requests/news";
+import { saveEvent } from "@requests/events";
 
-function AddNews() {
+function AddEvents() {
   const { access_token } = useToken();
   const { addToast } = useToasts();
   const [preview, setPreview] = useState("");
@@ -16,7 +16,7 @@ function AddNews() {
   const [description, setDescription] = useState("");
 
   const onChangeText = (text) => {
-
+  
     text = text !== "<p><br></p>" ? text : "";
     setDescription(text);
   };
@@ -27,18 +27,19 @@ function AddNews() {
     const htmlform = e.target;
     const form = new FormData(htmlform);
 
+    form.append("start_date", startDate);
+    form.append("end_date", endDate);
     form.append("description", description);
 
-    const res = await saveNews(
+    const res = await saveEvent(
       { data: form, accesstoken: access_token },
       addToast
     ).catch(console.log);
 
     if (res) {
-      addToast("New successfully added", { appearance: "success" }, () => {
+      addToast("Event successfully added", { appearance: "success" }, () => {
         htmlform.reset();
         setPreview("");
-        setDescription("");
       });
     }
   };
@@ -71,10 +72,19 @@ function AddNews() {
     <form onSubmit={(e) => submitForm(e)} className="flex flex-col">
       <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>News Title</label>
+          <label>Event Title</label>
           <input
             type="text"
             name="title"
+            className=" p-2 border-2 border-gray-100 rounded"
+          />
+        </div>
+
+        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+          <label>Event Location</label>
+          <input
+            type="text"
+            name="location"
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>
@@ -82,7 +92,36 @@ function AddNews() {
 
       <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>New Image</label>
+          <label>Start Date</label>
+          <DatePicker
+            className=" p-2 border-2 border-gray-100 rounded"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
+        </div>
+
+        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+          <label>End Date</label>
+          <DatePicker
+            className=" p-2 border-2 border-gray-100 rounded"
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+          />
+        </div>
+      </div>
+
+      <div className=" md:w-full md:flex my-2">
+        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+          <label>Event Time</label>
+          <input
+            type="text"
+            name="time"
+            className=" p-2 border-2 border-gray-100 rounded"
+          />
+        </div>
+
+        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+          <label>Event Image</label>
           <input
             type="file"
             onChange={previewImage}
@@ -109,4 +148,4 @@ function AddNews() {
   );
 }
 
-export default AddNews;
+export default AddEvents;

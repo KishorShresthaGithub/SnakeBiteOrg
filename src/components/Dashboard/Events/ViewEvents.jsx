@@ -1,5 +1,5 @@
 import useToken from "@provider/AuthProvider";
-import { deleteNews, getNews } from "@requests/news";
+import { deleteEvent, getEvents } from "@requests/events";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
@@ -11,17 +11,17 @@ import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
 import DataTable from "../../DataTable";
 
-function ViewNews() {
+function ViewEvents() {
   const dashTab = useContext(DashCardContext);
   const { addToast } = useToasts();
   const { access_token } = useToken();
 
-  const [news, setNews] = useState([]);
+  const [events, setEvent] = useState([]);
 
   const handleDelete = (id) => {
     if (!window.confirm("Do you want to delet this resource?")) return;
 
-    deleteNews({
+    deleteEvent({
       slider_id: id,
       accesstoken: access_token,
     })
@@ -29,10 +29,10 @@ function ViewNews() {
         addToast(res.data.message, { appearance: "success" });
         const signal = axios.CancelToken.source();
 
-        getNews({ signal })
+        getEvents({ signal })
           .then((res) => {
-            const news = res.data.data;
-            if (news) setNews(news);
+            const events = res.data.data;
+            if (events) setEvent(events);
           })
           .catch(console.log);
       })
@@ -42,10 +42,10 @@ function ViewNews() {
   useEffect(() => {
     const signal = axios.CancelToken.source();
 
-    getNews({ signal })
+    getEvents({ signal })
       .then((res) => {
-        const news = res.data.data;
-        if (news) setNews(news);
+        const events = res.data.data;
+        if (events) setEvent(events);
       })
       .catch(console.log);
 
@@ -55,11 +55,22 @@ function ViewNews() {
   }, []);
 
   const columns = [
-    { title: "News ID", field: "id", width: "10%" },
+    { title: "Event ID", field: "id", width: "10%" },
     {
-      title: "News Title ",
+      title: "Event Title ",
       field: "title",
     },
+    {
+      title: "Event Start Date",
+      render: (row) => moment(row.start_date).format("YYYY-MM-DD"),
+    },
+    {
+      title: "Event End Date",
+      render: (row) => moment(row.end_date).format("YYYY-MM-DD"),
+    },
+    { title: "Event Location", field: "location" },
+    { title: "Event Time", field: "time" },
+
     {
       title: "Modify",
       width: "20%",
@@ -89,12 +100,12 @@ function ViewNews() {
         detailPanel={[
           {
             tooltip: "Show Description",
-            render: (row) => {
+            render: (rowData) => {
               return (
                 <div
                   style={{ padding: "30px" }}
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(row.description),
+                    __html: DOMPurify.sanitize(rowData.description),
                   }}
                 ></div>
               );
@@ -110,7 +121,7 @@ function ViewNews() {
                     <img
                       style={{ width: "300px" }}
                       src={row.image}
-                      alt="news "
+                      alt="slider "
                     />
                   </a>
                 </div>
@@ -119,10 +130,10 @@ function ViewNews() {
           },
         ]}
         columns={columns}
-        data={news}
+        data={events}
       />
     </>
   );
 }
 
-export default ViewNews;
+export default ViewEvents;
