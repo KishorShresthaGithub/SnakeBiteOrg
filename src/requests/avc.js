@@ -2,14 +2,14 @@
 
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getAVCs = async ({ signal }) => {
   return await axios
     .get(`${server_url}/api/avcenters`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getAVC = async ({ avc_slug, signal, accesstoken }) => {
@@ -17,7 +17,7 @@ export const getAVC = async ({ avc_slug, signal, accesstoken }) => {
     .get(`${server_url}/api/avcenters/${avc_slug}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getDistricts = async ({ signal }) => {
@@ -25,7 +25,7 @@ export const getDistricts = async ({ signal }) => {
     .get(`${server_url}/api/avcenters/districts/`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getCentersFromDistrict = async ({ district, signal }) => {
@@ -33,7 +33,7 @@ export const getCentersFromDistrict = async ({ district, signal }) => {
     .get(`${server_url}/api/avcenters/districts/${district}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 //upload image

@@ -1,5 +1,4 @@
 import useToken from "@provider/AuthProvider";
-import { cancelToken } from "@provider/AxiosCancel";
 import { NavContext } from "@provider/NavProvider";
 import { deleteNav, getNavLinksAll } from "@requests/nav";
 import { DashCardContext } from "@template/DashCard";
@@ -10,7 +9,6 @@ import { RiEditBoxLine } from "react-icons/ri";
 import "react-responsive-modal/styles.css";
 import { useToasts } from "react-toast-notifications";
 import DataTable from "../../DataTable";
-
 
 function ViewLinks() {
   const dashTab = useContext(DashCardContext);
@@ -23,6 +21,7 @@ function ViewLinks() {
   const getNavs = useCallback(async (signal) => {
     try {
       const res = await getNavLinksAll({ signal });
+
       if (res) {
         const linksDB = res.data.data;
 
@@ -37,7 +36,7 @@ function ViewLinks() {
         setLinks(linksDB);
       }
     } catch (err) {
-      return cancelToken(err);
+      console.log("Error", err);
     }
   }, []);
 

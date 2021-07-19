@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getSliders = async ({ signal }) => {
   return await axios
     .get(`${server_url}/api/sliders`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getSlider = async ({ slider_slug, signal }) => {
@@ -15,7 +15,7 @@ export const getSlider = async ({ slider_slug, signal }) => {
     .get(`${server_url}/api/sliders/${slider_slug}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 //upload image
@@ -68,7 +68,7 @@ export const deleteSlider = async ({ slider_id, accesstoken }, addToast) => {
     .delete(`${server_url}/api/sliders/${slider_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
-      }
+      },
     })
     .catch((err) => validation(err, addToast));
 };

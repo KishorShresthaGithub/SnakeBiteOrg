@@ -1,4 +1,5 @@
 import { validationMessages } from "../provider/Toasts";
+import axios from "axios";
 
 export const server_url = "http://localhost:3000";
 
@@ -15,4 +16,8 @@ export const convertFormData = (formData) => {
 export const validation = (err, addToast) => {
   const errData = err.response?.data;
   if (errData) validationMessages(errData, addToast);
+};
+
+export const cancelToken = (err) => {
+  if (!axios.isCancel(err)) console.error(err);
 };

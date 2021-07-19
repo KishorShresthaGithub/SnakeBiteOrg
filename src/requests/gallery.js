@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getGallery = async ({ signal }) => {
   return await axios
     .get(`${server_url}/api/gallery`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getSingleGallery = async ({ gallery_id, signal }) => {
@@ -15,7 +15,7 @@ export const getSingleGallery = async ({ gallery_id, signal }) => {
     .get(`${server_url}/api/gallery/${gallery_id}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 //image upload

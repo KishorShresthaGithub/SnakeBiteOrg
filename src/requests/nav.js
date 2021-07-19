@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getNavLinks = async ({ signal }) => {
   return await axios
     .get(`${server_url}/api/links`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getNavLinksAll = async ({ signal }) => {
@@ -15,7 +15,7 @@ export const getNavLinksAll = async ({ signal }) => {
     .get(`${server_url}/api/links/all`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getNavLink = async ({ nav_id, signal }) => {
@@ -23,7 +23,7 @@ export const getNavLink = async ({ nav_id, signal }) => {
     .get(`${server_url}/api/links/${nav_id}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const saveNav = async ({ data, accesstoken }, addToast) => {

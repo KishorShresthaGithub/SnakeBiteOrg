@@ -59,7 +59,6 @@ function UpdateEvents() {
           const newdata = res.data.data;
 
           setEvent(newdata);
-          console.log(newdata);
           setPreview(newdata.image);
         }
       );

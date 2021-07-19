@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getSummaryReports = async ({ signal }) => {
   return await axios
     .get(`${server_url}/api/summaryreport/all`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getSummaryReport = async ({ signal }) => {
@@ -15,7 +15,7 @@ export const getSummaryReport = async ({ signal }) => {
     .get(`${server_url}/api/summaryreport`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getSummaryReportID = async ({ summaryreport_id, signal }) => {
@@ -23,7 +23,7 @@ export const getSummaryReportID = async ({ summaryreport_id, signal }) => {
     .get(`${server_url}/api/summaryreport/${summaryreport_id}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 //upload image

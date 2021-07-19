@@ -1,13 +1,13 @@
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getNews = async ({ signal }) => {
   return await axios
     .get(`${server_url}/api/news`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getNew = async ({ news_id, signal }) => {
@@ -15,7 +15,7 @@ export const getNew = async ({ news_id, signal }) => {
     .get(`${server_url}/api/news/${news_id}`, {
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 //upload image

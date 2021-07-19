@@ -7,7 +7,7 @@ import Sponsers from "../components/Front/Sponsers.jsx";
 import UpcomingEvent from "../components/Front/UpcomingEvent.jsx";
 
 function Home() {
-  const newsData = [
+  /* const newsData = [
     {
       date: "19 June 2021",
       category: "snakes",
@@ -30,7 +30,7 @@ function Home() {
       title:
         "Snake bite is a neglected public health issue in many tropical and subtropical countries.",
     },
-  ];
+  ]; */
   const snakesData = [
     {
       name: "Viper snake",

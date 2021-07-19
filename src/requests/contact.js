@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { server_url, validation } from "./config";
+import { cancelToken, server_url, validation } from "./config";
 
 export const getContacts = async ({ signal, accesstoken }) => {
   return await axios
@@ -10,7 +10,7 @@ export const getContacts = async ({ signal, accesstoken }) => {
       },
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 export const getContact = async ({ contact_id, signal, accesstoken }) => {
@@ -21,7 +21,7 @@ export const getContact = async ({ contact_id, signal, accesstoken }) => {
       },
       cancelToken: signal.token,
     })
-    .catch(console.log);
+    .catch(cancelToken);
 };
 
 //upload image
