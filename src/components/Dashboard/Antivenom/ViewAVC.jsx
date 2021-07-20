@@ -6,7 +6,7 @@ import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
-import { deleteAVC, getAVC, getAVCs } from "../../../requests/avc";
+import { deleteAVC, getAVCs } from "../../../requests/avc";
 import DataTable from "../../DataTable";
 
 function ViewAVC() {
@@ -31,7 +31,7 @@ function ViewAVC() {
         addToast(res.data.message, { appearance: "success" });
         const signal = axios.CancelToken.source();
 
-        getAVC({ signal })
+        getAVCs({ signal })
           .then((res) => {
             const avc = res.data.data;
             if (avc) setAVC(avc);

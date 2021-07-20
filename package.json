@@ -15,7 +15,6 @@
     "dompurify": "^2.3.0",
     "material-table": "^1.69.3",
     "moment": "^2.29.1",
-    "quill-image-resize-module-react": "^3.0.0",
     "react": "^16.14.0",
     "react-datepicker": "^4.1.1",
     "react-dom": "^16.14.0",

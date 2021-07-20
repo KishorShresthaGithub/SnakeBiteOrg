@@ -10,6 +10,14 @@ export const getEvents = async ({ signal }) => {
     .catch(cancelToken);
 };
 
+export const getUpcoming = async ({ signal }) => {
+  return await axios
+    .get(`${server_url}/api/events/upcoming`, {
+      cancelToken: signal.token,
+    })
+    .catch(cancelToken);
+};
+
 export const getEvent = async ({ event_slug, signal }) => {
   return await axios
     .get(`${server_url}/api/events/${event_slug}`, {

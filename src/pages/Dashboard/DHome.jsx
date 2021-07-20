@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { getEvents } from "@requests/events";
+import { getEvents, getUpcoming } from "@requests/events";
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -12,15 +12,25 @@ import { getDistricts } from "@requests/avc";
 function DHome() {
   const [events, setEvents] = useState([]);
   const [avcCount, setAVCCount] = useState(0);
+  const [upcoming, setUpcoming] = useState({});
+
+  function renderEventContent(eventInfo) {
+    return (
+      <>
+        <span className="p-10">{eventInfo.event.title}</span>
+      </>
+    );
+  }
 
   useEffect(() => {
     const signal = axios.CancelToken.source();
 
     let events = getEvents({ signal }).catch(console.log);
     let avc = getDistricts({ signal }).catch(console.log);
+    let upcoming = getUpcoming({ signal }).catch(console.log);
 
-    Promise.all([events, avc]).then((res) => {
-      let [ev, avc] = res;
+    Promise.all([events, avc, upcoming]).then((res) => {
+      let [ev, avc, up] = res;
 
       //getting events for calendar
       ev = ev.data?.data;
@@ -36,12 +46,15 @@ function DHome() {
 
       //getting total count of anti venom centers
       avc = avc.data?.data;
-      console.log(avc);
+
       let count = avc
         ?.map((res) => res.count)
         .reduce((acc, item) => acc + item);
 
       setAVCCount(count);
+      //getting upcoming event
+      up = up.data?.data;
+      setUpcoming(up[0]);
     });
 
     return () => {
@@ -64,10 +77,7 @@ function DHome() {
                 <Link to="">
                   <h1 className="font-bold text-lg">UPCOMING EVENT</h1>
 
-                  <p className="font-semibold text-sm">
-                    CLUB AFFAIRS: Yearly Wrap-up and Suggestions for the
-                    Incoming President
-                  </p>
+                  <p className="font-semibold text-sm">{upcoming.title}</p>
                 </Link>
               </div>
 
@@ -113,9 +123,11 @@ function DHome() {
           </div>
           <div className="gap-4 my-10">
             <FullCalendar
+              eventBorderColor="black"
               events={events}
               defaultView="dayGridMonth"
               plugins={[dayGridPlugin, interactionPlugin]}
+              eventContent={renderEventContent}
             />
           </div>
         </div>
