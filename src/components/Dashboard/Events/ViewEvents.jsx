@@ -19,10 +19,10 @@ function ViewEvents() {
   const [events, setEvent] = useState([]);
 
   const handleDelete = (id) => {
-    if (!window.confirm("Do you want to delet this resource?")) return;
+    if (!window.confirm("Do you want to delete this resource?")) return;
 
     deleteEvent({
-      slider_id: id,
+      event_id: id,
       accesstoken: access_token,
     })
       .then((res) => {
@@ -97,6 +97,7 @@ function ViewEvents() {
   return (
     <>
       <DataTable
+        title="Events"
         detailPanel={[
           {
             tooltip: "Show Description",

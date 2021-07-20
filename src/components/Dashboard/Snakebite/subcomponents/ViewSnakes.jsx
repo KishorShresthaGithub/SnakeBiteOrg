@@ -16,9 +16,7 @@ function ViewSnakes() {
       <tbody>
         <tr className="">
           <td className="border border-gray-200 p-2">1</td>
-          <td className="border border-gray-200 p-2">
-            <img src="" alt="" srcset="" />
-          </td>
+          <td className="border border-gray-200 p-2"></td>
           <td className="border border-gray-200 p-2">News Cateogry</td>
           <td className=" border border-gray-200 p-2 flex items-center">
             <RiEditBoxLine className="bg-blue-400 h-10 w-10 p-2 text-white mr-2" />

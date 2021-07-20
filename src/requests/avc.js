@@ -12,7 +12,7 @@ export const getAVCs = async ({ signal }) => {
     .catch(cancelToken);
 };
 
-export const getAVC = async ({ avc_slug, signal, accesstoken }) => {
+export const getAVC = async ({ avc_slug, signal }) => {
   return await axios
     .get(`${server_url}/api/avcenters/${avc_slug}`, {
       cancelToken: signal.token,
@@ -37,30 +37,23 @@ export const getCentersFromDistrict = async ({ district, signal }) => {
 };
 
 //upload image
-export const saveAVC = async ({ data, signal, accesstoken }, addToast) => {
+export const saveAVC = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/avcenters`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //upload image
-export const updateAVC = async (
-  { data, avc_id, signal, accesstoken },
-  addToast
-) => {
+export const updateAVC = async ({ data, avc_id, accesstoken }, addToast) => {
   return await axios
     .put(`${server_url}/api/avcenters/${avc_id}`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
@@ -71,7 +64,6 @@ export const deleteAVC = async ({ avc_id, signal, accesstoken }, addToast) => {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };

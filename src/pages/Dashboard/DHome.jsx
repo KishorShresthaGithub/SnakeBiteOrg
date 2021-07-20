@@ -1,17 +1,62 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { getEvents } from "@requests/events";
+
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { getDistricts } from "@requests/avc";
 
 function DHome() {
+  const [events, setEvents] = useState([]);
+  const [avcCount, setAVCCount] = useState(0);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    let events = getEvents({ signal }).catch(console.log);
+    let avc = getDistricts({ signal }).catch(console.log);
+
+    Promise.all([events, avc]).then((res) => {
+      let [ev, avc] = res;
+
+      //getting events for calendar
+      ev = ev.data?.data;
+      ev = ev.map((data) => {
+        return {
+          ...data,
+          title: data.title,
+          start: data.start_date,
+          end: data.end_date,
+        };
+      });
+      setEvents(ev);
+
+      //getting total count of anti venom centers
+      avc = avc.data?.data;
+      console.log(avc);
+      let count = avc
+        ?.map((res) => res.count)
+        .reduce((acc, item) => acc + item);
+
+      setAVCCount(count);
+    });
+
+    return () => {
+      signal.cancel();
+    };
+  }, []);
+
   return (
     <>
-      <div className="bg-gray-100 py-10 md:h-screen">
+      <div className="bg-gray py-10 md:h-screen">
         <div className="container mx-auto px-4">
           <h1 className="mt-8 text-3xl">Welcome to Snakebite Nepal</h1>
-          <p className="font-bold text-md mt-2 flex items-center">
+          <p className="font-bold text-md mt-2 flex item  s-center">
             <FaRegCalendarAlt className="mr-2" /> {new Date().toDateString()}
           </p>
-
           {/* add and view slider  */}
           <div className="grid md:grid-cols-5 gap-4 mt-10">
             <div className="col-span-3">
@@ -40,7 +85,7 @@ function DHome() {
                 <Link to="">
                   <h1 className="font-bold text-lg">Total Antivenom Centers</h1>
 
-                  <p className="font-semibold text-3xl">120</p>
+                  <p className="font-semibold text-3xl">{avcCount}</p>
                 </Link>
               </div>
 
@@ -55,7 +100,7 @@ function DHome() {
 
             <div className="col-span-2 text-center card p-4 bg-white w-80 h-screen md:w-full md:h-full">
               <iframe
-              title="calendar"
+                title="calendar"
                 src="https://www.hamropatro.com/widgets/calender-medium.php"
                 frameBorder="0"
                 scrolling="yes"
@@ -65,6 +110,13 @@ function DHome() {
                 className="w-full h-full"
               ></iframe>
             </div>
+          </div>
+          <div className="gap-4 my-10">
+            <FullCalendar
+              events={events}
+              defaultView="dayGridMonth"
+              plugins={[dayGridPlugin, interactionPlugin]}
+            />
           </div>
         </div>
       </div>

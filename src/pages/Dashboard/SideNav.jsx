@@ -6,7 +6,7 @@ import { FaBars } from "react-icons/fa";
 function SideNav() {
   const [mobileNav, setMobileNav] = useState(false);
   return (
-    <div className="bg_primary h-full w-full">
+    <div className="bg_primary h-full">
       <div className="flex flex-col">
         <div className="flex items-center justify-between md:block md:flex-col">
           <h1 className="flex items-center text-xl text-white font-bold px-4 py-4">
@@ -33,7 +33,7 @@ function SideNav() {
         >
           {nav.map((nav, index) => (
             <Link to={nav.to} key={index}>
-              <p className="py-3 font-semibold px-4 hover:bg-yellow-200 ">
+              <p className="py-3 font-semibold px-4 hover:bg-yellow-200 cursor: pointer ">
                 {nav.default}
               </p>
             </Link>

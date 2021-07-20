@@ -18,10 +18,10 @@ function ViewNews() {
   const [news, setNews] = useState([]);
 
   const handleDelete = (id) => {
-    if (!window.confirm("Do you want to delet this resource?")) return;
+    if (!window.confirm("Do you want to delete this resource?")) return;
 
     deleteNews({
-      slider_id: id,
+      news_id: id,
       accesstoken: access_token,
     })
       .then((res) => {
@@ -85,6 +85,7 @@ function ViewNews() {
   return (
     <>
       <DataTable
+        title="News"
         detailPanel={[
           {
             tooltip: "Show Description",

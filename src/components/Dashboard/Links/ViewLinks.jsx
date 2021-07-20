@@ -41,7 +41,7 @@ function ViewLinks() {
   }, []);
 
   const handleDelete = (id) => {
-    if (!window.confirm("Do you want to delet this resource?")) return;
+    if (!window.confirm("Do you want to delete this resource?")) return;
 
     deleteNav({
       nav_id: id,

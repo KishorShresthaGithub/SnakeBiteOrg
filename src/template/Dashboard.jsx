@@ -8,7 +8,9 @@ function Dashboard(props) {
     <Protected>
       <div className="grid md:grid-cols-6">
         <SideNav />
-        <div className="md:col-span-5">{props.children}</div>
+        <div className="md:col-span-5 h-full overflow-y-scroll ">
+          {props.children}
+        </div>
       </div>
     </Protected>
   );

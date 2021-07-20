@@ -52,8 +52,12 @@ function DashCard(props) {
             <div
               className={
                 layout === "Add"
-                  ? "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200"
-                  : "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8"
+                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
+                      !props.btnAdd ? "hidden" : ""
+                    }  `
+                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 ${
+                      !props.btnAdd ? "hidden" : ""
+                    }`
               }
               onClick={() => {
                 setLayout("Add");
@@ -65,8 +69,12 @@ function DashCard(props) {
             <div
               className={
                 layout === "View"
-                  ? "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200"
-                  : "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8"
+                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
+                      !props.btnAdd ? "hidden" : ""
+                    }`
+                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 ${
+                      !props.btnAdd ? "hidden" : ""
+                    }`
               }
               onClick={() => {
                 setLayout("View");
@@ -78,8 +86,10 @@ function DashCard(props) {
             <div
               className={
                 layout === "Update"
-                  ? "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 "
-                  : "flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 hidden"
+                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
+                      !props.btnAdd ? "hidden" : ""
+                    }  `
+                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 hidden`
               }
               onClick={() => {
                 setLayout("Update");

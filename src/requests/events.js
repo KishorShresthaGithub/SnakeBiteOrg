@@ -4,7 +4,7 @@ import { cancelToken, server_url, validation } from "./config";
 
 export const getEvents = async ({ signal }) => {
   return await axios
-    .get(`${server_url}/api/events?limit=5`, {
+    .get(`${server_url}/api/events`, {
       cancelToken: signal.token,
     })
     .catch(cancelToken);

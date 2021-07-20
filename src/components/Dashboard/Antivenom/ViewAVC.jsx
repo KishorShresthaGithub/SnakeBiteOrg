@@ -1,36 +1,40 @@
 import useToken from "@provider/AuthProvider";
-import { deleteSlider, getSliders } from "@requests/sliders";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
-import "react-responsive-modal/styles.css";
+import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
+import { deleteAVC, getAVC, getAVCs } from "../../../requests/avc";
 import DataTable from "../../DataTable";
 
-function ViewSlider() {
+function ViewAVC() {
   const dashTab = useContext(DashCardContext);
+
   const { addToast } = useToasts();
   const { access_token } = useToken();
 
-  const [slider, setSlider] = useState([]);
+  const [avcs, setAVC] = useState([]);
 
   const handleDelete = (id) => {
     if (!window.confirm("Do you want to delete this resource?")) return;
 
-    deleteSlider({
-      slider_id: id,
-      accesstoken: access_token,
-    })
+    deleteAVC(
+      {
+        avc_id: id,
+        accesstoken: access_token,
+      },
+      addToast
+    )
       .then((res) => {
         addToast(res.data.message, { appearance: "success" });
         const signal = axios.CancelToken.source();
 
-        getSliders({ signal })
+        getAVC({ signal })
           .then((res) => {
-            const sliders = res.data.data;
-            if (sliders) setSlider(sliders);
+            const avc = res.data.data;
+            if (avc) setAVC(avc);
           })
           .catch(console.log);
       })
@@ -40,10 +44,10 @@ function ViewSlider() {
   useEffect(() => {
     const signal = axios.CancelToken.source();
 
-    getSliders({ signal })
+    getAVCs({ signal })
       .then((res) => {
-        const sliders = res.data?.data;
-        if (sliders) setSlider(sliders);
+        const avc = res.data?.data;
+        if (avc) setAVC(avc);
       })
       .catch(console.log);
 
@@ -53,18 +57,12 @@ function ViewSlider() {
   }, []);
 
   const columns = [
-    { title: "Slider ID", field: "id", width: "10%" },
+    { title: "AVC ID", field: "id", width: "10%" },
     {
-      title: "Slider Image",
-
-      render: (row) => (
-        <a href={row.image} target="_blank" rel="noreferrer">
-          <img style={{ width: "300px" }} src={row.image} alt="slider " />
-        </a>
-      ),
+      title: "AVC Name",
+      field: "name",
     },
-    { title: "Slider Caption", field: "caption" },
-    { title: "Slider Position", field: "position" },
+    { title: "AVC District", field: "district" },
 
     {
       title: "Modify",
@@ -91,9 +89,45 @@ function ViewSlider() {
 
   return (
     <>
-      <DataTable title="Sliders" columns={columns} data={slider} />
+      <DataTable
+        title="Anti Venom Centers"
+        /*   detailPanel={[
+          {
+            tooltip: "Show Description",
+            render: (rowData) => {
+              return (
+                <div
+                  style={{ padding: "30px" }}
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(rowData.description),
+                  }}
+                ></div>
+              );
+            },
+          },
+          {
+            tooltip: "Show Image",
+            icon: "image",
+            render: (row) => {
+              return (
+                <div>
+                  <a href={row.image} target="_blank" rel="noreferrer">
+                    <img
+                      style={{ width: "300px" }}
+                      src={row.image}
+                      alt="slider "
+                    />
+                  </a>
+                </div>
+              );
+            },
+          },
+        ]} */
+        columns={columns}
+        data={avcs}
+      />
     </>
   );
 }
 
-export default ViewSlider;
+export default ViewAVC;

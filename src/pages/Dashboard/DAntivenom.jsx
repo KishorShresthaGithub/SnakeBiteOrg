@@ -1,7 +1,8 @@
 import React from "react";
-import AddAntivenom from "../../components/Dashboard/Antivenom/AddAntivenom";
-import ViewAntivenom from "../../components/Dashboard/Antivenom/ViewAntivenom";
-import DashCard from "../../template/DashCard";
+import AddAVC from "@components/Dashboard/Antivenom/AddAVC";
+import UpdateAVC from "@components/Dashboard/Antivenom/UpdateAVC";
+import ViewAVC from "@components/Dashboard/Antivenom/ViewAVC";
+import DashCard from "@template/DashCard";
 
 function DAntivenom() {
   return (
@@ -9,9 +10,10 @@ function DAntivenom() {
       <DashCard
         btnAdd="Add Antivenom"
         btnView="View Antivenom"
-        AddComponent={<AddAntivenom />}
-        ViewComponents={<ViewAntivenom />}
-  
+        btnUpdate="Update Anti Venom"
+        AddComponent={<AddAVC />}
+        ViewComponents={<ViewAVC />}
+        UpdateComponent={<UpdateAVC />}
       ></DashCard>
     </>
   );
