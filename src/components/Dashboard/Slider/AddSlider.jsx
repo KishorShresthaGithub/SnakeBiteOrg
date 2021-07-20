@@ -1,7 +1,7 @@
 import useToken from "@provider/AuthProvider";
 import React, { useState } from "react";
 import { useToasts } from "react-toast-notifications";
-import { saveSlider } from "../../../requests/sliders";
+import { saveSlider } from "@requests/sliders";
 
 function AddSlider() {
   const { access_token } = useToken();

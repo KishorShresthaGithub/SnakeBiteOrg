@@ -4,7 +4,7 @@ import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import moment from "moment";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import "react-quill/dist/quill.snow.css";
@@ -39,20 +39,24 @@ function ViewEvents() {
       .catch(console.log);
   };
 
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
-    getEvents({ signal })
+  const getEventsCallback = useCallback((signal) => {
+    return getEvents({ signal })
       .then((res) => {
-        const events = res.data.data;
+        const events = res?.data.data;
         if (events) setEvent(events);
       })
       .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getEventsCallback(signal).catch(console.log);
 
     return () => {
       signal.cancel();
     };
-  }, []);
+  }, [getEventsCallback]);
 
   const columns = [
     { title: "Event ID", field: "id", width: "10%" },

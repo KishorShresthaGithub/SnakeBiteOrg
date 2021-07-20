@@ -8,22 +8,24 @@ import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import "react-responsive-modal/styles.css";
 import { useToasts } from "react-toast-notifications";
-import DataTable from "../../DataTable";
+import DataTable from "@components/DataTable";
 
 function ViewLinks() {
   const dashTab = useContext(DashCardContext);
+  //init select
   const { getNav } = useContext(NavContext);
   const { addToast } = useToasts();
 
   const { access_token } = useToken();
   const [links, setLinks] = useState([]);
 
+  //init table
   const getNavs = useCallback(async (signal) => {
     try {
       const res = await getNavLinksAll({ signal });
 
       if (res) {
-        const linksDB = res.data.data;
+        const linksDB = res?.data.data;
 
         linksDB?.forEach((link, index) => {
           if (link.parent_link !== null) {
@@ -64,7 +66,7 @@ function ViewLinks() {
     return () => {
       signal.cancel();
     };
-  }, [dashTab, getNav, getNavs]);
+  }, [getNav, getNavs]);
 
   const columns = [
     { title: "Link ID", field: "id" },

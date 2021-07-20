@@ -14,7 +14,7 @@ function DEvents() {
         AddComponent={<AddEvents />}
         ViewComponents={<ViewEvents />}
         UpdateComponent={<UpdateEvents />}
-      ></DashCard>
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { DashCardContext } from "../DashCard";
 
-const UpdateLayout = ({ btnUpdate, updateComponent }) => {
+const UpdateLayout = ({ btnUpdate, children }) => {
   const { updateData } = useContext(DashCardContext);
 
   return (
@@ -11,9 +11,7 @@ const UpdateLayout = ({ btnUpdate, updateComponent }) => {
 
       <h3 className="font-semibold text-xl p-4"> ID: {updateData.id}</h3>
 
-      <div className="p-4 w-80 md:w-full overflow-x-scroll">
-        {updateComponent}
-      </div>
+      <div className="p-4 w-80 md:w-full overflow-x-scroll">{children}</div>
     </div>
   );
 };

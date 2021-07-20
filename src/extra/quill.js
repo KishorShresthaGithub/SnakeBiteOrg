@@ -1,5 +1,3 @@
-import { Quill } from "react-quill";
-
 export const formats = [
   "header",
   "font",
@@ -26,8 +24,4 @@ export const modules = {
     ["link", "image"],
     ["clean"],
   ],
-
-  imageResize: {
-    parchment: Quill.import("parchment"),
-  },
 };

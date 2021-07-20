@@ -3,12 +3,12 @@ import { deleteNews, getNews } from "@requests/news";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import "react-quill/dist/quill.snow.css";
 import { useToasts } from "react-toast-notifications";
-import DataTable from "../../DataTable";
+import DataTable from "@components/DataTable";
 
 function ViewNews() {
   const dashTab = useContext(DashCardContext);
@@ -38,20 +38,24 @@ function ViewNews() {
       .catch(console.log);
   };
 
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
-    getNews({ signal })
+  const getNewsCallback = useCallback((signal) => {
+    return getNews({ signal })
       .then((res) => {
         const news = res.data.data;
         if (news) setNews(news);
       })
       .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getNewsCallback(signal);
 
     return () => {
       signal.cancel();
     };
-  }, []);
+  }, [getNewsCallback]);
 
   const columns = [
     { title: "News ID", field: "id", width: "10%" },

@@ -2,7 +2,7 @@ import useToken from "@provider/AuthProvider";
 import { deleteSlider, getSliders } from "@requests/sliders";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import "react-responsive-modal/styles.css";
@@ -37,20 +37,24 @@ function ViewSlider() {
       .catch(console.log);
   };
 
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
-    getSliders({ signal })
+  const getSlidersCallback = useCallback((signal) => {
+    return getSliders({ signal })
       .then((res) => {
         const sliders = res.data?.data;
         if (sliders) setSlider(sliders);
       })
       .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getSlidersCallback(signal);
 
     return () => {
       signal.cancel();
     };
-  }, []);
+  }, [getSlidersCallback]);
 
   const columns = [
     { title: "Slider ID", field: "id", width: "10%" },

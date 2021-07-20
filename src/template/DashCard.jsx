@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
+import LinkPage from "../components/Dashboard/Links/LinkPage";
 import AddLayout from "./DashTabs/AddLayout";
 import UpdateLayout from "./DashTabs/UpdateLayout";
 import ViewLayout from "./DashTabs/ViewLayout";
@@ -15,22 +16,22 @@ function DashCard(props) {
     switch (layout) {
       case "Add":
         return (
-          <AddLayout btnAdd={props.btnAdd} addComponent={props.AddComponent} />
+          <AddLayout btnAdd={props.btnAdd}>{props.AddComponent}</AddLayout>
         );
       case "View":
         return (
-          <ViewLayout
-            btnView={props.btnView}
-            viewComponent={props.ViewComponents}
-          />
+          <ViewLayout btnView={props.btnView}>
+            {props.ViewComponents}
+          </ViewLayout>
         );
       case "Update":
         return (
-          <UpdateLayout
-            btnUpdate={props.btnUpdate}
-            updateComponent={props.UpdateComponent}
-          />
+          <UpdateLayout btnUpdate={props.btnUpdate}>
+            {props.UpdateComponent}
+          </UpdateLayout>
         );
+      case "Page":
+        return <LinkPage btnPage={props.btnPage}>{props.LinkPage}</LinkPage>;
       default:
         return (
           <ViewLayout
@@ -59,9 +60,7 @@ function DashCard(props) {
                       !props.btnAdd ? "hidden" : ""
                     }`
               }
-              onClick={() => {
-                setLayout("Add");
-              }}
+              onClick={() => setLayout("Add")}
             >
               <IoMdAdd />
               {props.btnAdd}
@@ -76,9 +75,7 @@ function DashCard(props) {
                       !props.btnAdd ? "hidden" : ""
                     }`
               }
-              onClick={() => {
-                setLayout("View");
-              }}
+              onClick={() => setLayout("View")}
             >
               <GrFormView className="text-2xl" />
               {props.btnView}
@@ -91,9 +88,21 @@ function DashCard(props) {
                     }  `
                   : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 hidden`
               }
-              onClick={() => {
-                setLayout("Update");
-              }}
+              onClick={() => setLayout("Update")}
+            >
+              {" "}
+              <GrFormAttachment className="text-2xl" />
+              {props.btnUpdate}
+            </div>
+            <div
+              className={
+                layout === "Page"
+                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
+                      !props.btnAdd ? "hidden" : ""
+                    }  `
+                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 hidden`
+              }
+              onClick={() => setLayout("Page")}
             >
               {" "}
               <GrFormAttachment className="text-2xl" />
