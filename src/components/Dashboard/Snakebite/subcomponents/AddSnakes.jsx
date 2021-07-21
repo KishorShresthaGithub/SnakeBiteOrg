@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 function AddSnakes() {
-  const [body, setBody] = useState("");
+  /*  const [body, setBody] = useState("");
   const handleBody = (e) => {
     console.log(e);
     setBody(e);
   };
-
+ */
   return (
     <form action="">
       <div className="flex flex-col mr-4 px-2 py-2">

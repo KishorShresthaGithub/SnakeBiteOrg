@@ -1,10 +1,13 @@
 import UpdateEvents from "@components/Dashboard/Events/UpdateEvents";
-import ViewEvents from "@components/Dashboard/Events/ViewEvents";
 import AddGallery from "@components/Dashboard/Gallery/AddGallery";
+import ViewGallery from "@components/Dashboard/Gallery/ViewGallery";
 import DashCard from "@template/DashCard";
 import React, { useState } from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
+import UpdateGallery from "@components/Dashboard/Gallery/UpdateGallery";
+import ViewGalleryImage from "../../components/Dashboard/Gallery/ViewGalleryImage";
+import AddGalleryImage from "../../components/Dashboard/Gallery/AddGalleryImage";
 
 const options = [
   {
@@ -12,7 +15,7 @@ const options = [
     tab_show: true,
     tab_name: "View Gallery",
     tab_icon: <GrFormView className="text-2xl" />,
-    page: <ViewEvents />,
+    page: <ViewGallery />,
   },
   {
     tab_id: "add_gallery",
@@ -26,21 +29,21 @@ const options = [
     tab_name: "Update Gallery",
     tab_show: false,
     tab_icon: <GrFormAttachment className="text-2xl" />,
-    page: <UpdateEvents />,
+    page: <UpdateGallery />,
   },
   {
     tab_id: "view_single_gallery",
     tab_name: "View Single Gallery",
     tab_show: false,
     tab_icon: <GrFormView className="text-2xl" />,
-    page: <UpdateEvents />,
+    page: <ViewGalleryImage />,
   },
   {
     tab_id: "add_single_gallery",
     tab_name: "Add Single Gallery",
     tab_show: false,
     tab_icon: <IoMdAdd />,
-    page: <UpdateEvents />,
+    page: <AddGalleryImage />,
   },
   {
     tab_id: "update_single_gallery",
@@ -51,13 +54,13 @@ const options = [
   },
 ];
 
-const GalleryImageContext = React.createContext();
+export const GalleryImageContext = React.createContext();
 
 function DGallery() {
-  const [galleryImage, setGalleryImage] = useState({});
+  const [singleGallery, setSingleGallery] = useState({});
 
   return (
-    <GalleryImageContext.Provider value={{ galleryImage, setGalleryImage }}>
+    <GalleryImageContext.Provider value={{ singleGallery, setSingleGallery }}>
       <DashCard options={options} />
     </GalleryImageContext.Provider>
   );

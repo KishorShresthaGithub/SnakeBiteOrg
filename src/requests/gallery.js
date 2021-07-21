@@ -53,7 +53,6 @@ export const updateGallery = async (
   return await axios
     .put(`${server_url}/api/gallery/${gallery_id}`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
     })

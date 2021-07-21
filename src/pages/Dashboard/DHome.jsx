@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { getEvents, getUpcoming } from "@requests/events";
@@ -22,45 +22,52 @@ function DHome() {
     );
   }
 
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
+  const getData = useCallback((signal) => {
     let events = getEvents({ signal }).catch(console.log);
     let avc = getDistricts({ signal }).catch(console.log);
     let upcoming = getUpcoming({ signal }).catch(console.log);
 
-    Promise.all([events, avc, upcoming]).then((res) => {
-      let [ev, avc, up] = res;
+    Promise.all([events, avc, upcoming])
+      .then((res) => {
+        let [ev, avc, up] = res;
 
-      //getting events for calendar
-      ev = ev?.data?.data;
-      ev = ev.map((data) => {
-        return {
-          ...data,
-          title: data.title,
-          start: data.start_date,
-          end: data.end_date,
-        };
-      });
-      setEvents(ev);
+        //getting events for calendar
+        let event = ev?.data?.data;
+        const newevent = event?.map((data) => {
+          return {
+            ...data,
+            title: data.title,
+            start: data.start_date,
+            end: data.end_date,
+          };
+        });
+        setEvents(newevent);
 
-      //getting total count of anti venom centers
-      avc = avc.data?.data;
+        //getting total count of anti venom centers
+        avc = avc?.data?.data;
 
-      let count = avc
-        ?.map((res) => res.count)
-        .reduce((acc, item) => acc + item);
+        let count = avc
+          ?.map((res) => res.count)
+          .reduce((acc, item) => acc + item);
 
-      setAVCCount(count);
-      //getting upcoming event
-      up = up.data?.data;
-      setUpcoming(up[0]);
-    });
+        setAVCCount(count);
+        //getting upcoming event
+        let upevent = up.data?.data;
+        setUpcoming(upevent[0]);
+      })
+
+      .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getData(signal);
 
     return () => {
       signal.cancel();
     };
-  }, []);
+  }, [getData]);
 
   return (
     <>

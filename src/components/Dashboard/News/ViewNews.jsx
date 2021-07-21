@@ -72,8 +72,8 @@ function ViewNews() {
           <div>
             <RiEditBoxLine
               onClick={() => {
-                dashTab.setLayout("update_news");
                 dashTab.setUpdateData(row);
+                dashTab.setLayout("update_news");
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"
             />

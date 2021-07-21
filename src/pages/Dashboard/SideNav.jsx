@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import nav from "./navigations.json";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import useToken from "@provider/AuthProvider";
 
 function SideNav() {
   const [mobileNav, setMobileNav] = useState(false);
+  const { deleteToken } = useToken();
+  const history = useHistory();
   return (
     <div className="bg_primary h-full">
       <div className="flex flex-col">
@@ -19,7 +22,13 @@ function SideNav() {
             SNAKEBITE NEPAL
           </h1>
           <div className="px-4">
-            <button className="bg-white px-4 rounded-full py-1 hover:opacity-80 font-semibold text-sm">
+            <button
+              onClick={() => {
+                deleteToken();
+                history.push("/login");
+              }}
+              className="bg-white px-4 rounded-full py-1 hover:opacity-80 font-semibold text-sm"
+            >
               Logout
             </button>
           </div>

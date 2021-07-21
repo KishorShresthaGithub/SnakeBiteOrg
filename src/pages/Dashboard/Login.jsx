@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import LoginForm from "@components/Dashboard/LoginForm";
+import { useHistory } from "react-router-dom";
+import useToken from "@provider/AuthProvider";
 
 function Login() {
-  /*   const history = useHistory();
+  const history = useHistory();
   const { access_token } = useToken();
 
   useLayoutEffect(() => {
     if (access_token) {
       history.push("/d_home");
     }
-  }, [history, access_token]); */
+  }, [history, access_token]);
 
   return (
     <div className="bg_primary p-4 md:py-28 h-full md:h-screen">

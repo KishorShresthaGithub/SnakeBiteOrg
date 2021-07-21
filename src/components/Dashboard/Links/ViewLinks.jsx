@@ -87,8 +87,9 @@ function ViewLinks() {
             <RiPagesLine
               className="bg-pink-400 h-10 w-10 p-2 text-white mr-2"
               onClick={() => {
-                dashTab.setLayout("page_links");
+              
                 dashTab.setUpdateData(row);
+                  dashTab.setLayout("page_links");
               }}
             />
           </div>

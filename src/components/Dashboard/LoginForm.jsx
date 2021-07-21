@@ -25,6 +25,7 @@ function LoginForm() {
           const dt = res.data.data;
           setToken(dt.access_token);
           addToast("Login Successful", { appearance: "success" });
+          history.push("/d_home")
         }
       })
       .catch(console.log);

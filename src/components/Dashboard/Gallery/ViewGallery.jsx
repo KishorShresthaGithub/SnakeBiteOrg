@@ -1,19 +1,20 @@
 import useToken from "@provider/AuthProvider";
-import { getSnakearts } from "@requests/events";
+import { deleteGallery, getGallery } from "@requests/gallery";
 import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
-import moment from "moment";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { BiBookAdd } from "react-icons/bi";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
-
 import { useToasts } from "react-toast-notifications";
-import { deleteGallery, getGallery } from "../../../requests/gallery";
+import { GalleryImageContext } from "@pages/Dashboard/DGallery";
 import DataTable from "../../DataTable";
 
 function ViewGallery() {
   const dashTab = useContext(DashCardContext);
+  const { setSingleGallery } = useContext(GalleryImageContext);
+
   const { addToast } = useToasts();
   const { access_token } = useToken();
 
@@ -38,48 +39,48 @@ function ViewGallery() {
       .catch(console.log);
   };
 
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
-    getSnakearts({ signal })
+  const getGalleryCallback = useCallback((signal) => {
+    getGallery({ signal })
       .then((res) => {
-        const events = res.data.data;
-        if (events) setGallery(events);
+        const gallery = res.data.data;
+        if (gallery) setGallery(gallery);
       })
       .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+    getGalleryCallback(signal);
 
     return () => {
       signal.cancel();
     };
-  }, []);
+  }, [getGalleryCallback]);
 
   const columns = [
-    { title: "snakeart ID", field: "id", width: "10%" },
+    { title: "Gallery ID", field: "id", width: "10%" },
     {
-      title: "snakeart Title ",
+      title: "Gallery Title ",
       field: "title",
     },
-    {
-      title: "snakeart Start Date",
-      render: (row) => moment(row.start_date).format("YYYY-MM-DD"),
-    },
-    {
-      title: "snakeart End Date",
-      render: (row) => moment(row.end_date).format("YYYY-MM-DD"),
-    },
-    { title: "snakeart Location", field: "location" },
-    { title: "snakeart Time", field: "time" },
-
     {
       title: "Modify",
       width: "20%",
       render(row) {
         return (
-          <div>
+          <div className="flex flex-row ">
+            <BiBookAdd
+              onClick={() => {
+                setSingleGallery(row);
+                dashTab.setLayout("view_single_gallery");
+              }}
+              className="bg-pink-400 h-10 w-10 p-2 text-white mr-2"
+            />
+
             <RiEditBoxLine
               onClick={() => {
-                dashTab.setLayout("Update");
                 dashTab.setUpdateData(row);
+                dashTab.setLayout("update_gallery");
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"
             />
@@ -96,7 +97,7 @@ function ViewGallery() {
   return (
     <>
       <DataTable
-        title="Snakearts"
+        title="Gallery"
         detailPanel={[
           {
             tooltip: "Show Description",
@@ -116,14 +117,22 @@ function ViewGallery() {
             icon: "image",
             render: (row) => {
               return (
-                <div>
-                  <a href={row.image} target="_blank" rel="noreferrer">
-                    <img
-                      style={{ width: "300px" }}
-                      src={row.image}
-                      alt="slider "
-                    />
-                  </a>
+                <div className="flex flex-wrap">
+                  {row.GalleryImages.map((res, index) => (
+                    <a
+                      key={index}
+                      href={res.image}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="m-4"
+                    >
+                      <img
+                        style={{ width: "300px" }}
+                        src={res.image}
+                        alt="slider "
+                      />
+                    </a>
+                  ))}
                 </div>
               );
             },
