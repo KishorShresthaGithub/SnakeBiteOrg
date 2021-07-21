@@ -1,7 +1,7 @@
 import AddNews from "@components/Dashboard/News/AddNews";
 import UpdateNews from "@components/Dashboard/News/UpdateNews";
 import ViewNews from "@components/Dashboard/News/ViewNews";
-import DashCard2 from "@template/DashCard2";
+import DashCard from "@template/DashCard";
 import React from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
@@ -33,7 +33,7 @@ const options = [
 function DNews() {
   return (
     <>
-      <DashCard2 options={options}></DashCard2>
+      <DashCard options={options}></DashCard>
     </>
   );
 }

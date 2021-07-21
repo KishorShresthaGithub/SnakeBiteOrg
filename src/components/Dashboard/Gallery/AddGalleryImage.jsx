@@ -1,31 +1,25 @@
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
-import { updateEvent } from "@requests/events";
-import { DashCardContext } from "@template/DashCard";
-import moment from "moment";
-import { useContext, useState } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
+import { formats, modules } from "@src/extra/quill";
+import { saveEvent } from "@requests/events";
 
-function UpdateEvents() {
-  const { updateData } = useContext(DashCardContext);
-
+function AddGallery() {
   const { access_token } = useToken();
   const { addToast } = useToasts();
-  // eslint-disable-next-line no-unused-vars
-  const [event, setEvent] = useState(updateData);
-  const [preview, setPreview] = useState(event.image);
+  const [preview, setPreview] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [description, setDescription] = useState("");
 
-  const [startDate, setStartDate] = useState(
-    new Date(moment(event.start_date).format("YYYY-MM-DD"))
-  );
-  const [endDate, setEndDate] = useState(
-    new Date(moment(event.end_date).format("YYYY-MM-DD"))
-  );
-
-  const [description, setDescription] = useState(event.description);
+  const onChangeText = (text) => {
+  
+    text = text !== "<p><br></p>" ? text : "";
+    setDescription(text);
+  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -33,26 +27,23 @@ function UpdateEvents() {
     const htmlform = e.target;
     const form = new FormData(htmlform);
 
-    if (!moment(startDate).isBefore(endDate)) {
-      addToast("Start date should be before end date ", {
-        appearance: "error",
-      });
-      return;
-    }
-
     form.append("start_date", startDate);
     form.append("end_date", endDate);
     form.append("description", description);
 
-    const res = await updateEvent(
-      { data: form, event_id: updateData.id, accesstoken: access_token },
+    const res = await saveEvent(
+      { data: form, accesstoken: access_token },
       addToast
     ).catch(console.log);
 
     if (res) {
-      addToast("Event updated", { appearance: "success" });
+      addToast("Event successfully added", { appearance: "success" }, () => {
+        htmlform.reset();
+        setPreview("");
+      });
     }
   };
+
   const previewImage = (e) => {
     const files = e.target.files;
 
@@ -85,7 +76,6 @@ function UpdateEvents() {
           <input
             type="text"
             name="title"
-            defaultValue={event.title}
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>
@@ -95,7 +85,6 @@ function UpdateEvents() {
           <input
             type="text"
             name="location"
-            defaultValue={event.location}
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>
@@ -127,7 +116,6 @@ function UpdateEvents() {
           <input
             type="text"
             name="time"
-            defaultValue={event.time}
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>
@@ -145,15 +133,13 @@ function UpdateEvents() {
       </div>
 
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
-        <label htmlFor="img">Description </label>
+        <label htmlFor="img">Page </label>
 
-        <CKEditor
-          editor={ClassicEditor}
-          data={description}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setDescription(data);
-          }}
+        <ReactQuill
+          placeholder="Write your News Article here"
+          onChange={onChangeText}
+          formats={formats}
+          modules={modules}
         />
       </div>
 
@@ -162,4 +148,4 @@ function UpdateEvents() {
   );
 }
 
-export default UpdateEvents;
+export default AddGallery;

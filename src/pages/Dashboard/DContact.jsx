@@ -1,4 +1,4 @@
-import DashCard from "@template/DashCard2";
+import DashCard from "@template/DashCard";
 import React from "react";
 import { GrFormView } from "react-icons/gr";
 import ViewContacts from "../../components/Dashboard/Contact/ViewContacts";

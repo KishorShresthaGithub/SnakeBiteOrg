@@ -1,6 +1,6 @@
 import useToken from "@provider/AuthProvider";
 import { deleteNews, getNews } from "@requests/news";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useCallback, useContext, useEffect, useState } from "react";

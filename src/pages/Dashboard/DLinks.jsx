@@ -5,7 +5,7 @@ import UpdateLinks from "@components/Dashboard/Links/UpdateLinks";
 import LinkPage from "@components/Dashboard/Links/LinkPage";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
-import DashCard2 from "@template/DashCard2";
+import DashCard from "@template/DashCard";
 
 const options = [
   {
@@ -41,7 +41,7 @@ const options = [
 function DLinks() {
   return (
     <NavWrapper>
-      <DashCard2 options={options} />
+      <DashCard options={options} />
     </NavWrapper>
   );
 }

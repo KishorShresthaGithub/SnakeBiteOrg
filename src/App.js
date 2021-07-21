@@ -23,6 +23,7 @@ import { DashRoute } from "@template/Dashboard";
 import { PageRoute } from "@template/Page";
 import DEvents from "./pages/Dashboard/DEvents";
 import DContact from "./pages/Dashboard/DContact";
+import DGallery from "./pages/Dashboard/DGallery";
 
 // const Render = ({ html }) => {
 //   return (
@@ -82,7 +83,7 @@ function App() {
         <DashRoute path="/d_slider" exact component={DSlider} />
         <DashRoute path="/d_news" exact component={DNews} />
         <DashRoute path="/d_events" exact component={DEvents} />
-   
+
         <DashRoute path="/d_snakes_art" component={DSnakeArt}></DashRoute>
         <DashRoute
           path="/d_snakes_and_snakebites"
@@ -91,6 +92,7 @@ function App() {
         <DashRoute path="/d_antivenom" component={DAntivenom}></DashRoute>
         <DashRoute path="/d_links" component={DLinks}></DashRoute>
         <DashRoute path="/d_contact" component={DContact}></DashRoute>
+        <DashRoute path="/d_gallery" component={DGallery}></DashRoute>
 
         <Route path="*" component={NotFound} />
       </Switch>

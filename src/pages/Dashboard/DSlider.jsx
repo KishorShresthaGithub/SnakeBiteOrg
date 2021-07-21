@@ -2,7 +2,7 @@ import AddSlider from "@components/Dashboard/Slider/AddSlider";
 import ViewSlider from "@components/Dashboard/Slider/ViewSlider";
 import UpdateSlider from "@components/Dashboard/Slider/UpdateSlider";
 
-import DashCard2 from "@template/DashCard2";
+import DashCard from "@template/DashCard";
 import React from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
@@ -34,7 +34,7 @@ const options = [
 function DSlider() {
   return (
     <>
-      <DashCard2 options={options} />
+      <DashCard options={options} />
     </>
   );
 }

@@ -1,120 +1,63 @@
 import React, { useState } from "react";
-import { GrFormAttachment, GrFormView } from "react-icons/gr";
-import { IoMdAdd } from "react-icons/io";
-import AddLayout from "./DashTabs/AddLayout";
-import LinkPageLayout from "./DashTabs/LinkPageLayout";
-import UpdateLayout from "./DashTabs/UpdateLayout";
-import ViewLayout from "./DashTabs/ViewLayout";
 
 export const DashCardContext = React.createContext();
 
 function DashCard(props) {
-  const [layout, setLayout] = useState("View");
+  const [layout, setLayout] = useState(props.options[0].tab_id);
+  const [options, setOptions] = useState(props.options);
   const [updateData, setUpdateData] = useState({});
 
-  const renderTab = () => {
-    switch (layout) {
-      case "Add":
-        return (
-          <AddLayout btnAdd={props.btnAdd}>{props.AddComponent}</AddLayout>
-        );
-      case "View":
-        return (
-          <ViewLayout btnView={props.btnView}>
-            {props.ViewComponents}
-          </ViewLayout>
-        );
-      case "Update":
-        return (
-          <UpdateLayout btnUpdate={props.btnUpdate}>
-            {props.UpdateComponent}
-          </UpdateLayout>
-        );
-      case "Page":
-        return (
-          <LinkPageLayout btnPage={props.btnPage}>
-            {props.LinkPage}
-          </LinkPageLayout>
-        );
-      default:
-        return (
-          <ViewLayout btnView={props.btnView}>
-            {props.ViewComponents}
-          </ViewLayout>
-        );
-    }
+  const renderTabPage = () => {
+    const pageObject = options?.find((res) => res.tab_id === layout);
+
+    return pageObject.page;
+  };
+
+  const renderTabs = () => {
+    const tabs = options.map((item, index) => {
+      let classname = `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 `;
+      classname += `${layout === item.tab_id ? " bg-gray-200 " : " "} `;
+      classname += `${
+        item.tab_show === true || layout === item.tab_id ? " show " : " hidden "
+      }`;
+
+      return (
+        <div
+          key={index}
+          className={classname}
+          onClick={() => setLayout(item.tab_id)}
+        >
+          {item.tab_icon}
+          {item.tab_name}
+        </div>
+      );
+    });
+    return tabs;
+  };
+
+  const contextVars = {
+    layout,
+    setLayout,
+    updateData,
+    setUpdateData,
+    options,
+    setOptions,
   };
 
   return (
-    <DashCardContext.Provider
-      value={{ layout, setLayout, updateData, setUpdateData }}
-    >
+    <DashCardContext.Provider value={contextVars}>
       <div className="bg-gray-100 min-h-screen md:px-6 md:py-8">
         <div className="card shadow-md bg-white">
           {/* top section starts  */}
-          <div className="flex items-center">
-            <div
-              className={
-                layout === "Add"
-                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
-                      !props.btnAdd ? "hidden" : ""
-                    }  `
-                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 ${
-                      !props.btnAdd ? "hidden" : ""
-                    }`
-              }
-              onClick={() => setLayout("Add")}
-            >
-              <IoMdAdd />
-              {props.btnAdd}
-            </div>
-            <div
-              className={
-                layout === "View"
-                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
-                      !props.btnAdd ? "hidden" : ""
-                    }`
-                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 ${
-                      !props.btnAdd ? "hidden" : ""
-                    }`
-              }
-              onClick={() => setLayout("View")}
-            >
-              <GrFormView className="text-2xl" />
-              {props.btnView}
-            </div>
-            <div
-              className={
-                layout === "Update"
-                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
-                      !props.btnAdd ? "hidden" : ""
-                    }  `
-                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 hidden`
-              }
-              onClick={() => setLayout("Update")}
-            >
-              {" "}
-              <GrFormAttachment className="text-2xl" />
-              {props.btnUpdate}
-            </div>
-            <div
-              className={
-                layout === "Page"
-                  ? `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 bg-gray-200 ${
-                      !props.btnAdd ? "hidden" : ""
-                    }  `
-                  : `flex items-center border-2 border-gray-100 cursor-pointer p-4 md:p-8 hidden`
-              }
-              onClick={() => setLayout("Page")}
-            >
-              {" "}
-              <GrFormAttachment className="text-2xl" />
-              {props.btnPage}
-            </div>
-          </div>
+          <div className="flex items-center">{renderTabs()}</div>
           {/* top section ends  */}
-          {props.children}
-          {renderTab(props)}
+
+          <hr />
+          <h1 className="font-semibold text-xl p-4">
+            {options?.find((res) => res.tab_id === layout).tab_name}
+          </h1>
+
+          <div className="p-4">{renderTabPage()}</div>
         </div>
       </div>
     </DashCardContext.Provider>

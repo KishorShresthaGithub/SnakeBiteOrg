@@ -1,6 +1,6 @@
 import useToken from "@provider/AuthProvider";
 import { deleteSlider, getSliders } from "@requests/sliders";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";

@@ -1,7 +1,7 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import React, { useContext, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { updateNav } from "@requests/nav";

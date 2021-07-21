@@ -1,5 +1,5 @@
 import useToken from "@provider/AuthProvider";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
@@ -62,6 +62,10 @@ function ViewAVC() {
       title: "AVC Name",
       field: "name",
     },
+    {
+      title: "AVC Contact",
+      field: "contact",
+    },
     { title: "AVC District", field: "district" },
 
     {
@@ -91,38 +95,29 @@ function ViewAVC() {
     <>
       <DataTable
         title="Anti Venom Centers"
-        /*   detailPanel={[
-          {
-            tooltip: "Show Description",
-            render: (rowData) => {
-              return (
-                <div
-                  style={{ padding: "30px" }}
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(rowData.description),
-                  }}
-                ></div>
-              );
-            },
-          },
+        detailPanel={[
           {
             tooltip: "Show Image",
-            icon: "image",
             render: (row) => {
-              return (
-                <div>
-                  <a href={row.image} target="_blank" rel="noreferrer">
-                    <img
-                      style={{ width: "300px" }}
-                      src={row.image}
-                      alt="slider "
+              if (row.map_location) {
+                return (
+                  <div>
+                    <iframe
+                      width="300"
+                      height="200"
+                      title={row.id}
+                      src={row.map_location}
+                      frameBorder="0"
+                      scrolling="no"
                     />
-                  </a>
-                </div>
-              );
+                  </div>
+                );
+              }
+
+              return "";
             },
           },
-        ]} */
+        ]}
         columns={columns}
         data={avcs}
       />

@@ -2,7 +2,7 @@ import React from "react";
 import AddAVC from "@components/Dashboard/Antivenom/AddAVC";
 import UpdateAVC from "@components/Dashboard/Antivenom/UpdateAVC";
 import ViewAVC from "@components/Dashboard/Antivenom/ViewAVC";
-import DashCard from "@template/DashCard2";
+import DashCard from "@template/DashCard";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
 

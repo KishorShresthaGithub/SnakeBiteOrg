@@ -4,7 +4,7 @@ import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { convertFormData } from "@requests/config";
 import { updateNav } from "@requests/nav";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import { useContext, useEffect, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 

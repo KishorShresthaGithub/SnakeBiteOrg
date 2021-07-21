@@ -2,7 +2,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { updateNews } from "@requests/news";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 

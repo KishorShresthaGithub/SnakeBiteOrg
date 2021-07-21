@@ -2,7 +2,7 @@ import useToken from "@provider/AuthProvider";
 import React, { useContext, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { updateSlider } from "@requests/sliders";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 
 function UpdateSlider() {
   const { updateData } = useContext(DashCardContext);

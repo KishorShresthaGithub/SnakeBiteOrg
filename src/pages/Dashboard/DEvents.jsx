@@ -1,7 +1,7 @@
 import React from "react";
 import AddEvents from "@components/Dashboard/Events/AddEvents";
 import ViewEvents from "@components/Dashboard/Events/ViewEvents";
-import DashCard2 from "@template/DashCard2";
+import DashCard from "@template/DashCard";
 import UpdateEvents from "@components/Dashboard/Events/UpdateEvents";
 import { IoMdAdd } from "react-icons/io";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
@@ -33,7 +33,7 @@ const options = [
 function DEvents() {
   return (
     <>
-      <DashCard2 options={options} />
+      <DashCard options={options} />
     </>
   );
 }

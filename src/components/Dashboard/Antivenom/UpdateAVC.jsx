@@ -1,6 +1,6 @@
 import useToken from "@provider/AuthProvider";
 import { updateAVC } from "@requests/avc";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import { useContext } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";

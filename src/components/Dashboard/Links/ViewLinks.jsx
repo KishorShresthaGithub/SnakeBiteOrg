@@ -2,7 +2,7 @@ import DataTable from "@components/DataTable";
 import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { deleteNav, getNavLinksAll } from "@requests/nav";
-import { DashCardContext } from "@template/DashCard2";
+import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
