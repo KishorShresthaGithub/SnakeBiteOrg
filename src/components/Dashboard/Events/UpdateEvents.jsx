@@ -1,12 +1,12 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { updateEvent } from "@requests/events";
-import { formats, modules } from "@src/extra/quill";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import moment from "moment";
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
 
 function UpdateEvents() {
@@ -26,24 +26,22 @@ function UpdateEvents() {
 
   const [description, setDescription] = useState(event.description);
 
-  const onChangeText = (text) => {
-   
-    text = text !== "<p><br></p>" ? text : "";
-    setDescription(text);
-  };
-
   const submitForm = async (e) => {
     e.preventDefault();
 
     const htmlform = e.target;
     const form = new FormData(htmlform);
 
+    if (!moment(startDate).isBefore(endDate)) {
+      addToast("Start date should be before end date ", {
+        appearance: "error",
+      });
+      return;
+    }
+
     form.append("start_date", startDate);
     form.append("end_date", endDate);
-
-    let text = description !== "<p><br></p>" ? description : "";
-
-    if (text) form.append("description", text);
+    form.append("description", description);
 
     const res = await updateEvent(
       { data: form, event_id: updateData.id, accesstoken: access_token },
@@ -158,12 +156,13 @@ function UpdateEvents() {
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
         <label htmlFor="img">Description </label>
 
-        <ReactQuill
-          placeholder="Write your News Article here"
-          defaultValue={event.description}
-          onChange={onChangeText}
-          formats={formats}
-          modules={modules}
+        <CKEditor
+          editor={ClassicEditor}
+          data={description}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setDescription(data);
+          }}
         />
       </div>
 

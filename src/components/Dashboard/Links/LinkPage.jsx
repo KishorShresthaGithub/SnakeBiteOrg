@@ -5,7 +5,6 @@ import { DashCardContext } from "@template/DashCard2";
 import React, { useContext, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { updateNav } from "@requests/nav";
-import "@css/utils.scss";
 
 export default function LinkPage() {
   const { updateData } = useContext(DashCardContext);
@@ -28,18 +27,14 @@ export default function LinkPage() {
 
   return (
     <>
-      <sub className="text-red-400">
-        *Content updates after every 3 seconds you stop editing
-      </sub>
-
+      <h2 className="font-semibold text-xl p-4">For Id: {updateData.id}</h2>
       <hr className="my-5" />
 
       <CKEditor
         editor={ClassicEditor}
-        data={updateData.page}
+        data={data}
         onChange={(event, editor) => {
           const data = editor.getData();
-          console.log("data", data);
           setData(data);
         }}
       />

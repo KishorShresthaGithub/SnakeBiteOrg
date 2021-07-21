@@ -56,6 +56,7 @@ function DashCard2(props) {
           <h1 className="font-semibold text-xl p-4">
             {options?.find((res) => res.tab_id === layout).tab_name}
           </h1>
+
           <div className="p-4">{renderTabPage()}</div>
         </div>
       </div>

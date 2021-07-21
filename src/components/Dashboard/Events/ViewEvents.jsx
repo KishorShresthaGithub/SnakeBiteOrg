@@ -1,6 +1,6 @@
 import useToken from "@provider/AuthProvider";
 import { deleteEvent, getEvents } from "@requests/events";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import moment from "moment";
@@ -83,7 +83,7 @@ function ViewEvents() {
           <div>
             <RiEditBoxLine
               onClick={() => {
-                dashTab.setLayout("Update");
+                dashTab.setLayout("update_events");
                 dashTab.setUpdateData(row);
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"

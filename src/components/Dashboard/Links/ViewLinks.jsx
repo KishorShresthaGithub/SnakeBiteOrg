@@ -25,12 +25,11 @@ function ViewLinks() {
       const res = await getNavLinksAll({ signal });
 
       if (res) {
-        const linksDB = res?.data.data;
+        const linksDB = res?.data?.data;
 
         linksDB?.forEach((link, index) => {
           if (link.parent_link !== null) {
             let parent = linksDB.find((res) => res.id === link.parent_link);
-
             link.parent = parent;
           }
         });
