@@ -1,10 +1,11 @@
 import AddSlider from "@components/Dashboard/Slider/AddSlider";
-import UpdateSlider from "@components/Dashboard/Slider/UpdateSlider";
 import ViewSlider from "@components/Dashboard/Slider/ViewSlider";
-import React from "react";
-import { IoMdAdd } from "react-icons/io";
+import UpdateSlider from "@components/Dashboard/Slider/UpdateSlider";
+
 import DashCard2 from "@template/DashCard2";
+import React from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
+import { IoMdAdd } from "react-icons/io";
 
 const options = [
   {
@@ -25,8 +26,8 @@ const options = [
     tab_id: "update_slider",
     tab_name: "Update Slider",
     tab_show: false,
-    tab_icon: <IoMdAdd />,
-    page: <GrFormAttachment className="text-2xl" />,
+    tab_icon: <GrFormAttachment className="text-2xl" />,
+    page: <UpdateSlider />,
   },
 ];
 

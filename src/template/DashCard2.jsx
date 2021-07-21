@@ -10,9 +10,7 @@ function DashCard2(props) {
   const renderTabPage = () => {
     const pageObject = options?.find((res) => res.tab_id === layout);
 
-    return React.cloneElement(pageObject.page, {
-      option_id: pageObject.tab_id,
-    });
+    return pageObject.page;
   };
 
   const renderTabs = () => {

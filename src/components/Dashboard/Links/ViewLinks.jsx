@@ -1,7 +1,7 @@
 import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { deleteNav, getNavLinksAll } from "@requests/nav";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
@@ -88,7 +88,7 @@ function ViewLinks() {
             <RiPagesLine
               className="bg-pink-400 h-10 w-10 p-2 text-white mr-2"
               onClick={() => {
-                dashTab.setLayout("Page");
+                dashTab.setLayout("page_links");
                 dashTab.setUpdateData(row);
               }}
             />
@@ -103,7 +103,7 @@ function ViewLinks() {
           <div>
             <RiEditBoxLine
               onClick={() => {
-                dashTab.setLayout("Update");
+                dashTab.setLayout("update_links");
                 dashTab.setUpdateData(row);
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"
