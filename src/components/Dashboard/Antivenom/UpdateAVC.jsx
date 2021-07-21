@@ -1,15 +1,15 @@
 import useToken from "@provider/AuthProvider";
 import { updateAVC } from "@requests/avc";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import { useContext } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
 import { useToasts } from "react-toast-notifications";
+import { convertFormData } from "../../../requests/config";
 import options from "./districts";
 
 function UpdateAVC() {
   const { updateData } = useContext(DashCardContext);
-  console.log(updateData);
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
@@ -19,16 +19,15 @@ function UpdateAVC() {
 
     const htmlform = e.target;
     const form = new FormData(htmlform);
+    const input = convertFormData(form);
 
     const res = await updateAVC(
-      { data: form, avc_id: updateData.id, accesstoken: access_token },
+      { data: input, avc_id: updateData.id, accesstoken: access_token },
       addToast
     ).catch(console.log);
 
     if (res) {
-      addToast("AVC  successfully updated", { appearance: "success" }, () => {
-        htmlform.reset();
-      });
+      addToast("AVC successfully updated", { appearance: "success" });
     }
   };
 
@@ -68,6 +67,7 @@ function UpdateAVC() {
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
           <label>AntiVenom Center District</label>
           <Select
+            name="district"
             defaultValue={{
               label: updateData.district,
               value: updateData.district,

@@ -1,9 +1,9 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { saveNews } from "@requests/news";
-import { formats, modules } from "@src/extra/quill";
 import React, { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
 
 function AddNews() {
@@ -11,11 +11,6 @@ function AddNews() {
   const { addToast } = useToasts();
   const [preview, setPreview] = useState("");
   const [description, setDescription] = useState("");
-
-  const onChangeText = (text) => {
-    text = text !== "<p><br></p>" ? text : "";
-    setDescription(text);
-  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -34,7 +29,7 @@ function AddNews() {
       addToast("New successfully added", { appearance: "success" }, () => {
         htmlform.reset();
         setPreview("");
-        setDescription("");
+        setDescription(""); 
       });
     }
   };
@@ -90,13 +85,15 @@ function AddNews() {
       </div>
 
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
-        <label htmlFor="img">Page </label>
+        <label htmlFor="img">Description </label>
 
-        <ReactQuill
-          placeholder="Write your News Article here"
-          onChange={onChangeText}
-          formats={formats}
-          modules={modules}
+        <CKEditor
+          editor={ClassicEditor}
+          data={description}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setDescription(data);
+          }}
         />
       </div>
 

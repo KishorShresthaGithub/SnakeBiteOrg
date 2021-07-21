@@ -20,14 +20,14 @@
         "default": "Events"
     },
     {
-        "to": "/d_snakes_and_Snakebites",
-        "title": "snakes_and_Snakebites",
-        "default": "Snakes & Snakebites"
-    },
-    {
         "to": "/d_news",
         "title": "news",
         "default": "News"
+    },
+    {
+        "to": "/d_snakes_and_Snakebites",
+        "title": "snakes_and_Snakebites",
+        "default": "Snakes & Snakebites"
     },
     {
         "to": "/d_antivenom",

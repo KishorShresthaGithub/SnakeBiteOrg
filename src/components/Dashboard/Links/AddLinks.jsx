@@ -1,11 +1,11 @@
-import { formats, modules } from "@extra/quill";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { convertFormData } from "@requests/config";
 import { saveNav } from "@requests/nav";
 import React, { useContext, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+
 import { useToasts } from "react-toast-notifications";
 
 function AddLinks() {
@@ -17,17 +17,14 @@ function AddLinks() {
   const { access_token } = useToken();
   const { addToast } = useToasts();
 
-  const handleBody = (e) => {
-    setPage(e);
-  };
-
   const submitForm = async (e) => {
     e.preventDefault();
 
     const htmlform = e.target;
-
     const form = new FormData(htmlform);
+
     form.append("page", page);
+
     if (parentLink && parentLink !== "")
       form.append("parent_link", parseInt(parentLink));
 
@@ -102,12 +99,12 @@ function AddLinks() {
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
         <label htmlFor="img">Page </label>
 
-        <ReactQuill
-          placeholder="Write your News Article here"
-          onChange={handleBody}
-          formats={formats}
-          modules={modules}
-          value={page}
+        <CKEditor
+          editor={ClassicEditor}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setPage(data);
+          }}
         />
       </div>
 

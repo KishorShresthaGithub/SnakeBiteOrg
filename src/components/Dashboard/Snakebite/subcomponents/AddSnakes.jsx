@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+
 function AddSnakes() {
   const [body, setBody] = useState("");
   const handleBody = (e) => {
@@ -31,13 +30,6 @@ function AddSnakes() {
       </div>
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
         <label htmlFor="img">Add Snakebite Description</label>
-        <ReactQuill
-          placeholder="Write about snakebite description : symptoms/first aid etc"
-          modules={AddSnakes.modules}
-          formats={AddSnakes.formats}
-          onChange={handleBody}
-          value={body}
-        />
       </div>
 
       <button className="btn-primary">Submit</button>

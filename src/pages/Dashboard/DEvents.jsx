@@ -11,14 +11,14 @@ const options = [
     tab_id: "view_events",
     tab_show: true,
     tab_name: "View Events",
-    tab_icon: <IoMdAdd />,
+    tab_icon: <GrFormView className="text-2xl" />,
     page: <ViewEvents />,
   },
   {
     tab_id: "add_events",
     tab_show: true,
     tab_name: "Add Events",
-    tab_icon: <GrFormView className="text-2xl" />,
+    tab_icon: <IoMdAdd />,
     page: <AddEvents />,
   },
   {

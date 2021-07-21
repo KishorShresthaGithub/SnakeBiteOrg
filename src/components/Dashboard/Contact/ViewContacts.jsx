@@ -2,7 +2,7 @@ import useToken from "@provider/AuthProvider";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useEffect, useState } from "react";
-import "react-quill/dist/quill.snow.css";
+
 import { getContacts } from "@requests/contact";
 import DataTable from "../../DataTable";
 

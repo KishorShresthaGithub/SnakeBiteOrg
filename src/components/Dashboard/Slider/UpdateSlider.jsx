@@ -9,6 +9,7 @@ function UpdateSlider() {
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
+  // eslint-disable-next-line no-unused-vars
   const [slider, setSlider] = useState(updateData);
   const [preview, setPreview] = useState(slider.image);
 
@@ -24,17 +25,7 @@ function UpdateSlider() {
     ).catch(console.log);
 
     if (res) {
-      addToast(
-        "Slider Image successfully updated",
-        { appearance: "success" },
-        () => {
-          htmlform.reset();
-          const newdata = res.data.data;
-
-          setSlider(newdata);
-          setPreview(newdata.image);
-        }
-      );
+      addToast("Slider updated", { appearance: "success" });
     }
   };
   const previewImage = (e) => {
@@ -63,35 +54,37 @@ function UpdateSlider() {
 
   return (
     <form onSubmit={(e) => submitForm(e)} className="flex flex-col">
-      <label htmlFor="caption">Caption</label>
-      <input
-        type="text"
-        name="caption"
-        defaultValue={slider.caption}
-        id="caption"
-        className="h-10 py-2 w-80 mt-2 rounded border-2 border-gray-100 shadow-md mb-4"
-      />
-
-      <label htmlFor="position">Position</label>
-      <input
-        type="number"
-        min="1"
-        name="position"
-        defaultValue={slider.position}
-        id="position"
-        className="h-10 py-2  w-80 mt-2 rounded border-2 border-gray-100 shadow-md mb-4"
-      />
-
-      <div className="my-4">
+      <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+        <label htmlFor="caption">Caption</label>
+        <input
+          type="text"
+          name="caption"
+          id="caption"
+          defaultValue={slider.caption}
+          className="p-2 border-2 border-gray-100 rounded"
+        />
+      </div>
+      <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+        <label htmlFor="position">Position</label>
+        <input
+          type="number"
+          min="1"
+          name="position"
+          defaultValue={slider.position}
+          id="position"
+          className="p-2 border-2 border-gray-100 rounded"
+        />
+      </div>
+      <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
         <label htmlFor="file">Upload Image (1920*1080) </label>
         <input
           type="file"
           onChange={(e) => previewImage(e)}
           name="image"
           id="file"
-          className="h-10 py-1 w-80 mt-2 rounded border-2 border-gray-100 shadow-md mb-4"
+          className="p-2 border-2 border-gray-100 rounded"
         />
-        <div className="flex ">{renderPreview()}</div>
+        <div className="flex">{renderPreview()}</div>
       </div>
 
       <button className="btn-primary w-32">Submit</button>

@@ -1,17 +1,18 @@
 import useToken from "@provider/AuthProvider";
 import { deleteNews, getNews } from "@requests/news";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
-import "react-quill/dist/quill.snow.css";
+
 import { useToasts } from "react-toast-notifications";
 import DataTable from "@components/DataTable";
 
 function ViewNews() {
   const dashTab = useContext(DashCardContext);
+
   const { addToast } = useToasts();
   const { access_token } = useToken();
 
@@ -71,7 +72,7 @@ function ViewNews() {
           <div>
             <RiEditBoxLine
               onClick={() => {
-                dashTab.setLayout("Update");
+                dashTab.setLayout("update_news");
                 dashTab.setUpdateData(row);
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"

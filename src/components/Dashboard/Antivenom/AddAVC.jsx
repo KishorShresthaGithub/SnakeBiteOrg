@@ -24,7 +24,7 @@ function AddAVC() {
     ).catch(console.log);
 
     if (res) {
-      addToast("Event successfully added", { appearance: "success" }, () => {
+      addToast("AVC successfully added", { appearance: "success" }, () => {
         htmlform.reset();
       });
     }

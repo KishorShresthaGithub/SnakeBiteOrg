@@ -1,8 +1,6 @@
 import AddLinks from "@components/Dashboard/Links/AddLinks";
 import ViewLinks from "@components/Dashboard/Links/ViewLinks";
 import NavWrapper from "@provider/NavProvider";
-
-
 import UpdateLinks from "@components/Dashboard/Links/UpdateLinks";
 import LinkPage from "@components/Dashboard/Links/LinkPage";
 import { IoMdAdd } from "react-icons/io";
@@ -14,14 +12,14 @@ const options = [
     tab_id: "view_links",
     tab_show: true,
     tab_name: "View Links",
-    tab_icon: <IoMdAdd />,
+    tab_icon: <GrFormView className="text-2xl" />,
     page: <ViewLinks />,
   },
   {
     tab_id: "add_links",
     tab_show: true,
     tab_name: "Add Links",
-    tab_icon: <GrFormView className="text-2xl" />,
+    tab_icon: <IoMdAdd />,
     page: <AddLinks />,
   },
   {

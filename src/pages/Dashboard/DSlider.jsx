@@ -12,14 +12,14 @@ const options = [
     tab_id: "view_slider",
     tab_show: true,
     tab_name: "View Slider",
-    tab_icon: <IoMdAdd />,
+    tab_icon: <GrFormView className="text-2xl" />,
     page: <ViewSlider />,
   },
   {
     tab_id: "add_slider",
     tab_show: true,
     tab_name: "Add Slider",
-    tab_icon: <GrFormView className="text-2xl" />,
+    tab_icon: <IoMdAdd />,
     page: <AddSlider />,
   },
   {

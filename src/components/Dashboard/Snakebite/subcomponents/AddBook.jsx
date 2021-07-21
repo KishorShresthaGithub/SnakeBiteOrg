@@ -1,5 +1,4 @@
 import React from "react";
-import "react-quill/dist/quill.snow.css";
 
 function AddBook() {
   return (

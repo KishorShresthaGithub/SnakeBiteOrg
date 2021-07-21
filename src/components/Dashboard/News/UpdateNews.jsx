@@ -1,11 +1,11 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { updateNews } from "@requests/news";
-import { formats, modules } from "@src/extra/quill";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+
 import { useToasts } from "react-toast-notifications";
 
 function UpdateNews() {
@@ -13,15 +13,11 @@ function UpdateNews() {
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
-  const [news, setNew] = useState(updateData);
+  // eslint-disable-next-line no-unused-vars
+  const [news, setNews] = useState(updateData);
 
   const [preview, setPreview] = useState(news.image);
   const [description, setDescription] = useState(news.description);
-
-  const onChangeText = (text) => {
-    text = text !== "<p><br></p>" ? text : "";
-    setDescription(text);
-  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -37,18 +33,7 @@ function UpdateNews() {
     ).catch(console.log);
 
     if (res) {
-      addToast(
-        "New Image successfully updated",
-        { appearance: "success" },
-        () => {
-          htmlform.reset();
-          const newdata = res.data.data;
-
-          setNew(newdata);
-
-          setPreview(newdata.image);
-        }
-      );
+      addToast("News Updated", { appearance: "success" });
     }
   };
 
@@ -106,12 +91,13 @@ function UpdateNews() {
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
         <label htmlFor="img">Page </label>
 
-        <ReactQuill
-          placeholder="Write your News Article here"
-          onChange={onChangeText}
-          formats={formats}
-          modules={modules}
-          defaultValue={news.description}
+        <CKEditor
+          editor={ClassicEditor}
+          data={description}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setDescription(data);
+          }}
         />
       </div>
 

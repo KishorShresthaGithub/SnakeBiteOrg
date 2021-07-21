@@ -1,12 +1,12 @@
 import useToken from "@provider/AuthProvider";
-import { DashCardContext } from "@template/DashCard";
+import { DashCardContext } from "@template/DashCard2";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
-import "react-quill/dist/quill.snow.css";
+
 import { useToasts } from "react-toast-notifications";
-import { deleteAVC, getAVCs } from "../../../requests/avc";
+import { deleteAVC, getAVCs } from "@requests/avc";
 import DataTable from "../../DataTable";
 
 function ViewAVC() {
@@ -31,30 +31,30 @@ function ViewAVC() {
         addToast(res.data.message, { appearance: "success" });
         const signal = axios.CancelToken.source();
 
-        getAVCs({ signal })
-          .then((res) => {
-            const avc = res.data.data;
-            if (avc) setAVC(avc);
-          })
-          .catch(console.log);
+        getAVCs({ signal }).then((res) => {
+          const avc = res.data.data;
+          if (avc) setAVC(avc);
+        });
       })
       .catch(console.log);
   };
 
-  useEffect(() => {
-    const signal = axios.CancelToken.source();
-
+  const getAVCCallback = useCallback((signal) => {
     getAVCs({ signal })
       .then((res) => {
         const avc = res.data?.data;
         if (avc) setAVC(avc);
       })
       .catch(console.log);
+  }, []);
 
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+    getAVCCallback(signal);
     return () => {
       signal.cancel();
     };
-  }, []);
+  }, [getAVCCallback]);
 
   const columns = [
     { title: "AVC ID", field: "id", width: "10%" },
@@ -72,7 +72,7 @@ function ViewAVC() {
           <div>
             <RiEditBoxLine
               onClick={() => {
-                dashTab.setLayout("Update");
+                dashTab.setLayout("update_avc");
                 dashTab.setUpdateData(row);
               }}
               className="bg-blue-400 h-10 w-10 p-2 text-white mr-2"

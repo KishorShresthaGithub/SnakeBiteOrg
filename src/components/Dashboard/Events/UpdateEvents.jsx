@@ -14,6 +14,7 @@ function UpdateEvents() {
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
+  // eslint-disable-next-line no-unused-vars
   const [event, setEvent] = useState(updateData);
   const [preview, setPreview] = useState(event.image);
 
@@ -49,17 +50,7 @@ function UpdateEvents() {
     ).catch(console.log);
 
     if (res) {
-      addToast(
-        "Event Image successfully updated",
-        { appearance: "success" },
-        () => {
-          htmlform.reset();
-          const newdata = res.data.data;
-
-          setEvent(newdata);
-          setPreview(newdata.image);
-        }
-      );
+      addToast("Event updated", { appearance: "success" });
     }
   };
   const previewImage = (e) => {

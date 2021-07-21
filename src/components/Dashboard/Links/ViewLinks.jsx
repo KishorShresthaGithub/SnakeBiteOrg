@@ -1,3 +1,4 @@
+import DataTable from "@components/DataTable";
 import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { deleteNav, getNavLinksAll } from "@requests/nav";
@@ -8,7 +9,6 @@ import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine, RiPagesLine } from "react-icons/ri";
 import "react-responsive-modal/styles.css";
 import { useToasts } from "react-toast-notifications";
-import DataTable from "@components/DataTable";
 
 function ViewLinks() {
   const dashTab = useContext(DashCardContext);

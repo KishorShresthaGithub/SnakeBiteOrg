@@ -1,12 +1,12 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { NavContext } from "@provider/NavProvider";
 import { convertFormData } from "@requests/config";
 import { updateNav } from "@requests/nav";
 import { DashCardContext } from "@template/DashCard2";
 import { useContext, useEffect, useState } from "react";
-import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
-import { formats, modules } from "@extra/quill";
 
 const UpdateLinks = (props) => {
   const { updateData } = useContext(DashCardContext);
@@ -17,7 +17,8 @@ const UpdateLinks = (props) => {
   const { addToast } = useToasts();
 
   const [links, setLinks] = useState(nav.links);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState(updateData.page);
+
   const [parentLink, setSelect] = useState("");
 
   const submitForm = async (e) => {
@@ -118,14 +119,13 @@ const UpdateLinks = (props) => {
 
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
         <label htmlFor="img">Page </label>
-
-        <ReactQuill
-          placeholder="Write your News Article here"
-          onChange={(e) => setPage(e)}
-          formats={formats}
-          modules={modules}
-          defaultValue={page}
-          value={page}
+        <CKEditor
+          data={page}
+          editor={ClassicEditor}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setPage(data);
+          }}
         />
       </div>
 

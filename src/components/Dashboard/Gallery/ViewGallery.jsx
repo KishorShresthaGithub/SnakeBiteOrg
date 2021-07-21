@@ -7,7 +7,7 @@ import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
-import "react-quill/dist/quill.snow.css";
+
 import { useToasts } from "react-toast-notifications";
 import { deleteGallery, getGallery } from "../../../requests/gallery";
 import DataTable from "../../DataTable";
