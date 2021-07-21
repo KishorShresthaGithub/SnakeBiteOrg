@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ToastProvider } from "react-toast-notifications";
 import App from "./App";
-import "./css/index.css";
 import Wrapper from "./lang/Wrapper";
 
 ReactDOM.render(
