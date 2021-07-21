@@ -33,7 +33,7 @@ function DHome() {
       let [ev, avc, up] = res;
 
       //getting events for calendar
-      ev = ev.data?.data;
+      ev = ev?.data?.data;
       ev = ev.map((data) => {
         return {
           ...data,

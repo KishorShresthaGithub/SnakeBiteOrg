@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
-import LinkPage from "../components/Dashboard/Links/LinkPage";
 import AddLayout from "./DashTabs/AddLayout";
+import LinkPageLayout from "./DashTabs/LinkPageLayout";
 import UpdateLayout from "./DashTabs/UpdateLayout";
 import ViewLayout from "./DashTabs/ViewLayout";
 
@@ -31,13 +31,16 @@ function DashCard(props) {
           </UpdateLayout>
         );
       case "Page":
-        return <LinkPage btnPage={props.btnPage}>{props.LinkPage}</LinkPage>;
+        return (
+          <LinkPageLayout btnPage={props.btnPage}>
+            {props.LinkPage}
+          </LinkPageLayout>
+        );
       default:
         return (
-          <ViewLayout
-            btnView={props.btnView}
-            viewComponent={props.ViewComponents}
-          />
+          <ViewLayout btnView={props.btnView}>
+            {props.ViewComponents}
+          </ViewLayout>
         );
     }
   };
@@ -106,7 +109,7 @@ function DashCard(props) {
             >
               {" "}
               <GrFormAttachment className="text-2xl" />
-              {props.btnUpdate}
+              {props.btnPage}
             </div>
           </div>
           {/* top section ends  */}

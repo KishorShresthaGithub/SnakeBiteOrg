@@ -5,7 +5,7 @@ import { DashCardContext } from "@template/DashCard";
 import axios from "axios";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
-import { RiEditBoxLine } from "react-icons/ri";
+import { RiEditBoxLine, RiPagesLine } from "react-icons/ri";
 import "react-responsive-modal/styles.css";
 import { useToasts } from "react-toast-notifications";
 import DataTable from "@components/DataTable";
@@ -83,7 +83,17 @@ function ViewLinks() {
     {
       title: "Page",
       render(row) {
-        return <div /* onClick={() => onOpenPageModel(row)} */>Page</div>;
+        return (
+          <div>
+            <RiPagesLine
+              className="bg-pink-400 h-10 w-10 p-2 text-white mr-2"
+              onClick={() => {
+                dashTab.setLayout("Page");
+                dashTab.setUpdateData(row);
+              }}
+            />
+          </div>
+        );
       },
     },
     {
@@ -110,7 +120,7 @@ function ViewLinks() {
 
   return (
     <>
-      <DataTable columns={columns} data={links} />
+      <DataTable title="Link table" columns={columns} data={links} />
     </>
   );
 }

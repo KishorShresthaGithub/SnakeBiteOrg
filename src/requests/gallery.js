@@ -19,21 +19,20 @@ export const getSingleGallery = async ({ gallery_id, signal }) => {
 };
 
 //image upload
-export const saveGallery = async ({ data, signal, accesstoken }, addToast) => {
+export const saveGallery = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/gallery`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //image upload
 export const addToGallery = async (
-  { data, gallery_id, signal, accesstoken },
+  { data, gallery_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -42,14 +41,13 @@ export const addToGallery = async (
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //image upload
 export const updateGallery = async (
-  { data, gallery_id, signal, accesstoken },
+  { data, gallery_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -58,14 +56,13 @@ export const updateGallery = async (
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //image upload
 export const updateSingleGallery = async (
-  { data, gallery_id, gallery_image_id, signal, accesstoken },
+  { data, gallery_id, gallery_image_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -77,28 +74,23 @@ export const updateSingleGallery = async (
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${accesstoken}`,
         },
-        cancelToken: signal.token,
       }
     )
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteGallery = async (
-  { gallery_id, signal, accesstoken },
-  addToast
-) => {
+export const deleteGallery = async ({ gallery_id, accesstoken }, addToast) => {
   return await axios
     .delete(`${server_url}/api/gallery/${gallery_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 export const deleteImage = async (
-  { gallery_id, gallery_image_id, signal, accesstoken },
+  { gallery_id, gallery_image_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -108,7 +100,6 @@ export const deleteImage = async (
         headers: {
           Authorization: `Bearer ${accesstoken}`,
         },
-        cancelToken: signal.token,
       }
     )
     .catch((err) => validation(err, addToast));

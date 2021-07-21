@@ -1,20 +1,39 @@
-import React from "react";
 import AddSlider from "@components/Dashboard/Slider/AddSlider";
-import ViewSlider from "@components/Dashboard/Slider/ViewSlider";
-import DashCard from "@template/DashCard";
 import UpdateSlider from "@components/Dashboard/Slider/UpdateSlider";
+import ViewSlider from "@components/Dashboard/Slider/ViewSlider";
+import React from "react";
+import { IoMdAdd } from "react-icons/io";
+import DashCard2 from "@template/DashCard2";
+import { GrFormAttachment, GrFormView } from "react-icons/gr";
+
+const options = [
+  {
+    tab_id: "view_slider",
+    tab_show: true,
+    tab_name: "View Slider",
+    tab_icon: <IoMdAdd />,
+    page: <ViewSlider />,
+  },
+  {
+    tab_id: "add_slider",
+    tab_show: true,
+    tab_name: "Add Slider",
+    tab_icon: <GrFormView className="text-2xl" />,
+    page: <AddSlider />,
+  },
+  {
+    tab_id: "update_slider",
+    tab_name: "Update Slider",
+    tab_show: false,
+    tab_icon: <IoMdAdd />,
+    page: <GrFormAttachment className="text-2xl" />,
+  },
+];
 
 function DSlider() {
   return (
     <>
-      <DashCard
-        btnAdd="Add Slider"
-        btnView="View Slider"
-        btnUpdate="Update Slider"
-        AddComponent={<AddSlider />}
-        ViewComponents={<ViewSlider />}
-        UpdateComponent={<UpdateSlider />}
-      ></DashCard>
+      <DashCard2 options={options} />
     </>
   );
 }

@@ -6,7 +6,7 @@ import { DashCardContext } from "@template/DashCard";
 import { useContext, useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { useToasts } from "react-toast-notifications";
-import { formats, modules } from "../../../extra/quill";
+import { formats, modules } from "@extra/quill";
 
 const UpdateLinks = (props) => {
   const { updateData } = useContext(DashCardContext);
@@ -36,7 +36,7 @@ const UpdateLinks = (props) => {
     } else {
       input.parent_link = parseInt(parentLink);
     }
-    
+
     const res = await updateNav(
       { data: input, nav_id: updateData.id, accesstoken: access_token },
       addToast
