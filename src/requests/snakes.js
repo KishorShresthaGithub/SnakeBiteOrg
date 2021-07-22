@@ -19,21 +19,20 @@ export const getSnake = async ({ snake_slug, signal }) => {
 };
 
 //upload image
-export const saveSnake = async ({ data, signal, accesstoken }, addToast) => {
+export const saveSnake = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/snakes`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //upload image
 export const updateSnake = async (
-  { data, snake_id, signal, accesstoken },
+  { data, snake_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -42,21 +41,16 @@ export const updateSnake = async (
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
-export const deleteSnake = async (
-  { snake_id, signal, accesstoken },
-  addToast
-) => {
+export const deleteSnake = async ({ snake_id, accesstoken }, addToast) => {
   return await axios
     .delete(`${server_url}/api/snakes/${snake_id}`, {
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };

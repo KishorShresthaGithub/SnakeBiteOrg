@@ -27,24 +27,20 @@ export const getSummaryReportID = async ({ summaryreport_id, signal }) => {
 };
 
 //upload image
-export const saveSummaryReport = async (
-  { data, signal, accesstoken },
-  addToast
-) => {
+export const saveSummaryReport = async ({ data, accesstoken }, addToast) => {
   return await axios
     .post(`${server_url}/api/summaryreport`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 //upload image
 export const updateSummaryReport = async (
-  { data, summaryreport_id, signal, accesstoken },
+  { data, summaryreport_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -53,13 +49,12 @@ export const updateSummaryReport = async (
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
 
 export const deleteSummaryReport = async (
-  { summaryreport_id, signal, accesstoken },
+  { summaryreport_id, accesstoken },
   addToast
 ) => {
   return await axios
@@ -67,7 +62,6 @@ export const deleteSummaryReport = async (
       headers: {
         Authorization: `Bearer ${accesstoken}`,
       },
-      cancelToken: signal.token,
     })
     .catch((err) => validation(err, addToast));
 };
