@@ -1,12 +1,12 @@
 import useToken from "@provider/AuthProvider";
-import React, { useContext, useState } from "react";
-
-import { useToasts } from "react-toast-notifications";
 import { addToGallery } from "@requests/gallery";
-import { GalleryImageContext } from "@pages/Dashboard/DGallery";
+import { DashCardContext } from "@template/DashCard";
+import React, { useContext, useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { useToasts } from "react-toast-notifications";
 
 function AddGalleryImage() {
-  const { singleGallery } = useContext(GalleryImageContext);
+  const { updateData, setLayout } = useContext(DashCardContext);
 
   const { access_token } = useToken();
   const { addToast } = useToasts();
@@ -20,12 +20,12 @@ function AddGalleryImage() {
     const form = new FormData(htmlform);
 
     const res = await addToGallery(
-      { data: form, gallery_id: singleGallery.id, accesstoken: access_token },
+      { data: form, gallery_id: updateData.id, accesstoken: access_token },
       addToast
     ).catch(console.log);
 
     if (res) {
-      addToast("Event successfully added", { appearance: "success" }, () => {
+      addToast("Gallery Image added", { appearance: "success" }, () => {
         htmlform.reset();
         setPreview("");
       });
@@ -57,22 +57,33 @@ function AddGalleryImage() {
   };
 
   return (
-    <form onSubmit={(e) => submitForm(e)} className="flex flex-col">
-      <div className=" md:w-full md:flex my-2">
-        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Gallery Image Image</label>
-          <input
-            type="file"
-            onChange={previewImage}
-            name="image"
-            className=" p-2 border-2 border-gray-100 rounded"
-          />
-          {renderPreview()}
-        </div>
-      </div>
+    <>
+      <h2 className="">Gallery ID: {updateData.id}</h2>
 
-      <button className="btn-primary w-28 mt-4">Submit</button>
-    </form>
+      <button
+        className="flex items-center bg-blue-100 p-3 my-3 text-gray-7 00"
+        onClick={() => setLayout("view_single_gallery")}
+      >
+        <BiArrowBack /> Go to Gallery Images
+      </button>
+
+      <form onSubmit={(e) => submitForm(e)} className="flex flex-col">
+        <div className=" md:w-full md:flex my-2">
+          <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
+            <label>Gallery Image Image</label>
+            <input
+              type="file"
+              onChange={previewImage}
+              name="image"
+              className=" p-2 border-2 border-gray-100 rounded"
+            />
+            {renderPreview()}
+          </div>
+        </div>
+
+        <button className="btn-primary w-28 mt-4">Submit</button>
+      </form>
+    </>
   );
 }
 

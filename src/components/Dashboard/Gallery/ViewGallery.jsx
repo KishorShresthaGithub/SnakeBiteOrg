@@ -8,12 +8,10 @@ import { BiBookAdd } from "react-icons/bi";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useToasts } from "react-toast-notifications";
-import { GalleryImageContext } from "@pages/Dashboard/DGallery";
 import DataTable from "../../DataTable";
 
 function ViewGallery() {
   const dashTab = useContext(DashCardContext);
-  const { setSingleGallery } = useContext(GalleryImageContext);
 
   const { addToast } = useToasts();
   const { access_token } = useToken();
@@ -71,7 +69,7 @@ function ViewGallery() {
           <div className="flex flex-row ">
             <BiBookAdd
               onClick={() => {
-                setSingleGallery(row);
+                dashTab.setUpdateData(row);
                 dashTab.setLayout("view_single_gallery");
               }}
               className="bg-pink-400 h-10 w-10 p-2 text-white mr-2"

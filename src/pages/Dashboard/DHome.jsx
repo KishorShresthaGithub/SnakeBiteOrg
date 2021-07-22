@@ -52,10 +52,11 @@ function DHome() {
 
         setAVCCount(count);
         //getting upcoming event
-        let upevent = up.data?.data;
-        setUpcoming(upevent[0]);
-      })
+        let upevent = up?.data?.data;
 
+        if (upevent?.length) setUpcoming(upevent[0]);
+        else setUpcoming({ title: "None" });
+      })
       .catch(console.log);
   }, []);
 

@@ -1,13 +1,13 @@
-import UpdateEvents from "@components/Dashboard/Events/UpdateEvents";
 import AddGallery from "@components/Dashboard/Gallery/AddGallery";
+import AddGalleryImage from "@components/Dashboard/Gallery/AddGalleryImage";
+import UpdateGallery from "@components/Dashboard/Gallery/UpdateGallery";
+import UpdateGalleryImage from "@components/Dashboard/Gallery/UpdateGalleryImage";
 import ViewGallery from "@components/Dashboard/Gallery/ViewGallery";
+import ViewGalleryImage from "@components/Dashboard/Gallery/ViewGalleryImage";
 import DashCard from "@template/DashCard";
 import React, { useState } from "react";
 import { GrFormAttachment, GrFormView } from "react-icons/gr";
 import { IoMdAdd } from "react-icons/io";
-import UpdateGallery from "@components/Dashboard/Gallery/UpdateGallery";
-import ViewGalleryImage from "../../components/Dashboard/Gallery/ViewGalleryImage";
-import AddGalleryImage from "../../components/Dashboard/Gallery/AddGalleryImage";
 
 const options = [
   {
@@ -40,17 +40,17 @@ const options = [
   },
   {
     tab_id: "add_single_gallery",
-    tab_name: "Add Single Gallery",
+    tab_name: "Add to Gallery",
     tab_show: false,
     tab_icon: <IoMdAdd />,
     page: <AddGalleryImage />,
   },
   {
     tab_id: "update_single_gallery",
-    tab_name: "Update Single Gallery",
+    tab_name: "Update Gallery Image",
     tab_show: false,
     tab_icon: <GrFormView className="text-2xl" />,
-    page: <UpdateEvents />,
+    page: <UpdateGalleryImage />,
   },
 ];
 
