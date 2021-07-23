@@ -1,24 +1,17 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
-import { updateSnake } from "@requests/snakes";
-import { DashCardContext } from "@template/DashCard";
-import { useContext, useState } from "react";
+import { updateSummaryReport } from "@requests/summaryreport";
+import React, { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-
 import { useToasts } from "react-toast-notifications";
+import { DashCardContext } from "@template/DashCard";
 
-function UpdateSnakebite() {
+function UpdateSummaryReport() {
   const { updateData } = useContext(DashCardContext);
-  console.log(updateData);
-
   const { access_token } = useToken();
   const { addToast } = useToasts();
-  // eslint-disable-next-line no-unused-vars
-  const [snakes, setSnakes] = useState(updateData);
-
-  const [preview, setPreview] = useState(snakes.image);
-  const [description, setDescription] = useState(snakes.description);
+  const [description, setDescription] = useState(updateData.description);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -27,37 +20,20 @@ function UpdateSnakebite() {
     const form = new FormData(htmlform);
     form.append("description", description);
 
-    const res = await updateSnake(
-      { data: form, snake_id: updateData.id, accesstoken: access_token },
+    const res = await updateSummaryReport(
+      {
+        data: form,
+        summaryreport_id: updateData.id,
+        accesstoken: access_token,
+      },
       addToast
     ).catch(console.log);
 
     if (res) {
-      addToast("Snake  Updated", { appearance: "success" });
-    }
-  };
-
-  const previewImage = (e) => {
-    const files = e.target.files;
-
-    if (files?.length) {
-      const arr = window.URL.createObjectURL(files[0]);
-
-      setPreview(arr);
-    }
-  };
-
-  const renderPreview = () => {
-    if (preview) {
-      return (
-        <img
-          style={{ width: "200px", height: "auto", paddingRight: "20px" }}
-          src={preview}
-          alt={`preview `}
-        />
-      );
-    } else {
-      return "";
+      addToast("Summary report updated", { appearance: "success" }, () => {
+        htmlform.reset();
+        setDescription("");
+      });
     }
   };
 
@@ -65,11 +41,11 @@ function UpdateSnakebite() {
     <form onSubmit={(e) => submitForm(e)} className="flex flex-col">
       <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Snake Name</label>
+          <label>Report Title</label>
           <input
             type="text"
             name="title"
-            defaultValue={snakes.name}
+            defaultValue={updateData.title}
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>
@@ -77,26 +53,12 @@ function UpdateSnakebite() {
 
       <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Snakes Scientific Name</label>
-          <input
-            type="text"
-            name="scientific_name"
-            defaultValue={snakes.scientific_name}
-            className=" p-2 border-2 border-gray-100 rounded"
-          />
-        </div>
-      </div>
-
-      <div className=" md:w-full md:flex my-2">
-        <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
-          <label>Snake Image</label>
+          <label>PDF</label>
           <input
             type="file"
-            onChange={previewImage}
-            name="image"
+            name="pdf_link"
             className=" p-2 border-2 border-gray-100 rounded"
           />
-          {renderPreview()}
         </div>
       </div>
 
@@ -118,4 +80,4 @@ function UpdateSnakebite() {
   );
 }
 
-export default UpdateSnakebite;
+export default UpdateSummaryReport;

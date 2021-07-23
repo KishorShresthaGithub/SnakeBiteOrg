@@ -40,9 +40,9 @@
         "default": "Snakes & Snakebites"
     },
     {
-        "to": "/d_Snakes_art",
-        "title": "Snakes_art",
-        "default": "Snakes in Art & Culture"
+        "to": "/d_summary_report",
+        "title": "Summary Report",
+        "default": "Summary Report"
     },
     {
         "to": "/d_contact",

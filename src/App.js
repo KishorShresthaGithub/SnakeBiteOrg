@@ -24,6 +24,7 @@ import { PageRoute } from "@template/Page";
 import DEvents from "./pages/Dashboard/DEvents";
 import DContact from "./pages/Dashboard/DContact";
 import DGallery from "./pages/Dashboard/DGallery";
+import DSummaryReport from "./pages/Dashboard/DSummaryreport";
 
 // const Render = ({ html }) => {
 //   return (
@@ -93,6 +94,10 @@ function App() {
         <DashRoute path="/d_links" component={DLinks}></DashRoute>
         <DashRoute path="/d_contact" component={DContact}></DashRoute>
         <DashRoute path="/d_gallery" component={DGallery}></DashRoute>
+        <DashRoute
+          path="/d_summary_report"
+          component={DSummaryReport}
+        ></DashRoute>
 
         <Route path="*" component={NotFound} />
       </Switch>
