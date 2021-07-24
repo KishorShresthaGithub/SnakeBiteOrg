@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useLayoutEffect } from "react";
+import React, { useCallback, useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { validateToken } from "../requests/auth";
 import useToken from "./AuthProvider";

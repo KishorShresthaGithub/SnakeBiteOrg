@@ -1,13 +1,10 @@
-import { getEvents } from "@requests/events";
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import AntivenomCard from "../components/Front/AntivenomCard.jsx";
 import ContactForm from "../components/Front/ContactForm.jsx";
 import HomeSlider from "../components/Front/HomeSlider.jsx";
 import HomeVenomous from "../components/Front/HomeVenomous.jsx";
 import Sponsers from "../components/Front/Sponsers.jsx";
 import UpcomingEvent from "../components/Front/UpcomingEvent.jsx";
-import { getSlidersHero } from "../requests/sliders.js";
 
 function Home() {
   /* const newsData = [
@@ -34,7 +31,6 @@ function Home() {
         "Snake bite is a neglected public health issue in many tropical and subtropical countries.",
     },
   ]; */
-
 
   const snakesData = [
     {
@@ -86,16 +82,16 @@ function Home() {
       <HomeSlider />
       <div className="container mx-auto mt-5 px-4 md:container mx-auto mt-5">
         {/* news container starts  */}
-        <div className="flex justify-between items-center my-10 md:my-24 space-x-4">
-          <div className="">
+        <div className="flex justify-center items-center my-10 md:my-24 space-x-4">
+          <div className="w-6/12 h-96 p-4  flex justify-end">
             <UpcomingEvent />
           </div>
 
-          <div className="">
+          <div className="w-6/12 h-96 p-4 ">
             <iframe
               title="snakebite"
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSnakebiteInNepal%20&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-              className="w-96 h-96"
+              className="w-full h-96"
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FSnakebiteInNepal%20&tabs=timeline&width=400&height=400&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
             ></iframe>
           </div>
         </div>
@@ -111,7 +107,7 @@ function Home() {
       {/* about us container starts  */}
       <div className="bg_lightGrey py-10">
         <div className="container mx-auto p-y-5">
-          <p className="p-4 md:py-10 font-medium">Who we are ? </p>
+          <p className="p-4 md:py-10 font-large">Who we are ? </p>
           <div className="bg_white p-8 md:p-12 rounded">
             <h4 className="font-medium text-lg font-bold">SNAKEBITE NEPAL</h4>
             <p className="mt-2 text-primary">

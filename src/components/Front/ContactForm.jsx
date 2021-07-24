@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { convertFormData } from "@requests/config";
+import { saveContact } from "@requests/contact";
+import { useToasts } from "react-toast-notifications";
 
 function ContactForm() {
+  const { addToast } = useToasts();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(e.target);
+
+    const input = convertFormData(data);
+
+    saveContact({ data: input }, addToast)
+      .then(() => {
+        addToast("Contact submitted", { appearance: "success" });
+        form.reset();
+      })
+      .catch(console.log);
+  };
+
   return (
-    <div className="flex justify-center">
+    <form onSubmit={(e) => handleSubmit(e)} className="flex justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
           <label htmlFor="name">Name</label>
@@ -10,7 +31,7 @@ function ContactForm() {
           <input
             type="text"
             className="h-10 p-4 w-full mt-2 rounded shadow"
-            id="name"
+            name="name"
           />
         </div>
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
@@ -18,7 +39,7 @@ function ContactForm() {
           <input
             type="text"
             className="h-10 p-4 w-full mt-2 rounded shadow"
-            id="name"
+            name="address"
           />
         </div>
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
@@ -27,7 +48,7 @@ function ContactForm() {
           <input
             type="email"
             className="h-10 p-4 w-full mt-2 rounded shadow"
-            id="name"
+            name="email"
           />
         </div>
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
@@ -36,19 +57,20 @@ function ContactForm() {
           <input
             type="text"
             className="h-10 p-4 w-full mt-2 rounded shadow"
-            id="name"
+            name="phone"
           />
         </div>
         <div className="col-span-2 mt-5">
           <textarea
             rows="4"
+            name="message"
             className="p-4 rounded shadow w-full"
             placeholder="Your Message"
           ></textarea>
         </div>
         <button className="btn-primary w-40">SEND MESSAGE</button>
       </div>
-    </div>
+    </form>
   );
 }
 

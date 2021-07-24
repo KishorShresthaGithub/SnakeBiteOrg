@@ -59,7 +59,9 @@ function App() {
         ></PageRoute>
         <PageRoute path="/news" exact component={News}></PageRoute>
         <PageRoute path="/news/:id" component={NewsDetails}></PageRoute>
+      
         <PageRoute path="/antivenom" exact component={Antivenom}></PageRoute>
+
         <PageRoute
           path="/antivenom/:id"
           component={AntivenomDetails}

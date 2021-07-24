@@ -15,11 +15,7 @@ function DHome() {
   const [upcoming, setUpcoming] = useState({});
 
   function renderEventContent(eventInfo) {
-    return (
-      <>
-        <span className="p-10">{eventInfo.event.title}</span>
-      </>
-    );
+    return <span className="px-3 py-1">{eventInfo.event.title}</span>;
   }
 
   const getData = useCallback((signal) => {
@@ -40,6 +36,7 @@ function DHome() {
               title: data.title,
               start: data.start_date,
               end: data.end_date,
+              allDay: true,
             };
           });
           setEvents(newevent);

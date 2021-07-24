@@ -25,10 +25,8 @@ export const getContact = async ({ contact_id, signal, accesstoken }) => {
 };
 
 //upload image
-export const saveContact = async ({ data, signal, accesstoken }, addToast) => {
+export const saveContact = async ({ data }, addToast) => {
   return await axios
-    .post(`${server_url}/api/contacts`, data, {
-      cancelToken: signal.token,
-    })
+    .post(`${server_url}/api/contacts`, data)
     .catch((err) => validation(err, addToast));
 };

@@ -12,7 +12,7 @@ export const getEvents = async ({ signal }) => {
 
 export const getUpcoming = async ({ signal }) => {
   return await axios
-    .get(`${server_url}/api/events/upcoming`, {
+    .get(`${server_url}/api/events/upcoming?limit=3`, {
       cancelToken: signal.token,
     })
     .catch(cancelToken);

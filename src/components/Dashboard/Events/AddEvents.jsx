@@ -2,7 +2,6 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { saveEvent } from "@requests/events";
-import moment from "moment";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,13 +20,6 @@ function AddEvents() {
 
     const htmlform = e.target;
     const form = new FormData(htmlform);
-
-    if (!moment(startDate).isBefore(endDate)) {
-      addToast("Start date should be before end date ", {
-        appearance: "error",
-      });
-      return;
-    }
 
     form.append("start_date", startDate);
     form.append("end_date", endDate);

@@ -68,7 +68,7 @@ function Nav({ intl }) {
             </h6>
           </div>
 
-          <h6 className="text-sm sm:text-base lg:text-sm flex items-center">
+          {/*     <h6 className="text-sm sm:text-base lg:text-sm flex items-center">
             <span className="mx-2">नेपाली </span>
             {toggleBtn ? (
               <>
@@ -92,7 +92,7 @@ function Nav({ intl }) {
               </>
             )}
             <span>English</span>
-          </h6>
+          </h6> */}
         </div>
         {/* social media icons ends  */}
       </div>
@@ -126,15 +126,15 @@ function Nav({ intl }) {
             </h4>
           </Link>
           {/* web nav starts  */}
-          <div className="hidden md:block  flex-1 mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
-            <ul className="flex item-center cursor-pointer active:text-white">
+          <div className="hidden md:block  flex  mx-4 md:mx-0 md:text-xs lg:text-base lg:mx-4">
+            <div className="flex item-center cursor-pointer active:text-white">
               {navs.map((nav, index) => (
                 <div key={index} className="dropdown">
                   <Link
                     to={nav.to}
-                    className="flex items-center font-medium text-lg"
+                    className="flex items-center font-medium text-base"
                   >
-                    <li className="px-4 h-full">{nav.default}</li>
+                    <span className="px-4 h-full">{nav.default}</span>
                     {nav.drop ? <BiChevronDown /> : ""}
                   </Link>
 
@@ -146,9 +146,11 @@ function Nav({ intl }) {
                               key={index}
                               className="bg_primary ml-2 px-3 w-full font-semibold hover:bg-yellow-500"
                             >
-                              <li className="py-2">
-                                <Link to={a.to}>{a.default}</Link>
-                              </li>
+                              <div className="py-2  font-bold">
+                                <Link className="text-sm" to={a.to}>
+                                  {a.default}
+                                </Link>
+                              </div>
                             </div>
                           );
                         })
@@ -156,7 +158,7 @@ function Nav({ intl }) {
                   </div>
                 </div>
               ))}
-            </ul>
+            </div>
           </div>
           {/* web nav ends  */}
         </div>

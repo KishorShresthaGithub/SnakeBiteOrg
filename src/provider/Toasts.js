@@ -11,7 +11,7 @@ export const validationMessages = (errorMsgObj, addToast) => {
     let param =
       element.param && element.param[0].toUpperCase() + element.param.slice(1);
 
-    addToast(param ? param + ": " : "" + element.msg, {
+    addToast((param ? param + ": " : "") + element.msg, {
       appearance: "error",
     });
   });

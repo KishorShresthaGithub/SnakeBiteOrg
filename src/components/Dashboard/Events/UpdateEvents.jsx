@@ -33,12 +33,12 @@ function UpdateEvents() {
     const htmlform = e.target;
     const form = new FormData(htmlform);
 
-    if (!moment(startDate).isBefore(endDate)) {
+    /*     if (!moment(startDate).isBefore(endDate)) {
       addToast("Start date should be before end date ", {
         appearance: "error",
       });
       return;
-    }
+    } */
 
     form.append("start_date", startDate);
     form.append("end_date", endDate);
