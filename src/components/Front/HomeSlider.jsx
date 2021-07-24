@@ -1,9 +1,35 @@
-import React from "react";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import { getSlidersHero } from "../../requests/sliders";
 
 function HomeSlider() {
+  const [slider, setSlider] = useState([
+    { image: "", position: 0, caption: "" },
+  ]);
+
+  const getSliderCallback = useCallback(async (signal) => {
+    try {
+      const res = await getSlidersHero({ signal });
+      const data = res?.data?.data;
+      setSlider(data);
+    } catch (message) {
+      return console.log(message);
+    }
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getSliderCallback(signal);
+
+    return () => {
+      signal.cancel();
+    };
+  }, [getSliderCallback]);
+
   var settings = {
     dots: true,
     arrow: true,
@@ -14,24 +40,14 @@ function HomeSlider() {
     autoplaySpeed: 3000,
     slidesToScroll: 1,
   };
-  const sliderData = [
-    {
-      img: "https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/235621/pexels-photo-235621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-  ];
+
   return (
     <div>
       <Slider {...settings} style={{ zIndex: 0 }}>
-        {sliderData.map((data) => (
-          <div key={sliderData.indexOf(data)}>
+        {slider.map((data, index) => (
+          <div key={index}>
             <img
-              src={data.img}
+              src={data.image}
               alt=""
               className="z-0 w-full object-cover"
               style={{ height: "80vh" }}

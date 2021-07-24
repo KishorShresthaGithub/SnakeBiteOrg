@@ -33,24 +33,28 @@ function DHome() {
 
         //getting events for calendar
         let event = ev?.data?.data;
-        const newevent = event?.map((data) => {
-          return {
-            ...data,
-            title: data.title,
-            start: data.start_date,
-            end: data.end_date,
-          };
-        });
-        setEvents(newevent);
+        if (event?.length) {
+          const newevent = event?.map((data) => {
+            return {
+              ...data,
+              title: data.title,
+              start: data.start_date,
+              end: data.end_date,
+            };
+          });
+          setEvents(newevent);
+        }
 
         //getting total count of anti venom centers
         avc = avc?.data?.data;
 
-        let count = avc
-          ?.map((res) => res.count)
-          .reduce((acc, item) => acc + item);
+        if (avc?.length) {
+          let count = avc
+            ?.map((res) => res.count)
+            .reduce((acc, item) => acc + item);
 
-        setAVCCount(count);
+          setAVCCount(count);
+        }
         //getting upcoming event
         let upevent = up?.data?.data;
 

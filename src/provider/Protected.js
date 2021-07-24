@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { validateToken } from "../requests/auth";
 import useToken from "./AuthProvider";
@@ -15,20 +15,19 @@ const Protected = ({ children }) => {
 
   const tokenValidation = useCallback(
     async (signal) => {
-      try {
-        return validateToken({ accessToken: access_token, signal }).catch(
-          (err) => {
-            deleteToken();
-          }
-        );
-      } catch (err) {
-        console.log(err);
-      }
+      await validateToken({
+        accessToken: access_token,
+        signal,
+      }).catch((err) => {
+        if (!axios.isCancel(err)) {
+          deleteToken();
+        }
+      });
     },
     [access_token, deleteToken]
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const signal = axios.CancelToken.source();
 
     tokenValidation(signal);

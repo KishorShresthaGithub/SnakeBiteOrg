@@ -57,19 +57,12 @@ export const deleteUser = async ({ string_id, accesstoken }, addToast) => {
 };
 
 export const validateToken = async ({ accessToken, signal }) => {
-  const result = await axios
-    .get(`${server_url}/api/users/current`, {
-      cancelToken: signal.token,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-    .catch((err) => {
-      if (!axios.isCancel(err)) {
-        console.error(err);
-        return;
-      }
-    });
+  const result = await axios.get(`${server_url}/api/users/current`, {
+    cancelToken: signal.token,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
   return result;
 };

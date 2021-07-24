@@ -1,10 +1,13 @@
-import React from "react";
+import { getEvents } from "@requests/events";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import AntivenomCard from "../components/Front/AntivenomCard.jsx";
 import ContactForm from "../components/Front/ContactForm.jsx";
 import HomeSlider from "../components/Front/HomeSlider.jsx";
 import HomeVenomous from "../components/Front/HomeVenomous.jsx";
 import Sponsers from "../components/Front/Sponsers.jsx";
 import UpcomingEvent from "../components/Front/UpcomingEvent.jsx";
+import { getSlidersHero } from "../requests/sliders.js";
 
 function Home() {
   /* const newsData = [
@@ -31,6 +34,8 @@ function Home() {
         "Snake bite is a neglected public health issue in many tropical and subtropical countries.",
     },
   ]; */
+
+
   const snakesData = [
     {
       name: "Viper snake",

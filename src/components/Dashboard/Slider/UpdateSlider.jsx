@@ -68,7 +68,6 @@ function UpdateSlider() {
         <label htmlFor="position">Position</label>
         <input
           type="number"
-          min="1"
           name="position"
           defaultValue={slider.position}
           id="position"

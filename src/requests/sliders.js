@@ -10,6 +10,14 @@ export const getSliders = async ({ signal }) => {
     .catch(cancelToken);
 };
 
+export const getSlidersHero = async ({ signal }) => {
+  return await axios
+    .get(`${server_url}/api/sliders/hero?limit=5`, {
+      cancelToken: signal.token,
+    })
+    .catch(cancelToken);
+};
+
 export const getSlider = async ({ slider_slug, signal }) => {
   return await axios
     .get(`${server_url}/api/sliders/${slider_slug}`, {
