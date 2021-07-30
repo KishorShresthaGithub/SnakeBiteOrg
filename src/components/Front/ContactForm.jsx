@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { convertFormData } from "@requests/config";
 import { saveContact } from "@requests/contact";
+import React from "react";
 import { useToasts } from "react-toast-notifications";
 
 function ContactForm() {

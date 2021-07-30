@@ -12,13 +12,13 @@ function UpcomingEvent() {
   const [events, setEvents] = useState([
     {
       id: 0,
-      title: "",
-      start_date: "",
-      end_date: "",
-      location: "",
-      time: "",
-      image: "",
-      description: "",
+      title: "No Upcoming Events",
+      start_date: new Date(),
+      end_date: new Date(),
+      // location: "",
+      // time: "",
+      // image: "",
+      // description: "",
     },
   ]);
 
@@ -28,7 +28,7 @@ function UpcomingEvent() {
     try {
       const res = await getUpcoming({ signal });
       const data = res?.data?.data;
-      setEvents(data);
+      if (data?.length) setEvents(data);
     } catch (message) {
       return console.log(message);
     }
@@ -37,7 +37,7 @@ function UpcomingEvent() {
   useEffect(() => {
     const signal = axios.CancelToken.source();
 
-    getUpcomingEventsCallback(signal);
+    getUpcomingEventsCallback(signal).catch(console.log);
 
     return () => {
       signal.cancel();
@@ -85,47 +85,68 @@ function UpcomingEvent() {
                   </p>
                   {/* date ends  */}
                   {/* location starts  */}
-                  <p className="flex items-center mt-2 font-semibold">
-                    <span className="mr-2">
-                      <HiLocationMarker />
-                    </span>
-                    {res.location}
-                  </p>
+                  {res.location ? (
+                    <p className="flex items-center mt-2 font-semibold">
+                      <span className="mr-2">
+                        <HiLocationMarker />
+                      </span>
+                      {res.location}
+                    </p>
+                  ) : (
+                    ""
+                  )}
                   {/* location ends  */}
                   {/* time starts  */}
-                  <p className="flex items-center mt-2 font-semibold">
-                    <span className="mr-2">
-                      <BiTime />
-                    </span>
-                    {res.time}
-                  </p>
+                  {res.time ? (
+                    <p className="flex items-center mt-2 font-semibold">
+                      <span className="mr-2">
+                        <BiTime />
+                      </span>
+                      {res.time}
+                    </p>
+                  ) : (
+                    ""
+                  )}
                   {/* time ends  */}
                 </div>
                 <div className="">
-                  <img
-                    style={{
-                      width: "150px",
-                      height: "auto",
-                      marginRight: "30px",
-                    }}
-                    src={res.image}
-                    alt=""
-                  />
+                  {res.image ? (
+                    <img
+                      style={{
+                        width: "150px",
+                        height: "auto",
+                        marginRight: "30px",
+                      }}
+                      src={res.image}
+                      alt=""
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
 
               {/* event description starts  */}
-              <p className="mt-4">
-                <u>
-                  <b>Event Description</b>
-                </u>
-              </p>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: truncate(dompurify.sanitize(res.description), 300),
-                }}
-                className="text-justify mt-2 font-semibold"
-              ></div>
+              {res.description ? (
+                <>
+                  <p className="mt-4">
+                    <u>
+                      <b>Event Description</b>
+                    </u>
+                  </p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: truncate(
+                        dompurify.sanitize(res.description),
+                        300
+                      ),
+                    }}
+                    className="text-justify mt-2 font-semibold"
+                  ></div>
+                </>
+              ) : (
+                ""
+              )}
               {/* event description ends  */}
             </div>
           );

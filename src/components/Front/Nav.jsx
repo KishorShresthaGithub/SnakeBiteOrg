@@ -1,7 +1,7 @@
+import { IntlContext } from "@lang/Wrapper";
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
-import { BsToggleOn } from "react-icons/bs";
 import {
   FaBars,
   FaFacebookF,
@@ -11,26 +11,25 @@ import {
 } from "react-icons/fa";
 import { injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
-import { IntlContext } from "@lang/Wrapper";
 import navs from "./nav.json";
 
 function Nav({ intl }) {
   //locale context
-  const [locale, setLocale] = useState(false);
+  // const [locale, setLocale] = useState(false);
   const context = useContext(IntlContext);
-  const [toggleBtn, setToggelBtn] = useState(true);
+  // const [toggleBtn, setToggelBtn] = useState(true);
   //mobile nav
 
   const [mobileNav, setMobileNav] = useState(false);
   const [subMenu, setSubMenu] = useState("");
 
-  //function to change language
+  /*   //function to change language
   const changeLanguage = () => {
     if (!locale) context.selectLanguage("ne");
     else context.selectLanguage("en");
 
     setLocale(!locale);
-  };
+  }; */
 
   useEffect(() => {}, []);
 

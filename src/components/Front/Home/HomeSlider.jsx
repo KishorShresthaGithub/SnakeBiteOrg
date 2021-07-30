@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { getSlidersHero } from "../../requests/sliders";
+import { getSlidersHero } from "@requests/sliders";
 
 function HomeSlider() {
   const [slider, setSlider] = useState([
@@ -44,7 +44,7 @@ function HomeSlider() {
   return (
     <div>
       <Slider {...settings} style={{ zIndex: 0 }}>
-        {slider.map((data, index) => (
+        {slider?.map((data, index) => (
           <div key={index}>
             <img
               src={data.image}

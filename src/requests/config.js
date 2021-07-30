@@ -1,7 +1,7 @@
 import { validationMessages } from "../provider/Toasts";
 import axios from "axios";
 
-export const server_url = "https://snkbite.herokuapp.com";
+export const server_url = "http://localhost:3000";
 
 export const convertFormData = (formData) => {
   let object = {};
