@@ -12,6 +12,11 @@ function UpdateSummaryReport() {
   const { access_token } = useToken();
   const { addToast } = useToasts();
   const [description, setDescription] = useState(updateData.description);
+  const [isChecked, setIsChecked] = useState(updateData.show);
+
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -19,6 +24,7 @@ function UpdateSummaryReport() {
     const htmlform = e.target;
     const form = new FormData(htmlform);
     form.append("description", description);
+    form.append("show", isChecked);
 
     const res = await updateSummaryReport(
       {
@@ -30,10 +36,7 @@ function UpdateSummaryReport() {
     ).catch(console.log);
 
     if (res) {
-      addToast("Summary report updated", { appearance: "success" }, () => {
-        htmlform.reset();
-        setDescription("");
-      });
+      addToast("Summary report updated", { appearance: "success" });
     }
   };
 
@@ -52,11 +55,25 @@ function UpdateSummaryReport() {
       </div>
 
       <div className=" md:w-full md:flex my-2">
+        <div className="flex  mb-2 md:mr-4  w-full px-2 py-4">
+          <label>Show</label>
+          <input
+            type="checkbox"
+            name="show"
+            className=" p-2 m-2 border-2 border-gray-100 rounded"
+            checked={isChecked}
+            onChange={handleOnChange}
+          />
+        </div>
+      </div>
+
+      <div className=" md:w-full md:flex my-2">
         <div className="flex flex-col mb-2 md:mr-4  w-full px-2 py-4">
           <label>PDF</label>
           <input
             type="file"
             name="pdf_link"
+            accept="application/pdf"
             className=" p-2 border-2 border-gray-100 rounded"
           />
         </div>

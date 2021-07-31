@@ -10,7 +10,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { MdDeleteSweep } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useToasts } from "react-toast-notifications";
-import DataTable from "@components/DataTable";  
+import DataTable from "@components/DataTable";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 
 function ViewSummaryReport() {
@@ -66,6 +66,10 @@ function ViewSummaryReport() {
     {
       title: "Report Title ",
       field: "title",
+    },
+    {
+      title: "Show report ",
+      field: "show",
     },
     {
       title: "Modify",
