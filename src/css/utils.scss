@@ -10,26 +10,25 @@ $lightGrey: #eeeeee;
   padding: 0.25px !important;
   color: $primaryColor !important;
   border-radius: 100%;
-  
 }
-h2{
+h2 {
   font-weight: bold;
   font-size: x-large;
 }
 
-h3{
+h3 {
   font-weight: bold;
   font-size: large;
 }
-h4{
+h4 {
   font-weight: bold;
   font-size: medium;
 }
-ul> li{
-  list-style-type:circle;
+ul > li {
+  list-style-type: circle;
 }
-ol > li{
-  list-style-type:decimal;
+ol > li {
+  list-style-type: decimal;
 }
 .slick-next {
   right: 3% !important;
@@ -40,26 +39,26 @@ ol > li{
   border-radius: 100%;
 }
 
-.scroll{
+.scroll {
   /* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: $lightGrey; 
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $primaryDark; 
-}
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $lightGrey;
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $primaryDark; 
-}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $primaryDark;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primaryDark;
+  }
 }
 
 // backgounds
@@ -72,10 +71,10 @@ ol > li{
 .bg_lightGrey {
   background-color: $lightGrey;
 }
-.bg_white{
+.bg_white {
   background-color: white;
 }
-.text-primary{
+.text-primary {
   color: $primaryColor;
 }
 
@@ -86,7 +85,7 @@ ol > li{
   font-weight: 500;
   font-size: small;
   text-transform: uppercase;
-  padding: .7rem 1.5rem;
+  padding: 0.7rem 1.5rem;
   box-shadow: 1px 1px 8px -2px rgba($color: #000000, $alpha: 0.2);
   transition: all 0.3s;
   &:hover {
@@ -148,72 +147,73 @@ ol > li{
   }
 }
 
-
 // some emergency css
-.hSimg{
-  &:hover{
+.hSimg {
+  &:hover {
     transform: scale(1.4);
   }
 }
 
-.titleBar{
-  background-image: url('../images/titleBg.png');
+.titleBar {
+  background-image: url("../images/titleBg.png");
   background-size: cover;
 }
 
-// hover menu css 
+// hover menu css
 
 .dropdown {
   position: relative;
 }
 
 .dropdown-content {
-  display:none;
+  display: none;
   position: absolute;
   z-index: 1;
   width: 200px;
 }
 
-.dropdown:hover .dropdown-content {display: inline-block;}
+.dropdown:hover .dropdown-content {
+  display: inline-block;
+}
 
-// art and snake image gallery 
-.gallery{
+// art and snake image gallery
+.gallery {
   -webkit-column-count: 4;
   -moz-column-count: 4;
   column-count: 4;
-  -webkit-column-width:33%;
+  -webkit-column-width: 33%;
   -moz-column-width: 33%;
   column-width: 33%;
 }
-.gallery .pics{
-  -webkit-transition:  all 350ms ease;
+.gallery .pics {
+  -webkit-transition: all 350ms ease;
   transition: all 350ms ease;
   cursor: pointer;
   margin-bottom: 12px;
-  &:hover{
+  &:hover {
     filter: opacity(0.8);
   }
 }
 
-@media (max-width:991px) {
-  .gallery{
+@media (max-width: 991px) {
+  .gallery {
     -webkit-column-count: 3;
     -moz-column-count: 3;
     column-count: 3;
   }
 }
-@media (max-width:740px) {
-  .gallery{
+@media (max-width: 740px) {
+  .gallery {
     -webkit-column-count: 2;
     -moz-column-count: 2;
     column-count: 2;
   }
 }
 
-// gallery modal 
-.modal{
-  width:100%;
-  height:100%;
+// gallery modal
+.modal {
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -221,19 +221,19 @@ ol > li{
   justify-content: center;
   align-items: center;
   background-color: black;
-  transition:opacity 0.4s ease, visibility 0.4s ease, transfrom 0.4s ease;
-  visibility:hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease, transfrom 0.4s ease;
+  visibility: hidden;
   opacity: 0;
-  transform:scale(0);
-  overflow:hidden;
-  z-index:999;
+  transform: scale(0);
+  overflow: hidden;
+  z-index: 999;
 }
-.open{
+.open {
   visibility: visible;
   opacity: 1;
-  transform:scale(1);
+  transform: scale(1);
 }
-.modal img{
+.modal img {
   width: auto;
   max-width: 100%;
   display: block;

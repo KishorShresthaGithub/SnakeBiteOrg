@@ -1,7 +1,7 @@
 import { getSnakes } from "@requests/snakes";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { server_url } from "../../../requests/config";
+import { server_url } from "@requests/config";
 
 const HomeSnakes = () => {
   const [snakesData, setSnakes] = useState([
@@ -17,7 +17,21 @@ const HomeSnakes = () => {
       .then((res) => {
         const data = res?.data?.data;
 
-        if (data?.length) setSnakes(data);
+        if (data?.length) {
+          let snakesData = [...data];
+          let tempData = [];
+          //get 4 random data
+          for (let i = 1; i < 5; i++) {
+            let randomIndex = Math.floor(
+              Math.random() * (snakesData.length - 1)
+            );
+            tempData.push(snakesData[randomIndex]);
+            //remove data
+            snakesData.splice(randomIndex, 1);
+          }
+
+          setSnakes(tempData);
+        }
       })
       .catch(console.log);
   }, []);
@@ -32,7 +46,7 @@ const HomeSnakes = () => {
 
   return (
     <>
-      {snakesData?.map((s,index) => (
+      {snakesData?.map((s, index) => (
         <div className="text-center" key={index}>
           <div className="card flex justify-center ">
             <img src={s.image} alt="" className="object-cover h-80 md:h-72" />

@@ -94,7 +94,7 @@ function Home() {
         </h1>
 
         {/* .venouous snakes card starts  */}
-        <div className="grid md:grid-cols-4 gap-4 mt-8 px-4">
+        <div className="grid md:grid-cols-4 gap-4 mt-8 px-4 ">
           <HomeSnakes />
         </div>
 
