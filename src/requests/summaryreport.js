@@ -2,11 +2,14 @@ import axios from "axios";
 
 import { cancelToken, server_url, validation } from "./config";
 
-export const getSummaryReports = async ({ signal }) => {
+export const getSummaryReports = async ({ signal, limit }) => {
   return await axios
-    .get(`${server_url}/api/summaryreport/all`, {
-      cancelToken: signal.token,
-    })
+    .get(
+      `${server_url}/api/summaryreport/all${limit ? `?limit=${limit}` : ""}`,
+      {
+        cancelToken: signal.token,
+      }
+    )
     .catch(cancelToken);
 };
 

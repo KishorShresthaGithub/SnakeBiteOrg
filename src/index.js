@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ToastProvider } from "react-toast-notifications";
+import SimpleReactLightbox from "simple-react-lightbox";
 import App from "./App";
 import Wrapper from "./lang/Wrapper";
 
@@ -11,7 +12,9 @@ ReactDOM.render(
       autoDismiss={true}
       placement={"bottom-center"}
     >
-      <App />
+      <SimpleReactLightbox>
+        <App />
+      </SimpleReactLightbox>
     </ToastProvider>
   </Wrapper>,
   document.getElementById("root")

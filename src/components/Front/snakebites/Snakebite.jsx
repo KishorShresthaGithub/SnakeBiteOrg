@@ -1,7 +1,6 @@
 import DOMPurify from "dompurify";
 import truncate from "html-truncate";
 import React from "react";
-import { BiTime } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 function Snakebite({ img, title, des }) {

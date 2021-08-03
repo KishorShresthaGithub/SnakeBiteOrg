@@ -16,11 +16,11 @@ function NewsDetails() {
           {/* snake articles starts  */}
           <div className="col-span-2 ">
             <h1 className="font-bold mt-5 text-3xl">Save the Snake</h1>
-            <p className="py-2 flex items-center">
+            <div className="py-2 flex items-center">
               <BiTime className="mr-2" /> <p className="mr-2">June 2, 2021</p>
               <BiNews className="mr-2" />
               <p>News Category</p>
-            </p>
+            </div>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
               className="w-full md:h-80 object-cover mt-2"
@@ -39,7 +39,7 @@ function NewsDetails() {
             {/* facebook share starts  */}
             <div className="my-2 flex items-center">
               <FacebookProvider appId="123456789">
-                <Share href="http://www.facebook.com">
+                <Share href="https://www.facebook.com">
                   {({ handleClick, loading }) => (
                     <button
                       type="button"

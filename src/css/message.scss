@@ -1,0 +1,53 @@
+.messages {
+  padding: 30px 0;
+  .images {
+    display: flex;
+    flex-direction: column;
+
+    .image {
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
+
+    .thumbs {
+      display: flex;
+
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+
+      .thumb {
+        img {
+          object-fit: contain;
+          width: 100px;
+          height: auto;
+        }
+      }
+    }
+  }
+  .description {
+    padding: 20px;
+    min-height: 400px;
+    overflow-y: scroll;
+    max-height: 400px;
+    scrollbar-color: #ffbb00 white;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #ffbb00;
+    }
+  }
+}

@@ -1,80 +1,143 @@
-import React from "react";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import NewsCard from "../components/Front/NewsCard";
+import paginateArray from "../components/Front/Paginate";
 import TitleBar from "../components/Front/TitleBar";
+import { server_url } from "../requests/config";
+import { getNews } from "../requests/news";
 
 function News() {
+  const [news, setNews] = useState([]);
+  const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+
+  const pagData = (data) => setData(paginateArray(data, 6));
+
+  //get snake data from database
+  const getNewsCallback = useCallback((signal) => {
+    getNews({ signal })
+      .then((res) => {
+        const data = res?.data?.data;
+
+        if (data?.length) {
+          setNews(data);
+          pagData(data);
+        }
+      })
+      .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+    getNewsCallback(signal);
+    return () => {
+      signal.cancel();
+    };
+  }, [getNewsCallback]);
+
+  //search for news
+  const searchNews = () => {
+    //if textbox is empty
+    if (search === "") {
+      pagData(news);
+      return;
+    }
+    //filter snakes
+    const data = news.filter((res) => res.title.toLowerCase().includes(search));
+
+    if (data?.length) setData(data);
+    //if no data set placeholder
+    else
+      setData([
+        {
+          name: "No results",
+          scientific_name: "",
+          image: `${server_url}/public/placeholder_logo.svg`,
+          description: "",
+        },
+      ]);
+  };
+
+  const renderPageLinks = () => {
+    return (
+      <div className="my-4 flex items-center">
+        <p
+          className="border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4"
+          onClick={() => setPage(page - 1 >= 0 ? page - 1 : page)}
+        >
+          {"<"}
+        </p>
+
+        {data?.map((res, index) => (
+          <p
+            key={index}
+            className={`border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4 ${
+              index === page ? "bg-blue-200" : ""
+            }   `}
+            onClick={() => setPage(index)}
+          >
+            {index + 1}
+          </p>
+        ))}
+
+        <p
+          className="border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4"
+          onClick={() => setPage(page + 1 < data.length ? page + 1 : page)}
+        >
+          {">"}
+        </p>
+      </div>
+    );
+  };
+
+  const renderPages = () => {
+    if (data[page]?.length) {
+      return (
+        <>
+          {data[page]?.map((res, index) => (
+            <NewsCard data={res} key={index} />
+          ))}
+        </>
+      );
+    } else {
+      return data?.map((res, index) => <NewsCard data={res} key={index} />);
+    }
+  };
+
   return (
     <>
-      <TitleBar name="news" />
+      <TitleBar name="News" />
       <div className="container mx-auto px-4">
-        <div className="">
+        <div className="my-10">
           <h1 className="text-xl md:text-2xl font-bold mt-10">News & Update</h1>
           <input
+            title="Search empty to return back to original list"
             type="text"
-            className="mt-6 border-2 border-gray-200 px-5 shadow-md py-1.5 rounded-full w-80"
+            onChange={(e) => setSearch(e.target.value)}
+            className="mt-6 border-2 border-gray-200 px-5 shadow-md py-1.5 pr-3 rounded-full w-80"
             placeholder="search...."
           />
+          <button
+            style={{ transform: "translateX(-40px)" }}
+            className="bg_primary hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-full"
+            onClick={() => searchNews()}
+          >
+            Search
+          </button>
         </div>
-        <div className="grid md:grid-cols-4 gap-7 py-10">
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Save The Snakes"
-            Nimg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
-          />
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Snakes facts and information"
-            Nimg="https://i.natgeofe.com/n/f80a6834-c7d0-4e93-b113-ae708652a527/snakes_01.jpg"
-          />
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Save The Snakes"
-            Nimg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
-          />
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Save The Snakes"
-            Nimg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
-          />
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Save The Snakes"
-            Nimg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
-          />
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Save The Snakes"
-            Nimg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
-          />
-          <NewsCard
-            Ndate="june 2, 2021"
-            Ncategory="snakes"
-            Ntitle="Save The Snakes"
-            Nimg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk67AnSJe-2Ltqbw2ULvam_u_P3gktDsLOzYiW0_w5O9OSygBCvjH_7AXZj9wJF9Ks-d8&usqp=CAU"
-          />
+        <div
+          style={{ minHeight: "300px" }}
+          className="flex flex-wrap justify-center"
+        >
+          {renderPages()}
         </div>
-        {/* pagination starts  */}
-        <div className="my-4 md:my-10 flex items-center justify-center">
-          <p className="border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4">
-            1
-          </p>
-          <p className="border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4">
-            2
-          </p>
-          <p className="border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4">
-            3
-          </p>
-          <p className="border border-gray-200 shadow-md px-4 py-2 cursor-pointer mr-4">
-            4
-          </p>
+
+        <div className="flex justify-center">
+          {/* pagination starts  */}
+          {renderPageLinks()}
+          {/* pagination ends  */}
         </div>
-        {/* pagination ends  */}
       </div>
     </>
   );

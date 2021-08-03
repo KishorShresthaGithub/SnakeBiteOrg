@@ -16,7 +16,7 @@ function Youtube() {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullscreen
+              allowFullScreen
               className="md:w-full md:h-72"
             ></iframe>
           </div>
@@ -26,7 +26,7 @@ function Youtube() {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullscreen
+              allowFullScreen
               className="md:w-full md:h-72"
             ></iframe>
           </div>
@@ -36,7 +36,7 @@ function Youtube() {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullscreen
+              allowFullScreen
               className="md:w-full md:h-72"
             ></iframe>
           </div>
@@ -46,7 +46,7 @@ function Youtube() {
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullscreen
+              allowFullScreen
               className="md:w-full md:h-72"
             ></iframe>
           </div>

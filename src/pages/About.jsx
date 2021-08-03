@@ -1,12 +1,36 @@
-import React from "react";
+import Messages from "@components/Front/Messages";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import AboutSnakebite from "../components/Front/About/About_snakebite";
 import ImageGallery from "../components/Front/About/ImageGallery";
-import PeoplesThoughts from "../components/Front/About/Peoples_thoughts";
 import StoriesCard from "../components/Front/About/Stories_card";
 import Sponsers from "../components/Front/Sponsers";
 import TitleBar from "../components/Front/TitleBar";
+import { getSummaryReports } from "../requests/summaryreport";
 
 function About() {
+  const [report, setReport] = useState([]);
+
+  const getReportCallback = useCallback((signal) => {
+    getSummaryReports({ signal, limit: 4 })
+      .then((res) => {
+        const data = res?.data?.data;
+
+        if (data?.length) setReport(data);
+      })
+      .catch(console.log);
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getReportCallback(signal);
+
+    return () => {
+      signal.cancel();
+    };
+  }, [getReportCallback]);
+
   return (
     <>
       <TitleBar name="About Us" />
@@ -14,40 +38,15 @@ function About() {
 
       {/* stories starts  */}
       <div className="bg_lightGrey">
-        <div className="container mx-auto px-4 py-10 md:py-20">
-          <h1 className="flex items-center flex-col md:flex-row font-bold text-xl md:mt-10">
-            OUR STORIES{" "}
-            <span className="font-black mx-2 hidden md:block">|</span>{" "}
-            <button className="btn-outline-primary mt-2 md:mt-0">
-              View All
-            </button>
+        <div className="container mx-auto px-4 py-16 md:py-16">
+          <h1 className="flex items-center flex-col md:flex-row font-bold text-xl ">
+            Summary Report{" "}
           </h1>
           <div className="flex justify-center">
             <div className="grid md:grid-cols-4 gap-10 mt-10">
-              <StoriesCard
-                date="June 23 2021"
-                title="International Conference in Kathmandu 2019"
-              />
-              <StoriesCard
-                date="June 23 2021"
-                title="International Conference in Kathmandu 2019"
-              />
-              <StoriesCard
-                date="June 23 2021"
-                title="International Conference in Kathmandu 2019"
-              />
-              <StoriesCard
-                date="June 23 2021"
-                title="International Conference in Kathmandu 2019"
-              />
-              <StoriesCard
-                date="June 23 2021"
-                title="International Conference in Kathmandu 2019"
-              />
-              <StoriesCard
-                date="June 23 2021"
-                title="International Conference in Kathmandu 2019"
-              />
+              {report?.map((res, index) => (
+                <StoriesCard key={index} data={res} />
+              ))}
             </div>
           </div>
         </div>
@@ -56,47 +55,8 @@ function About() {
 
       {/* connecting dots starts */}
       <div className="container mx-auto px-4 py-10 md:py-20">
-        <div className="grid md:grid-cols-3">
-          <div className="col-span-2">
-            <p className="text-primary font-semibold">OUR HISTORY</p>
-            <div className="text-xl font-bold mt-1">
-              Connecting Dots of SNAKEBITE NEPAL
-            </div>
-            <p className="mt-5 leading-7 md:pr-8">
-              About 7,000 venomous snake biteTrusted Source cases are reported
-              every year in the United States. A bite from a venomous snake is
-              rarely deadly — about 6 fatalities are reported every year — but
-              it should always be treated as a medical emergency. Even a bite
-              from a harmless snake can be serious, leading to an allergic
-              reaction or an infection. Venomous snake bites can produce an
-              array of symptoms, including localized pain and swelling,
-              convulsions, nausea, and even paralysis.About 7,000 venomous snake
-              biteTrusted Source cases are reported every year in the United
-              States. A bite from a venomous snake is rarely deadly — about 6
-              fatalities are reported every year — but it should always be
-              treated as a medical emergency. Even a bite from a harmless snake
-              can be serious, leading to an allergic reaction or an infection.
-              Venomous snake bites can produce an array of symptoms, including
-              localized pain and swelling, convulsions, nausea, and even
-              paralysis.
-            </p>
-          </div>
-
-          <div className="mt-4 w-80 md:w-full">
-            <PeoplesThoughts
-              name="Mr. Sital"
-              content="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology"
-            />
-            <PeoplesThoughts
-              name="Mr. Ravi"
-              content="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology"
-            />
-            <PeoplesThoughts
-              name="Mr. Aatmaram"
-              content="identifying venomous snakes; the clinical presentation of snakebite and pathophysiology"
-            />
-          </div>
-        </div>
+        <h1 className="text-xl font-bold">Messages</h1>
+        <Messages />
       </div>
       {/* connecting dots ends  */}
 

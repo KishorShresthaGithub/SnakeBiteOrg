@@ -3,10 +3,18 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useCallback, useEffect, useState } from "react";
 import { Document, Page } from "react-pdf";
-import { server_url } from "../../../requests/config";
+import { server_url } from "@requests/config";
 
 function Books() {
   const [report, setReport] = useState({});
+
+  // eslint-disable-next-line no-unused-vars
+  const [numPages, setNumPages] = useState(null);
+
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
 
   const getReportCallback = useCallback((signal) => {
     getSummaryReport({ signal })
@@ -31,14 +39,14 @@ function Books() {
       <h1 className="text-2xl font-bold mb-2">Books & Articles</h1>
       <hr className="border-1 border-gray-400 py-2" />
 
-      <Document file={report.pdf_link}>
+      <Document file={report.pdf_link} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={1} />
       </Document>
 
       <div className="text-center">
         <h1 className="text-xl font-bold py-4">Summary Report</h1>
         <div
-          className="leading-6"
+          className="p-5"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(report.description),
           }}

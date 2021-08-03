@@ -1,33 +1,40 @@
+import DOMPurify from "dompurify";
+import truncate from "html-truncate";
+import moment from "moment";
 import React from "react";
 import { BiTimeFive } from "react-icons/bi";
 import { BiNews } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-function NewsCard({ Ndate, Ncategory, Ntitle, Nimg }) {
+function NewsCard({ data }) {
   return (
-    <Link to="/news/1">
+    <Link to={`/news/${data.slug}`} className="m-7 w-3/12">
       <div className="card">
-        {Nimg.length !== 0 ? (
-          <img src={Nimg} className="w-full h-32 object-cover" alt="Ntitle" />
-        ) : (
-          ""
-        )}
+        <img src={data.image} className="w-full h-32 object-cover" alt="Npto" />
+
         <div className="card-body p-3 mt-2">
+          <h1 className="my-2 font-medium text-md flex space-between items-center">
+            <span className="mx-1 inline">
+              <BiNews />
+            </span>
+            {data.title}
+          </h1>
           <div className="p2 flex justify-between items-center">
             <p className="flex items-center text-sm">
               <span className="mr-1">
                 <BiTimeFive />
               </span>{" "}
-              {Ndate}
-            </p>
-            <p className="flex items-center text-sm">
-              <span className="mx-1">
-                <BiNews />
-              </span>{" "}
-              {Ncategory}
+              {moment(data.created_at).format("DD-MM-YYYY")}
             </p>
           </div>
-          <h1 className="mt-5 font-medium text-md">{Ntitle} </h1>
+
+          <div className="flex items-center text-sm">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: truncate(DOMPurify.sanitize(data.description), 150),
+              }}
+            ></div>
+          </div>
         </div>
       </div>
     </Link>

@@ -16,7 +16,22 @@ const AVCenters = () => {
       .then((res) => {
         const data = res?.data?.data;
 
-        if (data?.length) setAVC(data);
+        let avcData = [...data];
+
+        if (data?.length > 6) {
+          let tempData = [];
+          //get 4 random data
+          for (let i = 1; i < 6; i++) {
+            let randomIndex = Math.floor(Math.random() * (avcData.length - 1));
+            tempData.push(avcData[randomIndex]);
+            //remove data
+            avcData.splice(randomIndex, 1);
+          }
+
+          setAVC(avcData);
+        } else {
+          setAVC(data);
+        }
       })
       .catch(console.log);
   }, []);
@@ -41,7 +56,7 @@ const AVCenters = () => {
       {/* <p className="mt-5">He went to Mario Negri Institute of Pharmacological research, Bergamo, Italy for Fellow of International Society of Nephrology (Italy); Fellow ISPD (Dialysis) (London, UK); Fellow JSN (Mie University, </p> */}
       <div className="grid grid-cols-2 md:grid-cols-6 gap-7 mt-8">
         {avc?.map((av, index) => (
-          <AntivenomCard key={index} name={av.district} no={av.count} />
+          <AntivenomCard key={index} data={av} />
         ))}
       </div>
     </>

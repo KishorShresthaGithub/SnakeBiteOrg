@@ -1,6 +1,6 @@
 import { getSnakes } from "@requests/snakes";
 import axios from "axios";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import paginateArray from "../components/Front/Paginate";
 import Books from "../components/Front/snakebites/Books";
 import Snakebite from "../components/Front/snakebites/Snakebite";

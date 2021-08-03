@@ -1,21 +1,24 @@
-import React from 'react'
-import {BiTime} from 'react-icons/bi'
+import moment from "moment";
+import React from "react";
+import { BiTime } from "react-icons/bi";
 
-function Stories_card({date,title}) {
-    return (
-        <div className="card bg-white rounded-xl p-4 py-10">
-            <div className="flex items-center">
-                <BiTime />
-                <p className="ml-2">{date}</p>
-            </div>
-            <h2 className="font-bold text-lg mt-3">
-                {title}
-            </h2>
-            
-            <div className="btn-primary text-center w-full p-2 mt-8 cursor-pointer">Download File</div>
+function Stories_card({ data }) {
+  return (
+    <div className="card bg-white rounded-xl p-4 py-10">
+      <div className="flex items-center">
+        <BiTime />
+        <p className="ml-2">{moment(data.created_at).format("YYYY-MM-DD")}</p>
+      </div>
+      <h2 className="font-bold text-xl mt-3">{data.title}</h2>
 
-        </div>
-    )
+      <a
+        href={data.pdf_link}
+        className="btn-primary block text-center p-2 cursor-pointer m-10"
+      >
+        Download File
+      </a>
+    </div>
+  );
 }
 
-export default Stories_card
+export default Stories_card;
