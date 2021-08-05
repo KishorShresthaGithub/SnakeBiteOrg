@@ -2,7 +2,6 @@ import DOMPurify from "dompurify";
 import truncate from "html-truncate";
 import React from "react";
 import { Link } from "react-router-dom";
-import { SRLWrapper } from "simple-react-lightbox";
 
 function Snakebite({ id, img, title, des }) {
   return (
