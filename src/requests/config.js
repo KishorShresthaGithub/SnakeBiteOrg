@@ -1,7 +1,7 @@
-import { validationMessages } from "../provider/Toasts";
 import axios from "axios";
+import { validationMessages } from "../provider/Toasts";
 
-export const server_url = "http://localhost:3000";
+export const server_url = process.env.REACT_APP_SERVER;
 
 export const convertFormData = (formData) => {
   let object = {};

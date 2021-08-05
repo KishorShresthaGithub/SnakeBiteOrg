@@ -4,6 +4,7 @@ import { ToastProvider } from "react-toast-notifications";
 import SimpleReactLightbox from "simple-react-lightbox";
 import App from "./App";
 import Wrapper from "./lang/Wrapper";
+import "dotenv/config";
 
 ReactDOM.render(
   <Wrapper>
