@@ -101,6 +101,7 @@ function Snakes_and_snakebites() {
           {data[page]?.map((res, index) => (
             <Snakebite
               key={index}
+              id={res.id}
               img={res.image}
               title={res.name}
               des={res.description}

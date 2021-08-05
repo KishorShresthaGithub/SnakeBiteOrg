@@ -2,17 +2,17 @@ import axios from "axios";
 
 import { cancelToken, server_url, validation } from "./config";
 
-export const getSnakes = async ({ signal,limit }) => {
+export const getSnakes = async ({ signal, limit }) => {
   return await axios
-    .get(`${server_url}/api/snakes${limit?"?limit="+limit:""}`, {
+    .get(`${server_url}/api/snakes${limit ? "?limit=" + limit : ""}`, {
       cancelToken: signal.token,
     })
     .catch(cancelToken);
 };
 
-export const getSnake = async ({ snake_slug, signal }) => {
+export const getSnake = async ({ id, signal }) => {
   return await axios
-    .get(`${server_url}/api/snakes/${snake_slug}`, {
+    .get(`${server_url}/api/snakes/${id}`, {
       cancelToken: signal.token,
     })
     .catch(cancelToken);

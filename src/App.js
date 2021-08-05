@@ -1,5 +1,3 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NotFound from "./components/Front/NotFound";
 import "@css/utils.scss";
 import About from "@pages/About";
 import Antivenom from "@pages/Antivenom";
@@ -21,10 +19,13 @@ import SnakebiteDetails from "@pages/SnakebiteDetails";
 import SnakesAndSnakebites from "@pages/SnakesAndSnakebites";
 import { DashRoute } from "@template/Dashboard";
 import { PageRoute } from "@template/Page";
-import DEvents from "./pages/Dashboard/DEvents";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NotFound from "./components/Front/NotFound";
 import DContact from "./pages/Dashboard/DContact";
+import DEvents from "./pages/Dashboard/DEvents";
 import DGallery from "./pages/Dashboard/DGallery";
 import DSummaryReport from "./pages/Dashboard/DSummaryreport";
+import EventDetails from "./pages/EventDetails";
 
 // const Render = ({ html }) => {
 //   return (
@@ -58,12 +59,13 @@ function App() {
           component={SnakebiteDetails}
         ></PageRoute>
         <PageRoute path="/news" exact component={News}></PageRoute>
-        <PageRoute path="/news/:id" component={NewsDetails}></PageRoute>
+        <PageRoute path="/news/:slug" component={NewsDetails}></PageRoute>
+        <PageRoute path="/events/:slug" component={EventDetails}></PageRoute>
 
         <PageRoute path="/antivenom" exact component={Antivenom}></PageRoute>
 
         <PageRoute
-          path="/antivenom/:id"
+          path="/antivenom/:district"
           component={AntivenomDetails}
         ></PageRoute>
         <PageRoute path="/snakes_art" component={ArtAndCulture}></PageRoute>

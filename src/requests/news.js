@@ -10,9 +10,9 @@ export const getNews = async ({ signal }) => {
     .catch(cancelToken);
 };
 
-export const getNew = async ({ news_id, signal }) => {
+export const getNew = async ({ news_slug, signal }) => {
   return await axios
-    .get(`${server_url}/api/news/${news_id}`, {
+    .get(`${server_url}/api/news/${news_slug}`, {
       cancelToken: signal.token,
     })
     .catch(cancelToken);

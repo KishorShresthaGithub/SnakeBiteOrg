@@ -1,4 +1,4 @@
-import Messages from "@components/Front/Messages";
+import Messages from "@components/Front/About/Messages";
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import AboutSnakebite from "../components/Front/About/About_snakebite";

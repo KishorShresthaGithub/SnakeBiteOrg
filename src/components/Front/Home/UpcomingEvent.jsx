@@ -66,12 +66,12 @@ function UpcomingEvent() {
           return (
             <div
               className="cursor-pointer"
-              onClick={() => history.push(`/events/${res.id}`)}
+              onClick={() => history.push(`/events/${res.slug}`)}
               key={index}
             >
               <hr className="mt-2" />
-              <p className=" font-bold text-xl mt-5">{res.title}</p>
-              <div className="flex justify-evenly items-center">
+              <p className=" font-bold text-xl mt-5 mb-3">{res.title}</p>
+              <div className="flex justify-evenly">
                 <div className="flex-grow">
                   {/* date starts  */}
                   <p className="flex items-center mt-4 font-semibold">
@@ -137,7 +137,9 @@ function UpcomingEvent() {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: truncate(
-                        dompurify.sanitize(res.description),
+                        dompurify.sanitize(res.description, {
+                          ALLOWED_TAGS: ["b", "q"],
+                        }),
                         300
                       ),
                     }}

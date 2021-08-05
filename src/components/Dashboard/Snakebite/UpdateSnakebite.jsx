@@ -10,7 +10,6 @@ import { useToasts } from "react-toast-notifications";
 
 function UpdateSnakebite() {
   const { updateData } = useContext(DashCardContext);
-  console.log(updateData);
 
   const { access_token } = useToken();
   const { addToast } = useToasts();

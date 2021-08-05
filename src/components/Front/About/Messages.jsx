@@ -1,7 +1,6 @@
-import DOMPurify from "dompurify";
-import { useCallback, useEffect, useState } from "react";
-import { useInView } from "react-hook-inview";
 import "@css/message.scss";
+import DOMPurify from "dompurify";
+import { useState } from "react";
 
 const images = [
   {
@@ -108,56 +107,14 @@ const images = [
 
 const Messages = () => {
   //main object
-  const [main, setMain] = useState({});
-  //loop
-  const [isLoop, setLoop] = useState(true);
+  const [main, setMain] = useState(images[0]);
 
-  // eslint-disable-next-line no-unused-vars
-  const [ref, isVisible] = useInView(
-    {
-      threshold: 1,
-
-      onLeave: () => {
-        setMain(images[0]);
-      },
-    },
-    [isLoop]
-  );
-
-  const handleThumb = (object) => {
-    setMain(object);
+  const handleThumb = (res) => {
+    setMain(res);
   };
 
-  const nextSlider = useCallback(() => {
-    if (!isLoop) return;
-
-    let currentSlide = images.find((res) => res.id === main.id);
-
-    let index = images.indexOf(currentSlide);
-    let nextIndex = index + 1;
-
-    if (nextIndex >= images.length) {
-      setMain(images[0]);
-    } else {
-      setMain(images[nextIndex]);
-    }
-  }, [isLoop, main.id]);
-
-  useEffect(() => {
-    const slider = setInterval(() => {
-      nextSlider();
-    }, 3000);
-
-    return () => clearInterval(slider);
-  }, [isLoop, nextSlider]);
-
   return (
-    <div
-      className="grid md:grid-cols-2 messages"
-      ref={ref}
-      onMouseOver={() => setLoop(false)}
-      onMouseOut={() => setLoop(true)}
-    >
+    <div className="grid md:grid-cols-2 messages">
       <div className="images ">
         <div className="image">
           <img src={main.image} alt="Ph" />

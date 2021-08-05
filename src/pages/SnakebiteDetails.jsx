@@ -1,12 +1,47 @@
-import React from "react";
+import axios from "axios";
+import DOMPurify from "dompurify";
+import React, { useCallback, useEffect, useState } from "react";
 import { FacebookProvider, Share } from "react-facebook";
-import { BiTime } from "react-icons/bi";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { SRLWrapper } from "simple-react-lightbox";
 import Books from "../components/Front/snakebites/Books";
 import Youtube from "../components/Front/snakebites/Youtube";
 import TitleBar from "../components/Front/TitleBar";
+import { getSnake } from "../requests/snakes";
 
 function Snakebite_Details() {
+  const { id } = useParams();
+  const [snake, setSnake] = useState({
+    id: 0,
+    name: "",
+    scientific_name: "",
+    image: "",
+    description: "",
+  });
+
+  const getSnakeCallback = useCallback(
+    (signal) => {
+      getSnake({ id: id, signal })
+        .then((res) => {
+          const data = res?.data?.data;
+          if (data) setSnake(data);
+        })
+        .catch(console.log);
+    },
+    [id, setSnake]
+  );
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+
+    getSnakeCallback(signal);
+    return () => {
+      signal.cancel();
+    };
+  }, [getSnakeCallback]);
+
   return (
     <>
       <TitleBar name="Snakebite Details" />
@@ -15,23 +50,25 @@ function Snakebite_Details() {
         <div className="grid md:grid-cols-3 my-10">
           {/* snake articles starts  */}
           <div className="col-span-2">
-            <h1 className="font-bold mt-5 text-3xl">Rattlesnakes</h1>
-            <p className="py-2 flex items-center">
-              <BiTime className="mr-2" /> June 2, 2021
+            <h1 className="font-bold mt-5 text-3xl">{snake.name}</h1>
+            <p className="py-2 flex font-bold items-center mb-5">
+              <BsFillInfoCircleFill className="mr-2" title="Scientific Name" />{" "}
+              {snake.scientific_name}
             </p>
-            <img
-              src="https://www.sciencenewsforstudents.org/wp-content/uploads/2021/01/010821_mt_climbing-snakes_feat-1030x580.jpg"
-              alt=""
-            />
-            <p className="leading-6 py-10">
-              Snakes do a lot more than slither. Some swim, while others
-              sidewind across sand. Some snakes even fly. The brown tree snake
-              has a brand-new trick for climbing trees. It wraps its tail around
-              a tree or pole in a lasso-like grip. Then it wriggles to propel
-              itself up. It isn’t easy for the snakes. But it works. And this
-              looping trick lets these snakes slowly make it up structures that
-              would otherwise be too wide to climb.
-            </p>
+            <SRLWrapper>
+              <img
+                className="text-center"
+                src={snake.image}
+                style={{ height: "400px", width: "auto", textAlign: "center" }}
+                alt={snake.name}
+              />
+            </SRLWrapper>
+            <div
+              className="leading-6 py-10"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(snake.description),
+              }}
+            ></div>
 
             {/* facebook share starts  */}
             <div className="my-2 flex items-center">

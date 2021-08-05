@@ -1,5 +1,4 @@
-import { IntlContext } from "@lang/Wrapper";
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import {
@@ -16,7 +15,7 @@ import navs from "./nav.json";
 function Nav({ intl }) {
   //locale context
   // const [locale, setLocale] = useState(false);
-  const context = useContext(IntlContext);
+  // const context = useContext(IntlContext);
   // const [toggleBtn, setToggelBtn] = useState(true);
   //mobile nav
 

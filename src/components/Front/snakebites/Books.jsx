@@ -4,23 +4,24 @@ import DOMPurify from "dompurify";
 import React, { useCallback, useEffect, useState } from "react";
 import { Document, Page } from "react-pdf";
 import { server_url } from "@requests/config";
+import truncate from "html-truncate";
 
 function Books() {
-  const [report, setReport] = useState({});
+  const [report, setReport] = useState({
+    id: 0,
+    pdf_link: "",
+    title: "",
+    description: "",
+  });
 
-  // eslint-disable-next-line no-unused-vars
-  const [numPages, setNumPages] = useState(null);
-
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
+  const [isRead, setRead] = useState(false);
 
   const getReportCallback = useCallback((signal) => {
     getSummaryReport({ signal })
       .then((res) => {
         const data = res?.data?.data;
-        setReport(data);
+
+        if (data) setReport(data);
       })
       .catch(console.log);
   }, []);
@@ -36,23 +37,37 @@ function Books() {
 
   return (
     <div className="md:mx-10 w-80 md:w-auto bg_lightGrey p-4 md:p-8 shadow-md">
-      <h1 className="text-2xl font-bold mb-2">Books & Articles</h1>
+      <h1 className="text-2xl font-bold mb-2">Summary Report</h1>
       <hr className="border-1 border-gray-400 py-2" />
 
-      <Document file={report.pdf_link} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={report.pdf_link}>
         <Page pageNumber={1} />
       </Document>
 
       <div className="text-center">
-        <h1 className="text-xl font-bold py-4">Summary Report</h1>
+        <h1 className="text-xl font-bold py-4">{report.title}</h1>
         <div
-          className="p-5"
+          className="p-5 text-justify"
+          style={{ maxHeight: "500px", overflowY: "auto" }}
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(report.description),
+            __html: DOMPurify.sanitize(
+              !isRead ? truncate(report.description, 150) : report.description
+            ),
           }}
         ></div>
+        {report.description !== "" ? (
+          <span
+            className="block text-blue-500"
+            onClick={() => setRead(!isRead)}
+          >
+            Read {!isRead ? "More" : "Less"}
+          </span>
+        ) : (
+          ""
+        )}
+
         <a
-          className="btn-primary w-full mt-6"
+          className="block btn-primary w-full mt-6"
           href={`${server_url}/api/summaryreport/${report.id}/download`}
         >
           DOWNLOAD
