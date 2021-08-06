@@ -33,7 +33,7 @@ function Home() {
   ]; */
 
   return (
-    <div>
+    <>
       <HomeSlider />
       <div className="container mx-auto mt-5 px-4 md:container mx-auto mt-5">
         {/* news container starts  */}
@@ -125,7 +125,7 @@ function Home() {
         <ContactForm />
       </div>
       {/* contact us ends  */}
-    </div>
+    </>
   );
 }
 

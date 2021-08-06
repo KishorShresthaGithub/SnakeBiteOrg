@@ -42,7 +42,7 @@ function HomeSlider() {
   };
 
   return (
-    <div>
+    <>
       <Slider {...settings} style={{ zIndex: 0 }}>
         {slider?.map((data, index) => (
           <div key={index}>
@@ -55,7 +55,7 @@ function HomeSlider() {
           </div>
         ))}
       </Slider>
-    </div>
+    </>
   );
 }
 

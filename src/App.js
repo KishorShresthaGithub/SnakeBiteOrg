@@ -26,6 +26,7 @@ import DEvents from "./pages/Dashboard/DEvents";
 import DGallery from "./pages/Dashboard/DGallery";
 import DSummaryReport from "./pages/Dashboard/DSummaryreport";
 import EventDetails from "./pages/EventDetails";
+import Events from "./pages/Events";
 
 // const Render = ({ html }) => {
 //   return (
@@ -60,6 +61,8 @@ function App() {
         ></PageRoute>
         <PageRoute path="/news" exact component={News}></PageRoute>
         <PageRoute path="/news/:slug" component={NewsDetails}></PageRoute>
+
+        <PageRoute path="/events" exact component={Events}></PageRoute>
         <PageRoute path="/events/:slug" component={EventDetails}></PageRoute>
 
         <PageRoute path="/antivenom" exact component={Antivenom}></PageRoute>

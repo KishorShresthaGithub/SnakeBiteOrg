@@ -57,8 +57,11 @@ function UpcomingEvent() {
       <div className="card bg-blue-600 text-white p-4 md:p-8 h-96 w-10/12  overflow-y-scroll scroll ">
         <div className="title flex justify-between items-center w-full ">
           <h1 className="font-bold text-xl ">UPCOMING EVENTS</h1>
-          <span className="font-bold text-xl ">
-            <MdEventNote />
+          <span
+            className="font-bold text-xl "
+            onClick={() => history.push("/events")}
+          >
+            <MdEventNote className="cursor-pointer" title="View all events" />
           </span>
         </div>
 
