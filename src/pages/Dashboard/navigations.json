@@ -1,0 +1,52 @@
+[
+    {
+        "to": "/d_home",
+        "title": "home",
+        "default": "Home"
+    },
+    {
+        "to": "/d_slider",
+        "title": "slider",
+        "default": "Slider"
+    },
+    {
+        "to": "/d_links",
+        "title": "Links and Pages",
+        "default": "Links and Pages"
+    },
+    {
+        "to": "/d_events",
+        "title": "Events",
+        "default": "Events"
+    },
+    {
+        "to": "/d_news",
+        "title": "news",
+        "default": "News"
+    },
+    {
+        "to": "/d_antivenom",
+        "title": "antivenom",
+        "default": "Antivenom Centers"
+    },
+    {
+        "to": "/d_gallery",
+        "title": "gallery",
+        "default": "Gallery"
+    },
+    {
+        "to": "/d_snakes_and_Snakebites",
+        "title": "snakes_and_Snakebites",
+        "default": "Snakes & Snakebites"
+    },
+    {
+        "to": "/d_summary_report",
+        "title": "Summary Report",
+        "default": "Summary Report"
+    },
+    {
+        "to": "/d_contact",
+        "title": "contact",
+        "default": "Contact"
+    }
+]
