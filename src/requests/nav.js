@@ -18,9 +18,11 @@ export const getNavLinksAll = async ({ signal }) => {
     .catch(cancelToken);
 };
 
+
 export const getNavLink = async ({ nav_url, signal }) => {
   return await axios
     .get(`${server_url}/api/links/${nav_url}`, {
+
       cancelToken: signal.token,
     })
     .catch(cancelToken);

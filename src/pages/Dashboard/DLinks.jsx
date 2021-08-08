@@ -40,7 +40,6 @@ const options = [
 function DLinks() {
   return (
     <>
-      {" "}
       <DashCard options={options} />
     </>
   );

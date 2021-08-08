@@ -70,7 +70,6 @@ function ViewLinks() {
     { title: "Link ID", field: "id" },
     { title: "Link Title", field: "title" },
     { title: "Link", field: "link" },
-
     { title: "Position", field: "position" },
     {
       title: "Page",

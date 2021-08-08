@@ -1,10 +1,12 @@
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import useToken from "@provider/AuthProvider";
 import { updateNews } from "@requests/news";
 import { DashCardContext } from "@template/DashCard";
 import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+
 import { useToasts } from "react-toast-notifications";
-import Editor from "../../Editor";
 
 function UpdateNews() {
   const { updateData } = useContext(DashCardContext);
@@ -89,7 +91,8 @@ function UpdateNews() {
       <div className="flex flex-col mb-2 mr-4 px-2 py-2 w-80 md:w-full">
         <label htmlFor="img">Page </label>
 
-        <Editor
+        <CKEditor
+          editor={ClassicEditor}
           data={description}
           onChange={(event, editor) => {
             const data = editor.getData();
