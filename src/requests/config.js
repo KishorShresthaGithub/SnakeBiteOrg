@@ -1,7 +1,7 @@
 import axios from "axios";
 import { validationMessages } from "../provider/Toasts";
 
-export const server_url = "https://api.trioplustechnology.com/";
+export const server_url = "https://api.trioplustechnology.com";
 
 export const convertFormData = (formData) => {
   let object = {};
