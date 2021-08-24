@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { injectIntl } from "react-intl";
 import AntivenomCard from "../components/Front/AntivenomCard";
 import paginateArray from "../components/Front/Paginate";
 import TitleBar from "../components/Front/TitleBar";
 import { getDistricts } from "../requests/avc";
 
-function Antivenom() {
+function Antivenom({ intl }) {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
 
@@ -80,7 +81,12 @@ function Antivenom() {
 
   return (
     <>
-      <TitleBar name="Antivenom Center" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "nav.avc",
+          defaultMessage: "Antivenom Centers",
+        })}
+      />
 
       {/* antivenom center starts  */}
       <div className="pt-10 pb-20 anitvenom   bg_lightGrey">
@@ -94,4 +100,4 @@ function Antivenom() {
   );
 }
 
-export default Antivenom;
+export default injectIntl(Antivenom);

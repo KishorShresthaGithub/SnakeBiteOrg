@@ -1,5 +1,6 @@
 import React from "react";
 import { BiChevronRight } from "react-icons/bi";
+import { FormattedMessage } from "react-intl";
 
 function TitleBar({ name }) {
   return (
@@ -8,7 +9,8 @@ function TitleBar({ name }) {
         <div className="container mx-auto px-4 py-5">
           <h1 className="font-bold text-xl text-center">{name}</h1>
           <p className="flex items-center justify-center text-sm mt-2">
-            Home <BiChevronRight className="mx-1" /> {name}
+            <FormattedMessage id="nav.home" defaultMessage="Home" />{" "}
+            <BiChevronRight className="mx-1" /> {name}
           </p>
         </div>
       </div>

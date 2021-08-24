@@ -9,7 +9,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import Books from "../components/Front/snakebites/Books";
-import Youtube from "../components/Front/snakebites/Youtube";
 import TitleBar from "../components/Front/TitleBar";
 import { getEvent } from "../requests/events";
 
@@ -122,7 +121,7 @@ function EventDetails() {
         </div>
         {/* container eventss ends  */}
       </div>
-      <Youtube />
+      {/* <Youtube /> */}
     </>
   );
 }

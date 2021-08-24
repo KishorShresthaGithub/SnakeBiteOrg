@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Document, Page } from "react-pdf";
 import { server_url } from "@requests/config";
 import truncate from "html-truncate";
+import { FormattedMessage } from "react-intl";
 
 function Books() {
   const [report, setReport] = useState({
@@ -37,7 +38,9 @@ function Books() {
 
   return (
     <div className="md:mx-10 w-80 md:w-auto bg_lightGrey p-4 md:p-8 shadow-md">
-      <h1 className="text-2xl font-bold mb-2">Summary Report</h1>
+      <h1 className="text-2xl font-bold mb-2">
+        <FormattedMessage id="summary_report" defaultMessage="Summary Report" />
+      </h1>
       <hr className="border-1 border-gray-400 py-2" />
 
       <Document file={report.pdf_link}>
@@ -70,7 +73,7 @@ function Books() {
           className="block btn-primary w-full mt-6"
           href={`${server_url}/api/summaryreport/${report.id}/download`}
         >
-          DOWNLOAD
+          <FormattedMessage id="download" defaultMessage="Download" />
         </a>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import { getSnakes } from "@requests/snakes";
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { FormattedMessage, injectIntl } from "react-intl";
 import paginateArray from "../components/Front/Paginate";
 import Books from "../components/Front/snakebites/Books";
 import Snakebite from "../components/Front/snakebites/Snakebite";
 import TitleBar from "../components/Front/TitleBar";
 import { server_url } from "../requests/config";
 
-function Snakes_and_snakebites() {
+function Snakes_and_snakebites({ intl }) {
   const [snakes, setSnakes] = useState([]);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
@@ -49,7 +50,7 @@ function Snakes_and_snakebites() {
       res.name.toLowerCase().includes(search)
     );
 
-    if (data?.length) setData(data);
+    if (data?.length) setData(paginateArray(data, 4));
     //if no data set placeholder
     else
       setData([
@@ -128,24 +129,32 @@ function Snakes_and_snakebites() {
 
   return (
     <>
-      <TitleBar name="Snakes & Snakebites" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "nav.sns",
+          defaultMessage: "Snakes & Snakebites",
+        })}
+      />
       <div className="container mx-auto px-4">
         <h1 className="text-xl md:text-2xl font-bold mt-10">
-          VENEMOUS SNAKES IN NEPAL
+          <FormattedMessage
+            id="venomous_nepal"
+            defaultMessage=" VENEMOUS SNAKES IN NEPAL "
+          />
         </h1>
         <input
           title="Search empty to return back to original list"
           type="text"
           onChange={(e) => setSearch(e.target.value)}
           className="mt-6 border-2 border-gray-200 px-5 shadow-md py-1.5 pr-3 rounded-full w-80"
-          placeholder="search...."
+          placeholder="Search...."
         />
         <button
           style={{ transform: "translateX(-40px)" }}
-          className="bg_primary hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-full"
+          className="bg_primary z-auto hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-full"
           onClick={() => searchSnake()}
         >
-          Search
+          <FormattedMessage id="search" defaultMessage="Search" />
         </button>
 
         {/* container snakes starts  */}
@@ -165,4 +174,4 @@ function Snakes_and_snakebites() {
   );
 }
 
-export default Snakes_and_snakebites;
+export default injectIntl(Snakes_and_snakebites);

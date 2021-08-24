@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { BiTime } from "react-icons/bi";
 import { HiLocationMarker } from "react-icons/hi";
 import { MdEvent, MdEventNote } from "react-icons/md";
+import { FormattedMessage } from "react-intl";
 import { useHistory } from "react-router-dom";
 
 function UpcomingEvent() {
@@ -56,7 +57,12 @@ function UpcomingEvent() {
     <>
       <div className="card bg-blue-600 text-white p-4 md:p-8 h-96 w-10/12  overflow-y-scroll scroll ">
         <div className="title flex justify-between items-center w-full ">
-          <h1 className="font-bold text-xl ">UPCOMING EVENTS</h1>
+          <h1 className="font-bold text-xl ">
+            <FormattedMessage
+              id="nav.upcoming_events"
+              defaultMessage="Upcoming Events"
+            />
+          </h1>
           <span
             className="font-bold text-xl "
             onClick={() => history.push("/events")}

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { server_url } from "@requests/config";
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AiOutlineCloseSquare } from "react-icons/ai";
-import { BiChevronDown } from "react-icons/bi";
+import { BsToggleOn } from "react-icons/bs";
 import {
   FaBars,
   FaFacebookF,
@@ -11,8 +11,9 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
-import { injectIntl } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import { Link } from "react-router-dom";
+import { IntlContext } from "../../lang/Wrapper";
 import { getNavLinksAll } from "../../requests/nav";
 import navs from "./nav.json";
 
@@ -37,22 +38,22 @@ function Nav({ intl }) {
   }, [getLinksCallback]);
 
   //locale context
-  // const [locale, setLocale] = useState(false);
-  // const context = useContext(IntlContext);
-  // const [toggleBtn, setToggelBtn] = useState(true);
+  const [locale, setLocale] = useState(false);
+  const context = useContext(IntlContext);
+  const [toggleBtn, setToggelBtn] = useState(true);
   //mobile nav
 
   const [mobileNav, setMobileNav] = useState(false);
   // const [subMenu, setSubMenu] = useState("");
   // const [links, setLinks] = useState([]);
 
-  /*   //function to change language
+  //function to change language
   const changeLanguage = () => {
     if (!locale) context.selectLanguage("ne");
     else context.selectLanguage("en");
 
     setLocale(!locale);
-  }; */
+  };
 
   return (
     <>
@@ -84,11 +85,15 @@ function Nav({ intl }) {
                   id: "nav.home",
                   defaultMessage: "Home",
                 })}{" "} */}
-              Emergency Contact +9834893498
+              <FormattedMessage
+                id="nav.emergency"
+                defaultMessage="Emergency Contact"
+              ></FormattedMessage>{" "}
+              +9834893498
             </h6>
           </div>
 
-          {/*     <h6 className="text-sm sm:text-base lg:text-sm flex items-center">
+          <h6 className="text-sm sm:text-base lg:text-sm flex items-center">
             <span className="mx-2">नेपाली </span>
             {toggleBtn ? (
               <>
@@ -112,7 +117,7 @@ function Nav({ intl }) {
               </>
             )}
             <span>English</span>
-          </h6> */}
+          </h6>
         </div>
         {/* social media icons ends  */}
       </div>
@@ -153,9 +158,14 @@ function Nav({ intl }) {
                   <div key={index} className="dropdown">
                     <Link
                       to={nav.to}
-                      className="flex items-center font-medium text-base"
+                      className="flex items-center font-medium text-base "
                     >
-                      <span className="px-4 h-full">{nav.default}</span>
+                      <span className="px-4 h-full">
+                        <FormattedMessage
+                          id={`${nav.intl_id}`}
+                          defaultMessage={nav.default}
+                        />
+                      </span>
                     </Link>
 
                     <div className="dropdown-content"></div>

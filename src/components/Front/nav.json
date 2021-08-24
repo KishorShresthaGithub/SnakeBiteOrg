@@ -2,13 +2,15 @@
     {
         "to": "/",
         "title": "home",
-        "default": "Home"
+        "default": "Home",
+        "intl_id": "nav.home"
     },
     {
         "to": "/about",
         "title": "about",
         "default": "About",
         "drop": true,
+        "intl_id": "nav.about",
         "content": [
             {
                 "to": "Messages",
@@ -40,17 +42,20 @@
     {
         "to": "/snakes_and_snakebites",
         "title": "snakes_and_snakebites",
-        "default": "Snakes & Snakebites"
+        "default": "Snakes & Snakebites",
+        "intl_id": "nav.sns"
     },
     {
         "to": "/news",
         "title": "news",
+        "intl_id": "nav.news",
         "default": "News"
     },
     {
         "to": "/antivenom",
         "title": "antivenom",
         "default": "Antivenom Centers",
+        "intl_id": "nav.avc",
         "drop": true,
         "content": [
             {
@@ -73,11 +78,13 @@
     {
         "to": "/snakes_art",
         "title": "Snakes_art",
+        "intl_id": "nav.snc",
         "default": "Snakes in Art & Culture"
     },
     {
         "to": "/contact",
         "title": "contact",
+        "intl_id": "nav.contact",
         "default": "Contact"
     }
 ]

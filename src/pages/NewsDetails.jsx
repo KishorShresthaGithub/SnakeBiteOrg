@@ -7,7 +7,6 @@ import { BsCalendarFill } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Books from "../components/Front/snakebites/Books";
-import Youtube from "../components/Front/snakebites/Youtube";
 import TitleBar from "../components/Front/TitleBar";
 import { getNew } from "../requests/news";
 
@@ -96,7 +95,7 @@ function NewsDetails() {
         </div>
         {/* container newss ends  */}
       </div>
-      <Youtube />
+      {/* <Youtube /> */}
     </>
   );
 }

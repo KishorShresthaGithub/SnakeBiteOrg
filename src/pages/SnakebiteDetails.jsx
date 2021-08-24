@@ -7,7 +7,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { SRLWrapper } from "simple-react-lightbox";
 import Books from "../components/Front/snakebites/Books";
-import Youtube from "../components/Front/snakebites/Youtube";
 import TitleBar from "../components/Front/TitleBar";
 import { getSnake } from "../requests/snakes";
 
@@ -98,7 +97,7 @@ function Snakebite_Details() {
         </div>
         {/* container snakes ends  */}
       </div>
-      <Youtube />
+      {/* <Youtube /> */}
     </>
   );
 }

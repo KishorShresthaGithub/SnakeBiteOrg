@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
 import ContactForm from "../components/Front/ContactForm.jsx";
 import AVCenters from "../components/Front/Home/AVCenters.jsx";
 import HomeSlider from "../components/Front/Home/HomeSlider.jsx";
@@ -73,7 +75,9 @@ function Home() {
           <div className="bg_white p-8 md:p-12 rounded">
             <h4 className="font-medium text-lg font-bold">SNAKEBITE NEPAL</h4>
             <p className="mt-2 text-primary">
-              <i>About us</i>
+              <i>
+                <FormattedMessage id="nav.about" defaultMessage="About Us" />
+              </i>
             </p>
             <p className="mt-4 leading-8">
               He went to Mario Negri Institute of Pharmacological research,
@@ -86,7 +90,10 @@ function Home() {
               Negri Institute of Pharmacological research, Bergamo, Italy for
               Fellow of International Society....
             </p>
-            <button className="btn-primary mt-8">READ MORE ....</button>
+            <Link to="/about" className="block w-36 btn-primary mt-8">
+              <FormattedMessage id="read_more" defaultMessage="READ MORE" />{" "}
+              ....
+            </Link>
           </div>
         </div>
       </div>
@@ -95,9 +102,17 @@ function Home() {
       {/* most venomous snakes starts  */}
       <div className="container mx-auto mt-5">
         <h1 className="flex flex-col md:flex-row items-center font-bold text-xl md:mt-10">
-          Most Venomous Snakes in Nepal{" "}
+          <FormattedMessage
+            id="most_venomous_snakes"
+            defaultMessage="Most Venomous Snakes in Nepal"
+          />{" "}
           <span className="font-black mx-2 hidden md:block">|</span>{" "}
-          <button className="btn-outline-primary mt-2 md:mt-0">View All</button>
+          <Link
+            to="/snakes_and_snakebites"
+            className="btn-outline-primary mt-2 md:mt-0"
+          >
+            <FormattedMessage id="view_all" defaultMessage="View All" />
+          </Link>
         </h1>
 
         {/* .venouous snakes card starts  */}
@@ -116,7 +131,10 @@ function Home() {
         {/* Sponsers & Promoters starts  */}
         <div className="sponsers mt-10 md:mt-32 px-8 md:px-4 mb-10 md:mb-32">
           <h1 className="flex items-center font-bold text-xl md:mt-10 mb-10">
-            Sponsers & Promoters
+            <FormattedMessage
+              id="sponsors"
+              defaultMessage="Sponsers & Promoters"
+            />
           </h1>
           <Sponsers />
         </div>
@@ -127,7 +145,7 @@ function Home() {
       {/* contact us starts  */}
       <div className="bg_lightGrey py-10 md:py-20">
         <h1 className="font-bold text-4xl  text-center mb-10">
-          LET'S CONNECT{" "}
+          <FormattedMessage id="lets_connect" defaultMessage="Let's Connect" />{" "}
         </h1>
         <ContactForm />
       </div>

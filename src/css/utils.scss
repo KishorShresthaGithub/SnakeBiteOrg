@@ -250,10 +250,6 @@ ol > li {
 }
 
 nav {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-
   .main-links {
     flex-grow: 2;
 
@@ -271,7 +267,7 @@ nav {
         top: 35px;
 
         position: absolute;
-        z-index: 10;
+
         transition: all 500ms ease-in-out;
       }
     }
@@ -279,12 +275,13 @@ nav {
   .logo {
     position: relative;
     width: 300px;
+    z-index: 1;
 
     img {
       width: 150px;
       height: auto;
       position: absolute;
-      z-index: 1;
+
       top: -25px;
     }
   }
@@ -299,6 +296,7 @@ nav {
   background: $primaryDark;
   position: absolute;
   width: 100%;
+  z-index: 0;
 
   .container {
     display: flex;
@@ -347,3 +345,8 @@ nav {
   }
 }
  */
+footer {
+  a:hover {
+    color: #fff;
+  }
+}

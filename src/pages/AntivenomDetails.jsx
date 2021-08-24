@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { injectIntl } from "react-intl";
 import { useParams } from "react-router-dom";
 import AntivenomCentersCard from "../components/Front/Antivenom/AntivenomCentersCard";
 import TitleBar from "../components/Front/TitleBar";
 import { getCentersFromDistrict } from "../requests/avc";
 
-function AntivenomDetails() {
+function AntivenomDetails({ intl }) {
   const { district } = useParams();
 
   const [avcs, setAVC] = useState([
@@ -33,7 +34,12 @@ function AntivenomDetails() {
 
   return (
     <>
-      <TitleBar name={` ${district} Antivenom Center`} />
+      <TitleBar
+        name={` ${district} ${intl.formatMessage({
+          id: "nav.avc",
+          defaultMessage: "Antivenom Center",
+        })}`}
+      />
       <div className="container mx-auto px-4">
         {/* heading starts  */}
         <div className="flex justify-between py-10">
@@ -56,4 +62,4 @@ function AntivenomDetails() {
   );
 }
 
-export default AntivenomDetails;
+export default injectIntl(AntivenomDetails);

@@ -1,3 +1,24 @@
 {
-    "nav.home": "Home"
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.sns": "Snakes & Snakebites",
+    "nav.news": "News",
+    "nav.avc": "Antivenom Centers",
+    "nav.snc": "Snakes in Art & Culture",
+    "nav.contact": "Contact",
+    "nav.emergency": "Emergency Contact",
+    "nav.upcoming_events": "Upcoming Events",
+    "nav.gallery": "Gallery",
+    "read_more": "Read More",
+    "most_venomous_snakes": "Most Venomous Snakes in Nepal",
+    "view_all": "View All",
+    "search": "Search",
+    "find_avc": "Find One Near You",
+    "sponsors": "Sponsers & Promoters",
+    "summary_report": "Summary Report",
+    "messages": "Messages",
+    "contact_info": "Contact Information",
+    "venomous_nepal": "Venomous Snakes in Nepal",
+    "download": "Download",
+    "lets_connect": "Let's Connect"
 }

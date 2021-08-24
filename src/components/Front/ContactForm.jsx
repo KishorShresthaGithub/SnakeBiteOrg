@@ -26,36 +26,33 @@ function ContactForm() {
     <form onSubmit={(e) => handleSubmit(e)} className="flex justify-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
-          <label htmlFor="name">Name</label>
-          <br />
           <input
             type="text"
+            placeHolder="Name"
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="name"
           />
         </div>
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
-          <label htmlFor="name">Address</label> <br />
           <input
             type="text"
+            placeHolder="Address"
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="address"
           />
         </div>
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
-          <label htmlFor="name">Email</label>
-          <br />
           <input
             type="email"
+            placeHolder="Email"
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="email"
           />
         </div>
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
-          <label htmlFor="name">Phone no</label>
-          <br />
           <input
             type="text"
+            placeHolder="Phone Number"
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="phone"
           />
@@ -68,7 +65,9 @@ function ContactForm() {
             placeholder="Your Message"
           ></textarea>
         </div>
-        <button className="btn-primary w-40">SEND MESSAGE</button>
+        <button className="btn-primary w-40 col-span-2 self-center">
+          SEND MESSAGE
+        </button>
       </div>
     </form>
   );

@@ -10,8 +10,9 @@ import { getSummaryReports } from "../requests/summaryreport";
 import { getGallery } from "../requests/gallery";
 import { server_url } from "../requests/config";
 import { Link } from "react-router-dom";
+import { FormattedMessage, injectIntl } from "react-intl";
 
-function About() {
+function About({ intl }) {
   const [report, setReport] = useState([]);
   const [gallery, setGallery] = useState([]);
 
@@ -46,14 +47,19 @@ function About() {
 
   return (
     <>
-      <TitleBar name="About Us" />
+      <TitleBar
+        name={intl.formatMessage({ id: "nav.about", defaultMessage: "About" })}
+      />
       <AboutSnakebite />
 
       {/* stories starts  */}
       <div className="bg_lightGrey">
         <div className="container mx-auto px-4 py-16 md:py-16">
           <h1 className="flex items-center flex-col md:flex-row font-bold text-xl ">
-            Summary Report{" "}
+            <FormattedMessage
+              id="summary_report"
+              defaultMessage="Summary Report"
+            />{" "}
           </h1>
           <div className="flex justify-center">
             <div className="grid md:grid-cols-4 gap-10 mt-10">
@@ -68,7 +74,9 @@ function About() {
 
       {/* connecting dots starts */}
       <div className="container mx-auto px-4 py-10 md:py-20">
-        <h1 className="text-xl font-bold">Messages</h1>
+        <h1 className="text-xl font-bold">
+          <FormattedMessage id="messages" defaultMessage="Messages" />
+        </h1>
         <Messages />
       </div>
       {/* connecting dots ends  */}
@@ -77,10 +85,19 @@ function About() {
       <div className="bg_lightGrey py-10 md:py-20">
         <div className="container mx-auto px-4">
           {/* heading section starts  */}
-          <div className="text-center">
-            <h1 className="text-xl font-bold"> IMAGE GALLERY</h1>
-            <Link className="btn-outline-primary mt-4 " to="/gallery">
-              View All
+          <div className="text-center flex justify-center flex-col">
+            <h1 className="text-xl font-bold">
+              {" "}
+              <FormattedMessage
+                id="nav.gallery"
+                defaultMessage="IMAGE GALLERY"
+              />
+            </h1>
+            <Link
+              className="btn-outline-primary mt-4 pt-5 block w-40 self-center"
+              to="/gallery"
+            >
+              <FormattedMessage id="view_all" defaultMessage="View All"/>
             </Link>
           </div>
           {/* heading section endss  */}
@@ -107,7 +124,10 @@ function About() {
       {/* Sponsers & Promoters starts  */}
       <div className="container mx-auto px-4 mt-10 md:mt-20 px-8 md:px-4 mb-10 md:mb-32">
         <h1 className="flex items-center font-bold text-xl md:mt-10 mb-10">
-          Sponsers & Promoters
+          <FormattedMessage
+            id="sponsors"
+            defaultMessage="Sponsors & Promoters"
+          ></FormattedMessage>
         </h1>
         <Sponsers />
       </div>
@@ -116,4 +136,4 @@ function About() {
   );
 }
 
-export default About;
+export default injectIntl(About);

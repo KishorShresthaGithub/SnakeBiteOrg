@@ -1,3 +1,24 @@
 {
-    "nav.home": "गृहपृष्ठ"
+    "nav.home": "गृहपृष्ठ",
+    "nav.about": "हाम्रो बारेमा",
+    "nav.sns": "सर्प र सर्पदंश",
+    "nav.news": "समाचार",
+    "nav.avc": "एन्टी भेनिन केन्द्रहरु",
+    "nav.snc": "कला र संस्कृति मा सर्प ",
+    "nav.contact": "सम्पर्क",
+    "nav.emergency": "आपतकालीन सम्पर्क",
+    "nav.upcoming_events": "आगामी घटनाहरु",
+    "read_more": "थप पढ्नुहोस्",
+    "most_venomous_snakes": "नेपाल मा सबैभन्दा विषालु सर्प",
+    "view_all": "सबै हेर्नुहोस्",
+    "search": "खोज",
+    "find_avc": "तपाइँको नजिक खोज्नुहोस्",
+    "sponsors": "प्रायोजकहरु",
+    "nav.gallery": "ग्यालरी",
+    "summary_report": "सारांश रिपोर्ट",
+    "messages": "सन्देश",
+    "contact_info": "सम्पर्क जानकारी",
+    "venomous_nepal": "नेपालको विषालु सर्प",
+    "download": "डाउनलोड",
+    "lets_connect": "सम्पर्क गर्नुहोस"
 }

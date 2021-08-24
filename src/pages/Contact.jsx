@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { HiLocationMarker } from "react-icons/hi";
+import { FormattedMessage } from "react-intl";
 import ContactForm from "../components/Front/ContactForm";
 
 function Contact() {
@@ -23,13 +24,13 @@ function Contact() {
           ></iframe>
         </div>
         <div
-          className="bg-gray-900 absolute w-full bg-opacity-80 h-96"
+          className="bg-gray-900 absolute w-full bg-opacity-70 h-96"
           style={{ top: "5.2rem", zIndex: "-1" }}
         >
-          <div className="container mx-auto px-4 py-8 text-white">
-            <div className="h1 font-bold text-2xl mt-10">CONTACT US</div>
-
-            <a href="google.com">Click here to navigate in Google Map</a>
+          <div className="container mx-auto px-4 py-8 text-white text-center">
+            <div className="h1 font-bold text-2xl mt-10">
+              <FormattedMessage id="nav.contact" defaultMessage="CONTACT US" />
+            </div>
           </div>
         </div>
       </div>
@@ -43,7 +44,12 @@ function Contact() {
               <ContactForm />
             </div>
             <div className="bg-yellow-500 p-4 md:p-10">
-              <h1 className="font-bold text-xl">CONTACT INFORMATION</h1>
+              <h1 className="font-bold text-xl text-white">
+                <FormattedMessage
+                  id="contact_info"
+                  defaultMessage="CONTACT INFORMATION"
+                />
+              </h1>
               <div className="flex items-center text-xl text-white py-2 mt-8">
                 <HiLocationMarker />{" "}
                 <p className="font-md ml-2">Maitdevi, Kathmandu</p>
