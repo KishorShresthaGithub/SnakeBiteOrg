@@ -5,6 +5,7 @@
     "nav.news": "News",
     "nav.avc": "Antivenom Centers",
     "nav.snc": "Snakes in Art & Culture",
+    "events": "Events",
     "nav.contact": "Contact",
     "nav.emergency": "Emergency Contact",
     "nav.upcoming_events": "Upcoming Events",
@@ -20,5 +21,11 @@
     "contact_info": "Contact Information",
     "venomous_nepal": "Venomous Snakes in Nepal",
     "download": "Download",
-    "lets_connect": "Let's Connect"
+    "lets_connect": "Let's Connect",
+    "contact.name": "Name",
+    "contact.address": "Address",
+    "contact.email": "Email Address",
+    "contact.phone": "Phone Number",
+    "contact.message": "Your Message",
+    "contact.send_message": "Send Message"
 }

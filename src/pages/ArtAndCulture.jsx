@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { injectIntl } from "react-intl";
 import TitleBar from "../components/Front/TitleBar";
 
-function ArtAndCulture() {
+function ArtAndCulture({ intl }) {
   let data = [
     {
       id: 1,
@@ -85,7 +86,12 @@ function ArtAndCulture() {
   };
   return (
     <>
-      <TitleBar name="Sankes in Art & Cuture" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "nav.snc",
+          defaultMessage: "Snakes in Art & Culture",
+        })}
+      />
       <div className="container mx-auto px-4 mt-20">
         <div className="gallery mb-10">
           {data.map((item, index) => (
@@ -113,4 +119,4 @@ function ArtAndCulture() {
   );
 }
 
-export default ArtAndCulture;
+export default injectIntl(ArtAndCulture);

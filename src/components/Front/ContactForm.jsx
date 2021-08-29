@@ -1,9 +1,10 @@
 import { convertFormData } from "@requests/config";
 import { saveContact } from "@requests/contact";
 import React from "react";
+import { FormattedMessage, injectIntl } from "react-intl";
 import { useToasts } from "react-toast-notifications";
 
-function ContactForm() {
+function ContactForm({ intl }) {
   const { addToast } = useToasts();
 
   const handleSubmit = (e) => {
@@ -28,7 +29,10 @@ function ContactForm() {
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
           <input
             type="text"
-            placeHolder="Name"
+            placeHolder={intl.formatMessage({
+              id: "contact.name",
+              defaultMessage: "Name",
+            })}
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="name"
           />
@@ -36,7 +40,10 @@ function ContactForm() {
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
           <input
             type="text"
-            placeHolder="Address"
+            placeHolder={intl.formatMessage({
+              id: "contact.address",
+              defaultMessage: "Address",
+            })}
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="address"
           />
@@ -44,7 +51,10 @@ function ContactForm() {
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
           <input
             type="email"
-            placeHolder="Email"
+            placeHolder={intl.formatMessage({
+              id: "contact.email",
+              defaultMessage: "Email",
+            })}
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="email"
           />
@@ -52,7 +62,10 @@ function ContactForm() {
         <div className="col-span-2 w-80 md:w-96 md:col-span-1">
           <input
             type="text"
-            placeHolder="Phone Number"
+            placeHolder={intl.formatMessage({
+              id: "contact.phone",
+              defaultMessage: "Phone Number",
+            })}
             className="h-10 p-4 w-full mt-2 rounded shadow"
             name="phone"
           />
@@ -62,15 +75,21 @@ function ContactForm() {
             rows="4"
             name="message"
             className="p-4 rounded shadow w-full"
-            placeholder="Your Message"
+            placeholder={intl.formatMessage({
+              id: "contact.message",
+              defaultMessage: "Your Message",
+            })}
           ></textarea>
         </div>
         <button className="btn-primary w-40 col-span-2 self-center">
-          SEND MESSAGE
+          <FormattedMessage
+            id="contact.send_message"
+            defaultMessage="SEND MESSAGE"
+          />
         </button>
       </div>
     </form>
   );
 }
 
-export default ContactForm;
+export default injectIntl(ContactForm);

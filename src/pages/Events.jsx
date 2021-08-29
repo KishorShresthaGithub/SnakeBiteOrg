@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { injectIntl } from "react-intl";
 import EventsCard from "../components/Front/events/EventsCard";
 import paginateArray from "../components/Front/Paginate";
 import TitleBar from "../components/Front/TitleBar";
 import { getEvents } from "../requests/events";
 
-function Events() {
+function Events({ intl }) {
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
@@ -112,7 +113,12 @@ function Events() {
 
   return (
     <>
-      <TitleBar name="Events" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "events",
+          defaultMessage: "Event Details",
+        })}
+      />
       <div className="container mx-auto px-4">
         <div className="my-10">
           <h1 className="text-xl md:text-2xl font-bold mt-10">Events</h1>
@@ -148,4 +154,4 @@ function Events() {
   );
 }
 
-export default Events;
+export default injectIntl(Events);

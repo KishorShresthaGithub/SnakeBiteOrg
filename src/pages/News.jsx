@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { injectIntl } from "react-intl";
 import NewsCard from "../components/Front/NewsCard";
 import paginateArray from "../components/Front/Paginate";
 import TitleBar from "../components/Front/TitleBar";
 import { server_url } from "../requests/config";
 import { getNews } from "../requests/news";
 
-function News() {
+function News({ intl }) {
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
@@ -107,7 +108,12 @@ function News() {
 
   return (
     <>
-      <TitleBar name="News" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "nav.news",
+          defaultMessage: "News",
+        })}
+      />
       <div className="container mx-auto px-4">
         <div className="my-10">
           <h1 className="text-xl md:text-2xl font-bold mt-10">News & Update</h1>
@@ -143,4 +149,4 @@ function News() {
   );
 }
 
-export default News;
+export default injectIntl(News);

@@ -12,7 +12,7 @@ import Books from "../components/Front/snakebites/Books";
 import TitleBar from "../components/Front/TitleBar";
 import { getEvent } from "../requests/events";
 
-function EventDetails() {
+function EventDetails({intl}) {
   const { slug } = useParams();
 
   const [event, setEvent] = useState({
@@ -49,7 +49,9 @@ function EventDetails() {
 
   return (
     <>
-      <TitleBar name="Events" />
+      <TitleBar
+        name={intl.formatMessage({ id: "events", defaultMessage: "Event Details" })}
+      />
       <div className="container mx-auto px-4">
         {/* container eventss starts  */}
         <div className="grid md:grid-cols-3 my-10">

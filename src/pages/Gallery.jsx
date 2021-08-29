@@ -1,11 +1,12 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";  
+import React, { useCallback, useEffect, useState } from "react";
+import { injectIntl } from "react-intl";
 import GalleryCard from "../components/Front/GalleryCard";
 import paginateArray from "../components/Front/Paginate";
 import TitleBar from "../components/Front/TitleBar";
 import { getGallery } from "../requests/gallery";
 
-function Gallery() {
+function Gallery({ intl }) {
   const [gallery, setGallery] = useState([]);
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
@@ -112,7 +113,12 @@ function Gallery() {
 
   return (
     <>
-      <TitleBar name="Gallery" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "nav.gallery",
+          defaultMessage: "Gallery",
+        })}
+      />
       <div className="container mx-auto px-4">
         <div className="my-10">
           <h1 className="text-xl md:text-2xl font-bold mt-10">Gallery</h1>
@@ -148,4 +154,4 @@ function Gallery() {
   );
 }
 
-export default Gallery;
+export default injectIntl(Gallery);

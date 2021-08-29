@@ -275,7 +275,7 @@ nav {
   .logo {
     position: relative;
     width: 300px;
-    z-index: 1;
+    z-index: 2;
 
     img {
       width: 150px;
@@ -292,11 +292,11 @@ nav {
 
 .big-nav {
   display: none;
-  min-height: 300px;
+  min-height: 100px;
   background: $primaryDark;
   position: absolute;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
 
   .container {
     display: flex;

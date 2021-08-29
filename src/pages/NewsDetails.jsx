@@ -5,12 +5,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { FacebookProvider, Share } from "react-facebook";
 import { BsCalendarFill } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
+import { injectIntl } from "react-intl";
 import { useParams } from "react-router-dom";
 import Books from "../components/Front/snakebites/Books";
 import TitleBar from "../components/Front/TitleBar";
 import { getNew } from "../requests/news";
 
-function NewsDetails() {
+function NewsDetails({ intl }) {
   const { slug } = useParams();
   const [news, setNews] = useState({
     id: 0,
@@ -43,7 +44,12 @@ function NewsDetails() {
 
   return (
     <>
-      <TitleBar name="News" />
+      <TitleBar
+        name={intl.formatMessage({
+          id: "nav.news",
+          defaultMessage: "News",
+        })}
+      />
       <div className="container mx-auto px-4">
         {/* container newss starts  */}
         <div className="grid md:grid-cols-3 my-10">
@@ -100,4 +106,4 @@ function NewsDetails() {
   );
 }
 
-export default NewsDetails;
+export default injectIntl(NewsDetails);

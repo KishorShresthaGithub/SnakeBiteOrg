@@ -20,5 +20,12 @@
     "contact_info": "सम्पर्क जानकारी",
     "venomous_nepal": "नेपालको विषालु सर्प",
     "download": "डाउनलोड",
-    "lets_connect": "सम्पर्क गर्नुहोस"
+    "lets_connect": "सम्पर्क गर्नुहोस",
+    "contact.name": "नाम",
+    "contact.address": "ठेगाना",
+    "contact.email": "इमेल",
+    "contact.phone": "फोन नम्बर",
+    "contact.message": "तपाइँको सन्देश",
+    "contact.send_message": "सन्देश पठाउनुहोस्",
+    "events": "इभेन्ट"
 }
