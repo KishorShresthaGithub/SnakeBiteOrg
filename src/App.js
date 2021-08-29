@@ -25,6 +25,7 @@ import DContact from "./pages/Dashboard/DContact";
 import DEvents from "./pages/Dashboard/DEvents";
 import DGallery from "./pages/Dashboard/DGallery";
 import DSummaryReport from "./pages/Dashboard/DSummaryreport";
+import DUser from "./pages/Dashboard/DUser";
 import EventDetails from "./pages/EventDetails";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -96,6 +97,7 @@ function App() {
         <DashRoute path="/d_links" component={DLinks}></DashRoute>
         <DashRoute path="/d_contact" component={DContact}></DashRoute>
         <DashRoute path="/d_gallery" component={DGallery}></DashRoute>
+        <DashRoute path="/d_user" component={DUser}></DashRoute>
         <DashRoute
           path="/d_summary_report"
           component={DSummaryReport}

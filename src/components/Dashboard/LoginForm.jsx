@@ -4,17 +4,22 @@ import { convertFormData } from "@requests/config";
 import React, { useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
+import loader from "@images/loader.gif";
 
 function LoginForm() {
   const { access_token, setToken } = useToken();
+
   const history = useHistory();
 
   const [passwordShow, setPasswordShow] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const { addToast } = useToasts();
 
   const handleLogin = (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const form = new FormData(e.target);
     const input = convertFormData(form);
@@ -25,10 +30,13 @@ function LoginForm() {
           const dt = res.data.data;
           setToken(dt.access_token);
           addToast("Login Successful", { appearance: "success" });
-          history.push("/d_home")
+          history.push("/d_home");
         }
+        setLoading(false);
       })
-      .catch(console.log);
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useLayoutEffect(() => {
@@ -59,7 +67,17 @@ function LoginForm() {
           id="password"
         />
 
-        <button className="btn-primary">LOG IN</button>
+        <button
+          className="btn-primary"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          LOG IN{" "}
+          <img
+            src={loader}
+            style={{ width: "50px", display: isLoading ? "block" : "none" }}
+            alt=""
+          />{" "}
+        </button>
       </form>
     </div>
   );

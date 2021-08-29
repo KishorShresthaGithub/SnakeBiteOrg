@@ -8,11 +8,15 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { getDistricts } from "@requests/avc";
+import { getContacts } from "../../requests/contact";
+import useToken from "@provider/AuthProvider";
 
 function DHome() {
   const [events, setEvents] = useState([]);
   const [avcCount, setAVCCount] = useState(0);
   const [upcoming, setUpcoming] = useState({});
+  const [messages, setMessages] = useState(0);
+  const { access_token } = useToken();
 
   function renderEventContent(eventInfo) {
     return <span className="px-3 py-1">{eventInfo.event.title}</span>;
@@ -22,10 +26,15 @@ function DHome() {
     let events = getEvents({ signal }).catch(console.log);
     let avc = getDistricts({ signal }).catch(console.log);
     let upcoming = getUpcoming({ signal }).catch(console.log);
+    let contacts = getContacts({ signal, accesstoken: access_token }).catch(
+      console.log
+    );
 
-    Promise.all([events, avc, upcoming])
+    Promise.all([events, avc, upcoming, contacts])
       .then((res) => {
-        let [ev, avc, up] = res;
+        let [ev, avc, up, contact] = res;
+
+        setMessages(contact?.data?.data?.length);
 
         //getting events for calendar
         let event = ev?.data?.data;
@@ -112,7 +121,7 @@ function DHome() {
                 <Link to="">
                   <h1 className="font-bold text-lg">Messages</h1>
 
-                  <p className="font-semibold text-3xl">2</p>
+                  <p className="font-semibold text-3xl">{messages}</p>
                 </Link>
               </div>
             </div>

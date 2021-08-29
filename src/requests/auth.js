@@ -28,7 +28,11 @@ export const updateUser = async (
   addToast
 ) => {
   return await axios
-    .put(`${server_url}/api/users/${string_id}`, data)
+    .put(`${server_url}/api/users/${string_id}`, data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
     .catch((err) => validation(err, addToast));
 };
 

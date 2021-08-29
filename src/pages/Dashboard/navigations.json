@@ -48,5 +48,10 @@
         "to": "/d_contact",
         "title": "contact",
         "default": "Contact"
+    },
+    {
+        "to": "/d_user",
+        "title": "User",
+        "default": "User"
     }
 ]
